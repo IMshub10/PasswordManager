@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_vault"
+        android:icon="@drawable/ic_padlock_primary"
+        android:title="@string/vault" />
+    <item
+        android:id="@+id/item_generator"
+        android:icon="@drawable/ic_pass_generator_primary"
+        android:title="@string/generator" />
+    <item
+        android:id="@+id/item_settings"
+        android:icon="@drawable/ic_settings_primary"
+        android:title="@string/settings" />
+</menu>
