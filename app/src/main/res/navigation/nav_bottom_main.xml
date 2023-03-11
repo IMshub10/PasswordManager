@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_bottom_main"
+    app:startDestination="@+id/vaultFrag">
+
+    <fragment
+        android:id="@+id/vaultFrag"
+        android:name="com.summer.passwordmanager.ui.screens.main.frags.VaultFrag"
+        android:label="Vault"
+        tools:layout="@layout/frag_main_vault" />
+    <fragment
+        android:id="@+id/passGeneratorFrag"
+        android:name="com.summer.passwordmanager.ui.screens.main.frags.PassGeneratorFrag"
+        android:label="Pass Generator"
+        tools:layout="@layout/frag_main_vault" />
+    <fragment
+        android:id="@+id/settingsFrag"
+        android:name="com.summer.passwordmanager.ui.screens.main.frags.SettingsFrag"
+        android:label="Settings"
+        tools:layout="@layout/frag_main_vault" />
+</navigation>

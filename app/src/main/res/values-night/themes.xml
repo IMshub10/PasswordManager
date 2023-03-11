@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.PasswordManager" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -38,7 +38,7 @@
         <item name="iconColorPrimary">?attr/colorLink</item>
         <item name="iconColorSecondary">?attr/labelTertiary</item>
 
-        <item name="bottomNavigationStyle">@style/BottomNavigationView</item>
+        <item name="bottomNavigationStyle">@style/BottomDark</item>
         <item name="actionMenuTextColor">@color/blue_dark</item>
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
 
@@ -50,11 +50,12 @@
         <item name="toolbarStyle">@style/ToolbarStyle</item>
     </style>
     <!--Bottom Navigation View===================================================================-->
-    <style name="BottomNavigationView" parent="Widget.Design.BottomNavigationView">
-        <item name="itemBackground">?attr/colorSurface</item>
+    <style name="BottomDark" parent="Widget.Design.BottomNavigationView">
+        <item name="android:itemBackground">?attr/colorSurface</item>
         <item name="backgroundTint">?attr/colorSurface</item>
         <item name="itemIconTint">@drawable/ripple_dark</item>
         <item name="itemTextColor">@drawable/ripple_dark</item>
+        <item name="itemRippleColor">?attr/colorPrimary</item>
         <item name="elevation">0dp</item>
     </style>
 

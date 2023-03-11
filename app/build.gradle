@@ -57,6 +57,8 @@ dependencies {
     //kodein
     implementation "org.kodein.di:kodein-di-generic-jvm:6.4.0"
     implementation "org.kodein.di:kodein-di-framework-android-x:6.4.0"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     //glide dependency
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
