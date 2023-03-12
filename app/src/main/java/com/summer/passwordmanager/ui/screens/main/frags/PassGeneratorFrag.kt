@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainPassGeneratorBinding
+import com.summer.passwordmanager.ui.screens.main.models.PassGeneratorModel
 import com.summer.passwordmanager.utils.Utils
 
 class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
@@ -20,15 +21,18 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
     override val layoutResId: Int
         get() = R.layout.frag_main_pass_generator
 
+    private val passGeneratorModel = PassGeneratorModel()
+
     override fun onFragmentReady(instanceState: Bundle?) {
-        setPassText(mBinding?.sbFragPassGeneratorLength?.progress ?: 4)
+        mBinding?.model = passGeneratorModel
+        setPassText()
         listeners()
     }
 
     private fun listeners() {
         mBinding?.run {
             ivFragPassGeneratorRefresh.setOnClickListener {
-                setPassText(sbFragPassGeneratorLength.progress)
+                setPassText()
             }
             ivFragPassGeneratorCopy.setOnClickListener {
                 (requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?)?.setPrimaryClip(
@@ -45,9 +49,10 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
                 override fun onProgressChanged(
                     seekbar: SeekBar?, value: Int, progressChanged: Boolean
                 ) {
-                    tvFragPassGeneratorPassLengthValue.text = value.toString()
+                    passGeneratorModel.length = value
+                    passGeneratorModel.notifyChange()
                     if (progressChanged) {
-                        setPassText(value)
+                        setPassText()
                     }
                 }
 
@@ -56,12 +61,41 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
                 override fun onStopTrackingTouch(seekbar: SeekBar?) {}
 
             })
+            swFragPassGeneratorLowerAlphas.setOnCheckedChangeListener { _, _ ->
+                passGeneratorModel.hasLowerAlphas = swFragPassGeneratorLowerAlphas.isChecked
+                passGeneratorModel.notifyChange()
+                setPassText()
+            }
+            swFragPassGeneratorUpperAlphas.setOnCheckedChangeListener { _, _ ->
+                passGeneratorModel.hasUpperAlphas = swFragPassGeneratorUpperAlphas.isChecked
+                passGeneratorModel.notifyChange()
+                setPassText()
+            }
+            swFragPassGeneratorNumbers.setOnCheckedChangeListener { _, _ ->
+                passGeneratorModel.hasNumbers = swFragPassGeneratorNumbers.isChecked
+                passGeneratorModel.notifyChange()
+                setPassText()
+            }
+            swFragPassGeneratorSpecialCharacters.setOnCheckedChangeListener { _, _ ->
+                passGeneratorModel.hasSpecialCharacters =
+                    swFragPassGeneratorSpecialCharacters.isChecked
+                passGeneratorModel.notifyChange()
+                setPassText()
+            }
         }
     }
 
-    private fun setPassText(length: Int) {
+    private fun setPassText() {
         mBinding?.tvFragPassGeneratorPassHolder?.text =
-            SpannableString(Utils.getRandomString(length)).apply {
+            SpannableString(
+                Utils.getRandomString(
+                    passGeneratorModel.length,
+                    passGeneratorModel.hasUpperAlphas,
+                    passGeneratorModel.hasLowerAlphas,
+                    passGeneratorModel.hasNumbers,
+                    passGeneratorModel.hasSpecialCharacters
+                )
+            ).apply {
                 for (i in 0 until this.toString().length) {
                     if (this.toString()[i].isDigit()) {
                         setSpan(

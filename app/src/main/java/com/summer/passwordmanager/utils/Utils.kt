@@ -23,17 +23,29 @@ object Utils {
         hasNumbers: Boolean = true,
         hasSpecialCharacters: Boolean = true
     ): String {
-        if (length < 4) {
-            throw RuntimeException("Length < 4")
-        }
         val upperAlphas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         val lowerAlphas = "abcdefghijklmnopqrstuvwxyz"
         val numbers = "0123456789"
         val specialChars = "@#$%^&*"
-        val source = upperAlphas + lowerAlphas + numbers + specialChars
-        return Random().ints(length.toLong(), 0, source.length)
+        if (length < 4) {
+            throw RuntimeException("Length < 4")
+        }
+        val stringBuilder = StringBuilder()
+        if (hasUpperAlphas) {
+            stringBuilder.append(upperAlphas)
+        }
+        if (hasLowerAlphas) {
+            stringBuilder.append(lowerAlphas)
+        }
+        if (hasNumbers) {
+            stringBuilder.append(numbers)
+        }
+        if (hasSpecialCharacters) {
+            stringBuilder.append(specialChars)
+        }
+        return Random().ints(length.toLong(), 0, stringBuilder.toString().length)
             .asSequence()
-            .map(source::get)
+            .map(stringBuilder.toString()::get)
             .joinToString("")
     }
 }

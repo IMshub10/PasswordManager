@@ -10,4 +10,8 @@
     <string name="length">Length</string>
     <string name="_10">10</string>
     <string name="copied_to_clipboard">Copied to ClipBoard</string>
+    <string name="a_z">a-z</string>
+    <string name="a_z_">A-Z</string>
+    <string name="special_characters_amp"><![CDATA[Special Characters (@#$%^&*)]]></string>
+    <string name="_0_9">0-9</string>
 </resources>
