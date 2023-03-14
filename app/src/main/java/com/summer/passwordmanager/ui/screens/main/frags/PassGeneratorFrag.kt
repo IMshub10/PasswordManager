@@ -13,18 +13,20 @@ import androidx.core.content.ContextCompat
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainPassGeneratorBinding
-import com.summer.passwordmanager.ui.screens.main.models.PassGeneratorModel
+import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
 import com.summer.passwordmanager.utils.Utils
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
 
     override val layoutResId: Int
         get() = R.layout.frag_main_pass_generator
 
-    private val passGeneratorModel = PassGeneratorModel()
+
+    private val viewModel: PassGeneratorViewModel by viewModel()
 
     override fun onFragmentReady(instanceState: Bundle?) {
-        mBinding?.model = passGeneratorModel
+        mBinding?.model = viewModel.passGeneratorModel
         setPassText()
         listeners()
     }
@@ -49,8 +51,8 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
                 override fun onProgressChanged(
                     seekbar: SeekBar?, value: Int, progressChanged: Boolean
                 ) {
-                    passGeneratorModel.length = value
-                    passGeneratorModel.notifyChange()
+                    viewModel.passGeneratorModel.length = value
+                    viewModel.passGeneratorModel.notifyChange()
                     if (progressChanged) {
                         setPassText()
                     }
@@ -62,24 +64,24 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
 
             })
             swFragPassGeneratorLowerAlphas.setOnCheckedChangeListener { _, _ ->
-                passGeneratorModel.hasLowerAlphas = swFragPassGeneratorLowerAlphas.isChecked
-                passGeneratorModel.notifyChange()
+                viewModel.passGeneratorModel.hasLowerAlphas = swFragPassGeneratorLowerAlphas.isChecked
+                viewModel.passGeneratorModel.notifyChange()
                 setPassText()
             }
             swFragPassGeneratorUpperAlphas.setOnCheckedChangeListener { _, _ ->
-                passGeneratorModel.hasUpperAlphas = swFragPassGeneratorUpperAlphas.isChecked
-                passGeneratorModel.notifyChange()
+                viewModel.passGeneratorModel.hasUpperAlphas = swFragPassGeneratorUpperAlphas.isChecked
+                viewModel.passGeneratorModel.notifyChange()
                 setPassText()
             }
             swFragPassGeneratorNumbers.setOnCheckedChangeListener { _, _ ->
-                passGeneratorModel.hasNumbers = swFragPassGeneratorNumbers.isChecked
-                passGeneratorModel.notifyChange()
+                viewModel.passGeneratorModel.hasNumbers = swFragPassGeneratorNumbers.isChecked
+                viewModel.passGeneratorModel.notifyChange()
                 setPassText()
             }
             swFragPassGeneratorSpecialCharacters.setOnCheckedChangeListener { _, _ ->
-                passGeneratorModel.hasSpecialCharacters =
+                viewModel.passGeneratorModel.hasSpecialCharacters =
                     swFragPassGeneratorSpecialCharacters.isChecked
-                passGeneratorModel.notifyChange()
+                viewModel.passGeneratorModel.notifyChange()
                 setPassText()
             }
         }
@@ -89,11 +91,11 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
         mBinding?.tvFragPassGeneratorPassHolder?.text =
             SpannableString(
                 Utils.getRandomString(
-                    passGeneratorModel.length,
-                    passGeneratorModel.hasUpperAlphas,
-                    passGeneratorModel.hasLowerAlphas,
-                    passGeneratorModel.hasNumbers,
-                    passGeneratorModel.hasSpecialCharacters
+                    viewModel.passGeneratorModel.length,
+                    viewModel.passGeneratorModel.hasUpperAlphas,
+                    viewModel.passGeneratorModel.hasLowerAlphas,
+                    viewModel.passGeneratorModel.hasNumbers,
+                    viewModel.passGeneratorModel.hasSpecialCharacters
                 )
             ).apply {
                 for (i in 0 until this.toString().length) {

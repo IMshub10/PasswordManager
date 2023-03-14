@@ -152,9 +152,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_small"
                 android:layout_marginTop="8dp"
-
                 android:checked="true"
-                android:enabled="@{model.hasUpperAlphas || model.hasNumbers || model.hasSpecialCharacters}"
+                android:enabled="@{model.hasLowerAlphas || model.hasNumbers || model.hasSpecialCharacters}"
                 android:text="@string/a_z_"
                 android:textColor="?labelSecondary"
                 app:layout_constraintTop_toBottomOf="@+id/sw_fragPassGenerator_lowerAlphas" />

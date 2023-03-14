@@ -51,12 +51,12 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
 
+    //koin
+    implementation 'io.insert-koin:koin-android:3.3.3'
+
     //joda time
     implementation 'joda-time:joda-time:2.10.14'
 
-    //kodein
-    implementation "org.kodein.di:kodein-di-generic-jvm:6.4.0"
-    implementation "org.kodein.di:kodein-di-framework-android-x:6.4.0"
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 

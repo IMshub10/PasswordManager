@@ -1,7 +1,20 @@
 package com.summer.passwordmanager
 
 import android.app.Application
+import com.summer.passwordmanager.di.module.viewModelModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 class App : Application() {
-
+    override fun onCreate() {
+        super.onCreate()
+        //koin
+        startKoin {
+            androidLogger(Level.DEBUG)
+            androidContext(this@App)
+            modules(viewModelModule)
+        }
+    }
 }
