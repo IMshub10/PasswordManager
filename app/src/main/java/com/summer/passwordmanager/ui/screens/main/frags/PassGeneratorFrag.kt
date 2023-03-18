@@ -64,12 +64,14 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
 
             })
             swFragPassGeneratorLowerAlphas.setOnCheckedChangeListener { _, _ ->
-                viewModel.passGeneratorModel.hasLowerAlphas = swFragPassGeneratorLowerAlphas.isChecked
+                viewModel.passGeneratorModel.hasLowerAlphas =
+                    swFragPassGeneratorLowerAlphas.isChecked
                 viewModel.passGeneratorModel.notifyChange()
                 setPassText()
             }
             swFragPassGeneratorUpperAlphas.setOnCheckedChangeListener { _, _ ->
-                viewModel.passGeneratorModel.hasUpperAlphas = swFragPassGeneratorUpperAlphas.isChecked
+                viewModel.passGeneratorModel.hasUpperAlphas =
+                    swFragPassGeneratorUpperAlphas.isChecked
                 viewModel.passGeneratorModel.notifyChange()
                 setPassText()
             }
@@ -96,7 +98,9 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
                     viewModel.passGeneratorModel.hasLowerAlphas,
                     viewModel.passGeneratorModel.hasNumbers,
                     viewModel.passGeneratorModel.hasSpecialCharacters
-                )
+                ).also {
+                    viewModel.insertPassHistory(it)
+                }
             ).apply {
                 for (i in 0 until this.toString().length) {
                     if (this.toString()[i].isDigit()) {

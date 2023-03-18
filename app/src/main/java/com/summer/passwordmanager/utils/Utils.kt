@@ -2,10 +2,16 @@ package com.summer.passwordmanager.utils
 
 import android.app.Activity
 import android.util.DisplayMetrics
+import com.github.shamil.Xid
 import java.util.*
 import kotlin.streams.asSequence
 
 object Utils {
+
+    fun generateXid(): String {
+        return Xid.get().toHexString()
+    }
+
     fun getScreenWidthIntDp(activity: Activity): Int {
         val displayMetrics = DisplayMetrics()
         activity.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
