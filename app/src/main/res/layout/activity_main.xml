@@ -10,8 +10,10 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/tb_actSectorProfile_toolbar"
             style="@style/TextAppearance.AppCompat.Title"
+            app:titleTextColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

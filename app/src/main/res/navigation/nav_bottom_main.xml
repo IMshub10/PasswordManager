@@ -13,7 +13,7 @@
     <fragment
         android:id="@+id/passGeneratorFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.PassGeneratorFrag"
-        android:label="Pass Generator"
+        android:label="Password Generator"
         tools:layout="@layout/frag_main_vault" />
     <fragment
         android:id="@+id/settingsFrag"

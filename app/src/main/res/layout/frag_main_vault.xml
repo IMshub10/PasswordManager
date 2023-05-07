@@ -10,7 +10,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_x_medium"
-            android:backgroundTint="?colorPrimary"
+            android:backgroundTint="?colorAccent"
             android:contentDescription="@string/add"
             android:elevation="@dimen/spacing_x_small"
             app:fabSize="normal"
