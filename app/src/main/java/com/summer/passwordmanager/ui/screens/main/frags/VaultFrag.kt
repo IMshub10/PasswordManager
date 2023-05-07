@@ -13,5 +13,4 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
     override fun onFragmentReady(instanceState: Bundle?) {
 
     }
-
 }

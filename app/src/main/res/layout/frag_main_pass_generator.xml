@@ -47,6 +47,7 @@
                         android:layout_margin="@dimen/spacing_x_small"
                         android:fontFamily="@font/roboto_regular"
                         android:letterSpacing="0.1"
+                        android:minHeight="180dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/iv_fragPassGenerator_copy"
                         app:layout_constraintStart_toStartOf="parent"
