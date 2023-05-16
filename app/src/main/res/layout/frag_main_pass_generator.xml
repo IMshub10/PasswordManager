@@ -55,8 +55,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/spacing_x_small"
-                        android:fontFamily="@font/roboto_regular"
+                        android:fontFamily="@font/roboto_mono_regular"
                         android:letterSpacing="0.1"
+                        android:minHeight="100dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -118,108 +119,182 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_fragPassGenerator_options"
-                style="@style/text_body_bold"
+                style="@style/text_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_small"
+                android:layout_marginHorizontal="@dimen/spacing_x_small"
                 android:layout_marginVertical="@dimen/spacing_x_medium"
+                android:layout_marginTop="16dp"
                 android:text="@string/options"
-                android:textColor="?colorPrimary"
-                app:layout_constraintTop_toBottomOf="@+id/mcv_fragPassGenerator_passHolder" />
+                app:layout_constraintTop_toBottomOf="@+id/mcv_fragPassGenerator_passHolder"
+                tools:layout_editor_absoluteX="0dp" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_fragPassGenerator_passLength"
-                style="@style/text_body"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_fragPassGenerator_OptionsHolder"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/spacing_x_medium"
-                android:layout_marginStart="@dimen/spacing_small"
-                android:text="@string/length"
-                android:textColor="?labelSecondary"
-                app:layout_constraintEnd_toStartOf="@+id/tv_fragPassGenerator_passLengthValue"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_fragPassGenerator_options" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_fragPassGenerator_passLengthValue"
-                style="@style/text_body"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_small"
-                android:layout_marginVertical="@dimen/spacing_x_medium"
-                android:text="@{String.valueOf(model.length)}"
-                android:textColor="?labelSecondary"
-                app:layout_constraintEnd_toEndOf="@+id/guideline_horizontal_30"
-                app:layout_constraintStart_toEndOf="@+id/tv_fragPassGenerator_passLength"
-                app:layout_constraintTop_toBottomOf="@+id/tv_fragPassGenerator_options" />
-
-            <SeekBar
-                android:id="@+id/sb_fragPassGenerator_length"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_small"
-                android:layout_marginVertical="@dimen/spacing_x_medium"
-                android:max="128"
-                android:min="4"
+                android:layout_margin="@dimen/spacing_x_small"
+                app:cardBackgroundColor="?colorOnSecondary"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="@dimen/spacing_x_small"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline_horizontal_30"
-                app:layout_constraintTop_toBottomOf="@+id/tv_fragPassGenerator_options" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fragPassGenerator_options">
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/sw_fragPassGenerator_lowerAlphas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_small"
-                android:layout_marginTop="8dp"
-                android:checked="true"
-                android:enabled="@{model.hasUpperAlphas || model.hasNumbers || model.hasSpecialCharacters}"
-                android:text="@string/a_z"
-                android:textColor="?labelSecondary"
-                app:layout_constraintTop_toBottomOf="@+id/sb_fragPassGenerator_length" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/sw_fragPassGenerator_upperAlphas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_small"
-                android:layout_marginTop="8dp"
-                android:checked="true"
-                android:enabled="@{model.hasLowerAlphas || model.hasNumbers || model.hasSpecialCharacters}"
-                android:text="@string/a_z_"
-                android:textColor="?labelSecondary"
-                app:layout_constraintTop_toBottomOf="@+id/sw_fragPassGenerator_lowerAlphas" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_fragPassGenerator_passLength"
+                        style="@style/text_body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/spacing_x_medium"
+                        android:layout_marginStart="@dimen/spacing_medium"
+                        android:text="@string/length"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_fragPassGenerator_passLengthValue"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/sw_fragPassGenerator_numbers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_small"
-                android:layout_marginTop="8dp"
-                android:checked="true"
-                android:enabled="@{model.hasLowerAlphas ||model.hasUpperAlphas ||  model.hasSpecialCharacters}"
-                android:text="@string/_0_9"
-                android:textColor="?labelSecondary"
-                app:layout_constraintTop_toBottomOf="@+id/sw_fragPassGenerator_upperAlphas" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_fragPassGenerator_passLengthValue"
+                        style="@style/text_body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/spacing_small"
+                        android:layout_marginVertical="@dimen/spacing_x_medium"
+                        android:background="@drawable/ripple_rounded_rect_stroke_accent_radius_medium"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:paddingHorizontal="@dimen/spacing_x_medium"
+                        android:paddingVertical="@dimen/spacing_x_small"
+                        android:text="@{String.valueOf(model.length)}"
+                        app:layout_constraintBottom_toTopOf="@+id/sb_fragPassGenerator_length"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_fragPassGenerator_passLength"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_fragPassGenerator_passLength"
+                        tools:text="24" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/sw_fragPassGenerator_specialCharacters"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_small"
-                android:layout_marginTop="8dp"
-                android:checked="true"
-                android:enabled="@{model.hasLowerAlphas || model.hasUpperAlphas || model.hasNumbers}"
-                android:text="@string/special_characters_amp"
-                android:textColor="?labelSecondary"
-                app:layout_constraintTop_toBottomOf="@+id/sw_fragPassGenerator_numbers" />
+                    <SeekBar
+                        android:id="@+id/sb_fragPassGenerator_length"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/spacing_small"
+                        android:layout_marginVertical="@dimen/spacing_x_medium"
+                        android:max="128"
+                        android:min="4"
+                        android:progress="4"
+                        android:progressBackgroundTint="@color/blue_light"
+                        android:progressTint="@color/blue_light"
+                        android:thumb="@drawable/seekbar_thumb_accent_circle"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_fragPassGenerator_passLengthValue"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_fragPassGenerator_passLength" />
+                    <View
+                        android:id="@+id/v_fragPassGenerator_separator2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:background="@color/grey"
+                        app:layout_constraintTop_toBottomOf="@+id/sb_fragPassGenerator_length" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_30"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.35" />
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/sw_fragPassGenerator_lowerAlphas"
+                        style="@style/text_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/spacing_small"
+                        android:layout_marginTop="8dp"
+                        android:checked="true"
+                        android:enabled="@{model.hasUpperAlphas || model.hasNumbers || model.hasSpecialCharacters}"
+                        android:text="@string/a_z"
+                        android:thumb="@drawable/switch_accent_thumb"
+                        app:layout_constraintTop_toBottomOf="@+id/v_fragPassGenerator_separator2"
+                        app:track="@drawable/switch_accent_track" />
+
+                    <View
+                        android:id="@+id/v_fragPassGenerator_separator3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:background="@color/grey"
+                        app:layout_constraintTop_toBottomOf="@+id/sw_fragPassGenerator_lowerAlphas" />
+
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/sw_fragPassGenerator_upperAlphas"
+                        style="@style/text_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/spacing_small"
+                        android:layout_marginTop="8dp"
+                        android:checked="true"
+                        android:enabled="@{model.hasLowerAlphas || model.hasNumbers || model.hasSpecialCharacters}"
+                        android:text="@string/a_z_"
+                        android:thumb="@drawable/switch_accent_thumb"
+                        app:layout_constraintTop_toBottomOf="@+id/v_fragPassGenerator_separator3"
+                        app:track="@drawable/switch_accent_track" />
+
+                    <View
+                        android:id="@+id/v_fragPassGenerator_separator4"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:background="@color/grey"
+                        app:layout_constraintTop_toBottomOf="@+id/sw_fragPassGenerator_upperAlphas" />
+
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/sw_fragPassGenerator_numbers"
+                        style="@style/text_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/spacing_small"
+                        android:layout_marginTop="8dp"
+                        android:checked="true"
+                        android:enabled="@{model.hasLowerAlphas ||model.hasUpperAlphas ||  model.hasSpecialCharacters}"
+                        android:text="@string/_0_9"
+                        android:thumb="@drawable/switch_accent_thumb"
+                        app:layout_constraintTop_toBottomOf="@+id/v_fragPassGenerator_separator4"
+                        app:track="@drawable/switch_accent_track" />
+
+                    <View
+                        android:id="@+id/v_fragPassGenerator_separator5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:background="@color/grey"
+                        app:layout_constraintTop_toBottomOf="@+id/sw_fragPassGenerator_numbers" />
+
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/sw_fragPassGenerator_specialCharacters"
+                        style="@style/text_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_small"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:checked="true"
+                        android:enabled="@{model.hasLowerAlphas || model.hasUpperAlphas || model.hasNumbers}"
+                        android:text="@string/special_characters_amp"
+                        android:thumb="@drawable/switch_accent_thumb"
+                        app:layout_constraintTop_toBottomOf="@+id/v_fragPassGenerator_separator5"
+                        app:track="@drawable/switch_accent_track" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_horizontal_30"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.35" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
+

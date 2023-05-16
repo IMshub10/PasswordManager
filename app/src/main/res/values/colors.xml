@@ -9,7 +9,8 @@
     <color name="light_black">#2C2C2C</color>
 
     <color name="blue_dark">#008aff</color>
-    <color name="blue_light">#007aff</color>
+    <color name="blue_light">#2D9CDB</color>
+    <color name="blue_light_30_aplha">#302D9CDB</color>
     <color name="blue_link">#36a6ff</color>
 
     <color name="blue_grey_dark">#455a64</color>

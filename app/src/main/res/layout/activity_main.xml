@@ -9,14 +9,21 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/tb_actSectorProfile_toolbar"
-            style="@style/TextAppearance.AppCompat.Title"
-            app:titleTextColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextColor="@color/white">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_actSectorProfile_toolbar"
+                style="@style/text_title_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Password Generator" />
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <fragment
             android:id="@+id/fcv_main_container"

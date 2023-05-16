@@ -3,6 +3,7 @@ package com.summer.passwordmanager.ui.screens.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -34,17 +35,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun setUpFragmentNavigation() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            mBinding.tvActSectorProfileToolbar.text = destination.label
+        }
         mBinding.bmvMainNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.item_vault -> {
                     navController.navigate(R.id.vaultFrag)
                 }
+
                 R.id.item_generator -> {
                     navController.navigate(R.id.passGeneratorFrag)
                 }
+
                 R.id.item_settings -> {
                     navController.navigate(R.id.settingsFrag)
                 }
+
                 else -> {
                     throw RuntimeException("Unknown item Id")
                 }
@@ -54,8 +61,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun onBackPressed() {
-        val a = Intent(Intent.ACTION_MAIN)
-        a.addCategory(Intent.CATEGORY_HOME)
-        startActivity(a)
+        startActivity(Intent(Intent.ACTION_MAIN).apply {
+            addCategory(Intent.CATEGORY_HOME)
+        })
     }
 }

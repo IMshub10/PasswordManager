@@ -62,6 +62,7 @@
 
     <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar.Primary">
         <item name="background">?attr/background</item>
+        <item name="android:fontFamily">@font/roboto_mono_bold</item>
     </style>
 
     <!--Bottom Navigation View===================================================================-->
@@ -88,7 +89,7 @@
         <item name="android:lineHeight">36sp</item>
         <item name="android:textColor">?attr/label</item>
         <item name="android:letterSpacing">0.015</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
     </style>
 
     <style name="text_title_2" parent="TextAppearance.AppCompat">
@@ -96,7 +97,7 @@
         <item name="android:lineHeight">30sp</item>
         <item name="android:textColor">?attr/label</item>
         <item name="android:letterSpacing">0.015</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
     </style>
 
     <style name="text_header" parent="TextAppearance.AppCompat">
@@ -104,7 +105,7 @@
         <item name="android:lineHeight">25.5sp</item>
         <item name="android:letterSpacing">0.012</item>
         <item name="android:textColor">?attr/label</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
     </style>
 
     <style name="text_header_bold" parent="TextAppearance.AppCompat">
@@ -112,7 +113,7 @@
         <item name="android:lineHeight">25.5sp</item>
         <item name="android:letterSpacing">0.012</item>
         <item name="android:textColor">?attr/label</item>
-        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/roboto_mono_bold</item>
     </style>
 
     <style name="text_body" parent="TextAppearance.AppCompat">
@@ -121,7 +122,7 @@
         <item name="lineHeight">22.5sp</item>
         <item name="android:letterSpacing">0.016</item>
         <item name="android:textColor">?attr/label</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
     </style>
 
     <style name="text_body_bold" parent="TextAppearance.AppCompat">
@@ -130,7 +131,7 @@
         <item name="lineHeight">22.5sp</item>
         <item name="android:letterSpacing">0.016</item>
         <item name="android:textColor">?attr/label</item>
-        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:fontFamily">@font/roboto_mono_medium</item>
     </style>
 
     <style name="text_body_secondary" parent="TextAppearance.AppCompat">
@@ -166,7 +167,7 @@
         <item name="android:lineHeight">22.5sp</item>
         <item name="android:letterSpacing">0.016</item>
         <item name="android:textColor">?attr/colorError</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
     </style>
 
     <!-- CardView -->
