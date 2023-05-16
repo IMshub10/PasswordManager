@@ -54,7 +54,7 @@
         <item name="backgroundTint">@color/light_black</item>
         <item name="itemIconTint">@drawable/ripple_dark</item>
         <item name="itemTextColor">@drawable/ripple_dark</item>
-        <item name="itemRippleColor">?attr/colorPrimary</item>
+        <item name="itemRippleColor">@color/blue_light</item>
         <item name="elevation">0dp</item>
     </style>
 

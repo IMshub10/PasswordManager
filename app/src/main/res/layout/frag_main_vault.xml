@@ -12,13 +12,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_x_medium"
-            android:backgroundTint="?colorAccent"
+            android:backgroundTint="@color/blue_light"
             android:contentDescription="@string/add"
             android:elevation="@dimen/spacing_x_small"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:rippleColor="?colorPrimaryDark"
+            app:rippleColor="@color/blue_dark"
             app:srcCompat="@drawable/round_add_white"
             app:tint="?colorOnSurface" />
 
