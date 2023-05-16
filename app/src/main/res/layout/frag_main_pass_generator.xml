@@ -12,13 +12,14 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="true">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_x_small"
+            android:layout_marginHorizontal="@dimen/spacing_small"
             android:animateLayoutChanges="true">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -27,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_x_small"
+                android:layout_marginTop="@dimen/spacing_small"
                 android:text="@string/password"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -137,9 +139,11 @@
                 app:cardBackgroundColor="?colorOnSecondary"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="@dimen/spacing_x_small"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_fragPassGenerator_options">
+                app:layout_constraintTop_toBottomOf="@+id/tv_fragPassGenerator_options"
+                app:layout_constraintVertical_bias="0.0">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -191,6 +195,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/tv_fragPassGenerator_passLengthValue"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_fragPassGenerator_passLength" />
+
                     <View
                         android:id="@+id/v_fragPassGenerator_separator2"
                         android:layout_width="match_parent"
@@ -206,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/spacing_small"
                         android:layout_marginTop="8dp"
-                        android:checked="true"
+                        android:checked="false"
                         android:enabled="@{model.hasUpperAlphas || model.hasNumbers || model.hasSpecialCharacters}"
                         android:text="@string/a_z"
                         android:thumb="@drawable/switch_accent_thumb"
@@ -274,11 +279,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/spacing_small"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         android:checked="true"
                         android:enabled="@{model.hasLowerAlphas || model.hasUpperAlphas || model.hasNumbers}"
                         android:text="@string/special_characters_amp"
                         android:thumb="@drawable/switch_accent_thumb"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/v_fragPassGenerator_separator5"
                         app:track="@drawable/switch_accent_track" />
 
