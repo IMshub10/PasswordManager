@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="hint"
+            type="java.lang.String" />
+
+        <variable
+            name="required"
+            type="java.lang.Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/et_phoneEt_hint"
+            style="@style/text_body_secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{hint}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setRequired="@{required}"
+            tools:text="Village Name" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_phoneEt_left"
+            style="@style/EditTextStyle"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:background="@drawable/box_shape_edit_text_left_curved"
+            android:gravity="center"
+            android:hint="+91"
+            android:maxLength="4"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/spacing_x_small"
+            android:paddingVertical="@dimen/spacing_small"
+            android:textCursorDrawable="@drawable/shape_color_cursor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_phoneEt_hint" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_phoneEt_right"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:background="@drawable/box_shape_edit_text_right_curved"
+            android:hint="9876543210"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/spacing_x_small"
+            android:paddingVertical="@dimen/spacing_small"
+            android:textCursorDrawable="@drawable/shape_color_cursor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/et_phoneEt_left"
+            app:layout_constraintTop_toBottomOf="@+id/et_phoneEt_hint" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

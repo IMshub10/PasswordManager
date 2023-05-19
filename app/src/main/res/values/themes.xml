@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.PasswordManager" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white_hole</item>
-        <item name="colorPrimaryVariant">@color/blue_dark</item>
+        <item name="colorPrimary">@color/grey_dark</item>
+        <item name="colorPrimaryVariant">@color/grey_darkest</item>
         <item name="colorOnPrimary">@color/white</item>
 
         <item name="colorSurface">@color/white_hole</item>
@@ -41,7 +41,6 @@
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
         <item name="android:windowAnimationStyle">@style/WindowTransition</item>
         <item name="android:windowContentTransitions">true</item>
-
     </style>
     <!--Animation================================================================================-->
     <style name="WindowTransition" parent="android:Animation.Activity">
@@ -202,6 +201,36 @@
     <style name="SpannableDialogAnimation">
         <item name="android:windowEnterAnimation">@anim/spannable_fade_in</item>
         <item name="android:windowExitAnimation">@anim/spannable_fade_out</item>
+    </style>
+
+    <style name="InputTextOutLine" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxStrokeErrorColor">@color/red_light</item>
+        <item name="boxStrokeColor">?attr/label</item>
+        <item name="errorTextColor">@color/error</item>
+        <item name="hintTextColor">?label</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/spacing_x_small</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/spacing_x_small</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/spacing_x_small</item>
+        <item name="boxCornerRadiusTopStart">@dimen/spacing_x_small</item>
+        <item name="hintTextAppearance">@style/HelperTextAppearance</item>
+        <item name="errorTextAppearance">@style/HelperTextAppearance</item>
+        <item name="helperTextTextAppearance">@style/HelperTextAppearance</item>
+    </style>
+
+    <style name="HelperTextAppearance" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/label</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">?attr/label</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
+        <item name="android:textCursorDrawable">@drawable/shape_color_cursor</item>
     </style>
 
     <!--    =====================================================================================-->

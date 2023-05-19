@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/spacing_small">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fragSignUp_title"
+            style="@style/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:text="@string/create_account"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fragSignUp_subTitle"
+            style="@style/text_body_secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_your_account_to_continue"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fragSignUp_title" />
+
+        <include
+            android:id="@+id/et_fragSignUp_name"
+            layout="@layout/field_new_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_x_large"
+            app:hint="@{@string/name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fragSignUp_subTitle"
+            app:required="@{true}" />
+
+        <include
+            android:id="@+id/et_fragSignUp_mobileNumber"
+            layout="@layout/phone_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            app:hint="@{@string/mobile_number}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_name"
+            app:required="@{true}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/text_body_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_x_large"
+            android:background="@drawable/ripple_rounded_rect_primary_solid"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/save"
+            android:textColor="@color/white_hole"
+            app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_mobileNumber" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

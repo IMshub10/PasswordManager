@@ -7,6 +7,7 @@ import com.summer.passwordmanager.database.dao.AppDao
 import com.summer.passwordmanager.repository.AppRepository
 import com.summer.passwordmanager.repository.Repository
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
+import com.summer.passwordmanager.ui.screens.signup.viewmodels.SignUpViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -35,5 +36,6 @@ val repositoryModule = module {
 val viewModelModule = module {
     viewModel {
         PassGeneratorViewModel(repository = get())
+        SignUpViewModel(repository = get())
     }
 }
