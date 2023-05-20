@@ -15,13 +15,16 @@ data class TextEditTextModel(
     var editTextContent: String? = null
 
     fun validate(): Boolean {
+        if (!isRequired) {
+            return true
+        }
         return when (fieldType) {
             TextEditTextFieldType.FULL_NAME -> {
                 (editTextContent?.length ?: 0) > 2
             }
 
             TextEditTextFieldType.MOBILE_NUMBER -> {
-                (editTextContent?.length ?: 0) > 10
+                (editTextContent?.length ?: 0) > 9 && editTextContent?.contains("+") ?: false
             }
         }
     }

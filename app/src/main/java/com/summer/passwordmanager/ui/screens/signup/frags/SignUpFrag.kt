@@ -1,10 +1,16 @@
 package com.summer.passwordmanager.ui.screens.signup.frags
 
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragSignUpBinding
+import com.summer.passwordmanager.ui.screens.main.MainActivity
 import com.summer.passwordmanager.ui.screens.signup.viewmodels.SignUpViewModel
+import com.summer.passwordmanager.utils.LauncherUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFrag : BaseFragment<FragSignUpBinding>() {
@@ -23,7 +29,15 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
         mBinding?.run {
             tvFragSignUpSave.setOnClickListener {
                 if (validate()) {
-                    viewModel.save()
+                    lifecycleScope.launch {
+                        viewModel.save()
+                        withContext(Dispatchers.Main) {
+                            LauncherUtils.startActivityWithClearTop(
+                                requireActivity(),
+                                MainActivity::class.java
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -35,7 +49,8 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
             return false
         }
         if (!viewModel.mobileNumberEditTextModel.validate()) {
-            mBinding?.etFragSignUpMobileNumber?.tilEditTextEdit?.error = getString(R.string.invalid_input)
+            mBinding?.etFragSignUpMobileNumber?.tilEditTextEdit?.error =
+                getString(R.string.invalid_input)
             return false
         }
         return true

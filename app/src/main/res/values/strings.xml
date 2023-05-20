@@ -23,4 +23,6 @@
     <string name="create_account">Create Account</string>
     <string name="save">Save</string>
     <string name="invalid_input">Invalid Input</string>
+    <string name="hint_full_name">Johnny Depp</string>
+    <string name="hint_mobile_number">+919090909090</string>
 </resources>

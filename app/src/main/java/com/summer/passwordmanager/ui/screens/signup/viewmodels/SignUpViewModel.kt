@@ -14,12 +14,10 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
     val mobileNumberEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.MOBILE_NUMBER, isRequired = true)
 
-    fun save() {
-        viewModelScope.launch(Dispatchers.Default) {
-            repository.save(
-                fullNameEditTextModel.editTextContent,
-                mobileNumberEditTextModel.editTextContent
-            )
-        }
+    suspend fun save() {
+        repository.save(
+            fullNameEditTextModel.editTextContent,
+            mobileNumberEditTextModel.editTextContent
+        )
     }
 }

@@ -10,6 +10,10 @@
             type="com.summer.passwordmanager.ui.uimodels.TextEditTextModel" />
 
         <variable
+            name="title"
+            type="java.lang.String" />
+
+        <variable
             name="hint"
             type="java.lang.String" />
 
@@ -27,7 +31,7 @@
             style="@style/text_body_secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{hint}"
+            android:text="@{title}"
             app:setRequired="@{textInputModel.required}"
             tools:text="Village Name" />
 
@@ -44,11 +48,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/til_editText_edit"
                 style="@style/EditTextStyle"
-                app:setUpTextEditText="@{textInputModel}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@{hint}"
                 android:singleLine="@{singleLine, default = true}"
                 android:textSize="15sp"
+                app:setUpTextEditText="@{textInputModel}"
                 tools:text="Village Name" />
 
         </com.google.android.material.textfield.TextInputLayout>
