@@ -6,7 +6,7 @@ object FilterUtils {
 
     var alphaNumericWhiteSpaceFilter = InputFilter { source, start, end, dest, _, _ ->
         for (i in start until end) {
-            if (!Regex("[A-Za-z0-9()\\- ]*").matches(source.toString() + dest.toString())) { // Accept alpha numeric characters
+            if (!Regex("[A-Za-z0-9]*").matches(source.toString() + dest.toString())) { // Accept alpha numeric characters
                 return@InputFilter ""
             }
         }
@@ -15,7 +15,7 @@ object FilterUtils {
 
     var alphaWhiteSpaceFilter = InputFilter { source, start, end, dest, _, _ ->
         for (i in start until end) {
-            if (!Regex("[A-Za-z\\- ]*").matches(dest.toString() + source.toString())) { // Accept alpha numeric characters
+            if (!Regex("[A-Za-z]*").matches(dest.toString() + source.toString())) { // Accept alpha numeric characters
                 return@InputFilter ""
             }
         }
