@@ -51,9 +51,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_name"
-            app:textInputModel="@{model.phoneEditTextModel}" />
+            app:textInputModel="@{model.mobileNumberEditTextModel}" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fragSignUp_save"
             style="@style/text_body_bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

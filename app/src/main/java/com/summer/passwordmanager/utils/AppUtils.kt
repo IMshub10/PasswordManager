@@ -5,6 +5,13 @@ import java.util.Random
 import kotlin.streams.asSequence
 
 object AppUtils {
+    //region Values
+    const val KEY_FULL_NAME = "full_name"
+    const val KEY_MOBILE_NUMBER = "mobile_number"
+    //endregion
+
+
+    //region Functions
     fun generateXid(): String {
         return Xid.get().toHexString()
     }
@@ -45,4 +52,5 @@ object AppUtils {
             .map(stringBuilder.toString()::get)
             .joinToString("")
     }
+    //endregion
 }

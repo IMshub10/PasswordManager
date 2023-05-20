@@ -81,4 +81,8 @@ dependencies {
 
     //xid Generator
     implementation 'com.github.0xshamil:java-xid:1.0.0'
+
+    //Encrypted Shared Preference
+    implementation "androidx.security:security-crypto:1.1.0-alpha06"
+
 }

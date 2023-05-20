@@ -7,5 +7,6 @@ interface Repository {
     //region room db methods
     suspend fun insertIgnoreVaultEntity(vaultEntity: VaultEntity)
     suspend fun insertPastHistory(passHistoryEntity: PassHistoryEntity)
+    suspend fun save(fullName: String?, mobileNumber: String?)
     //endregion
 }

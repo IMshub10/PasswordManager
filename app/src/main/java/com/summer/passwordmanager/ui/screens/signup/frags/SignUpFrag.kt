@@ -16,5 +16,28 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
 
     override fun onFragmentReady(instanceState: Bundle?) {
         mBinding?.model = viewModel
+        listeners()
+    }
+
+    private fun listeners() {
+        mBinding?.run {
+            tvFragSignUpSave.setOnClickListener {
+                if (validate()) {
+                    viewModel.save()
+                }
+            }
+        }
+    }
+
+    private fun validate(): Boolean {
+        if (!viewModel.fullNameEditTextModel.validate()) {
+            mBinding?.etFragSignUpName?.tilEditTextEdit?.error = getString(R.string.invalid_input)
+            return false
+        }
+        if (!viewModel.mobileNumberEditTextModel.validate()) {
+            mBinding?.etFragSignUpMobileNumber?.tilEditTextEdit?.error = getString(R.string.invalid_input)
+            return false
+        }
+        return true
     }
 }

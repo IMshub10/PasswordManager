@@ -1,9 +1,11 @@
 package com.summer.passwordmanager.di.module
 
 import android.app.Application
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.summer.passwordmanager.database.AppDatabase
 import com.summer.passwordmanager.database.dao.AppDao
+import com.summer.passwordmanager.database.preferences.Preference
 import com.summer.passwordmanager.repository.AppRepository
 import com.summer.passwordmanager.repository.Repository
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
@@ -19,18 +21,24 @@ val databaseModule = module {
             .build()
     }
 
+    fun provideSharedPreference(application: Application): SharedPreferences {
+        return Preference.createdEncryptedPreference(application)
+    }
+
     fun provideDao(database: AppDatabase): AppDao {
         return database.appDao()
     }
+
     single { provideDatabase(androidApplication()) }
     single { provideDao(get()) }
+    single { provideSharedPreference(androidApplication()) }
 }
 
 val repositoryModule = module {
-    fun provideRepository(dao: AppDao): Repository {
-        return AppRepository(dao)
+    fun provideRepository(dao: AppDao, sharedPreferences: SharedPreferences): Repository {
+        return AppRepository(dao, sharedPreferences)
     }
-    single { provideRepository(get()) }
+    single { provideRepository(get(), get()) }
 }
 
 val viewModelModule = module {

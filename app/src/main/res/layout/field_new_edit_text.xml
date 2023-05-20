@@ -44,7 +44,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/til_editText_edit"
                 style="@style/EditTextStyle"
-                app:setUpFilter="@{textInputModel}"
+                app:setUpTextEditText="@{textInputModel}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="@{singleLine, default = true}"
