@@ -35,6 +35,7 @@
         <item name="iconColorSecondary">?attr/labelSecondary</item>
 
         <item name="appBarLayoutStyle">@style/AppTheme.AppBarOverlay</item>
+        <item name="toolbar_background">@color/white</item>
         <item name="toolbarStyle">@style/ToolbarStyle</item>
         <item name="bottomNavigationStyle">@style/Bottom_Light</item>
         <item name="actionMenuTextColor">@color/black</item>
@@ -60,7 +61,7 @@
     <style name="Theme.Application.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar.Primary">
-        <item name="background">?attr/background</item>
+        <item name="android:background">?attr/toolbar_background</item>
         <item name="android:fontFamily">@font/roboto_mono_bold</item>
     </style>
 

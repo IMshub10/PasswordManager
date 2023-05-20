@@ -28,4 +28,12 @@ class AppRepository(
         }
     }
 
+    override suspend fun getFullName(): String? {
+        return sharedPreferences.getString(AppUtils.KEY_FULL_NAME, null)
+    }
+
+    override suspend fun getMobileNumber(): String? {
+        return sharedPreferences.getString(AppUtils.KEY_MOBILE_NUMBER, null)
+    }
+
 }

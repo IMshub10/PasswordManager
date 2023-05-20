@@ -8,4 +8,5 @@
     <attr name="iconColorSecondary" format="color" />
     <attr name="colorSeparator" format="color" />
     <attr name="colorGreen" format="color" />
+    <attr name="toolbar_background" format="color"/>
 </resources>

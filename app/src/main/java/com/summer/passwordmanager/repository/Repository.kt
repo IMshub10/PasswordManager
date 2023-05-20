@@ -8,5 +8,7 @@ interface Repository {
     suspend fun insertIgnoreVaultEntity(vaultEntity: VaultEntity)
     suspend fun insertPastHistory(passHistoryEntity: PassHistoryEntity)
     suspend fun save(fullName: String?, mobileNumber: String?)
+    suspend fun getFullName(): String?
+    suspend fun getMobileNumber(): String?
     //endregion
 }
