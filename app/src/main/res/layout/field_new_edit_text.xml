@@ -6,12 +6,12 @@
     <data>
 
         <variable
-            name="hint"
-            type="java.lang.String" />
+            name="textInputModel"
+            type="com.summer.passwordmanager.ui.uimodels.TextEditTextModel" />
 
         <variable
-            name="required"
-            type="java.lang.Boolean" />
+            name="hint"
+            type="java.lang.String" />
 
         <variable
             name="singleLine"
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{hint}"
-            app:setRequired="@{required}"
+            app:setRequired="@{textInputModel.required}"
             tools:text="Village Name" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -44,6 +44,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/til_editText_edit"
                 style="@style/EditTextStyle"
+                app:setUpFilter="@{textInputModel}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="@{singleLine, default = true}"

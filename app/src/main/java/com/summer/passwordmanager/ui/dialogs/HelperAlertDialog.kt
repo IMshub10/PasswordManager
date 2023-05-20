@@ -15,7 +15,7 @@ import androidx.databinding.ObservableField
 import androidx.fragment.app.DialogFragment
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.databinding.DialogAlertSpanableBinding
-import com.summer.passwordmanager.utils.Utils
+import com.summer.passwordmanager.utils.UiUtils
 import com.summer.passwordmanager.utils.gone
 import com.summer.passwordmanager.utils.visible
 
@@ -187,13 +187,13 @@ class HelperAlertDialog(
                 )
             )
             layoutParams = ViewGroup.LayoutParams(
-                Utils.getScreenWidthIntDp(requireActivity()) - 160,
+                UiUtils.getScreenWidthIntDp(requireActivity()) - 160,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         })
         window?.setBackgroundDrawableResource(android.R.color.transparent)
         window?.setLayout(
-            Utils.getScreenWidthIntDp(requireActivity()) - 128,
+            UiUtils.getScreenWidthIntDp(requireActivity()) - 128,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
     }

@@ -1,6 +1,6 @@
 package com.summer.passwordmanager
 
-import com.summer.passwordmanager.utils.Utils.getRandomString
+import com.summer.passwordmanager.utils.UiUtils.getRandomString
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 

@@ -15,6 +15,6 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
     private val viewModel: SignUpViewModel by viewModel()
 
     override fun onFragmentReady(instanceState: Bundle?) {
-
+        mBinding?.model = viewModel
     }
 }

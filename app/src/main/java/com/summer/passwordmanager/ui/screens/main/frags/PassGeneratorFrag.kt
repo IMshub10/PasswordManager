@@ -14,7 +14,8 @@ import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainPassGeneratorBinding
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
-import com.summer.passwordmanager.utils.Utils
+import com.summer.passwordmanager.utils.AppUtils
+import com.summer.passwordmanager.utils.UiUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
@@ -92,7 +93,7 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
     private fun setPassText() {
         mBinding?.tvFragPassGeneratorPassHolder?.text =
             SpannableString(
-                Utils.getRandomString(
+                AppUtils.getRandomString(
                     viewModel.passGeneratorModel.length,
                     viewModel.passGeneratorModel.hasUpperAlphas,
                     viewModel.passGeneratorModel.hasLowerAlphas,

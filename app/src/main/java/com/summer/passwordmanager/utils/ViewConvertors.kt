@@ -39,9 +39,9 @@ object ViewConvertors {
     }
 
     private fun AppCompatTextView.makeRequired() {
-        if (hint == null) return
-        hint = buildSpannedString {
-            append(hint)
+        if (text == null) return
+        text = buildSpannedString {
+            append(text)
             color(resources.getColor(R.color.error)) { append("*") }
         }
     }

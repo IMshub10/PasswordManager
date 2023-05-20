@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="model"
+            type="com.summer.passwordmanager.ui.screens.signup.viewmodels.SignUpViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,11 +39,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fragSignUp_subTitle"
-            app:required="@{true}" />
+            app:textInputModel="@{model.fullNameEditTextModel}" />
 
         <include
             android:id="@+id/et_fragSignUp_mobileNumber"
-            layout="@layout/phone_edit_text"
+            layout="@layout/field_new_edit_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
@@ -46,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_name"
-            app:required="@{true}" />
+            app:textInputModel="@{model.phoneEditTextModel}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/text_body_bold"
