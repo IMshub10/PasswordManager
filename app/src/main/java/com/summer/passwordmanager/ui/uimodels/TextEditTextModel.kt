@@ -76,14 +76,12 @@ data class TextEditTextModel(
 
                 TextEditTextFieldType.WEBSITE_ADDRESS -> {
                     this.filters = arrayOf(
-                        FilterUtils.alphaNumericWhiteSpaceFullStopFilter,
                         InputFilter.LengthFilter(200)
                     )
                 }
 
                 TextEditTextFieldType.USERNAME_MOBILE -> {
                     this.filters = arrayOf(
-                        FilterUtils.alphaNumericWhiteSpaceFullStopFilter,
                         InputFilter.LengthFilter(200)
                     )
                 }
@@ -93,13 +91,14 @@ data class TextEditTextModel(
                         InputFilter.LengthFilter(128)
                     )
                 }
+
                 TextEditTextFieldType.NOTES -> {
                     this.filters = arrayOf(
                         InputFilter.LengthFilter(300)
                     )
                 }
             }
-
+            this.setText(model.editTextContent ?: "")
             //listeners
             this.addTextChangedListener {
                 model.editTextContent = it?.trim()?.toString()

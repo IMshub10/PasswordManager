@@ -6,7 +6,6 @@ import com.summer.passwordmanager.database.entities.PassHistoryEntity
 import com.summer.passwordmanager.repository.Repository
 import com.summer.passwordmanager.ui.screens.main.models.PassGeneratorModel
 import com.summer.passwordmanager.utils.AppUtils
-import com.summer.passwordmanager.utils.UiUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

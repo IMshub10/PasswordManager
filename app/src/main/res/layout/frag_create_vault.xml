@@ -10,121 +10,175 @@
             type="com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_small">
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/spacing_tiny"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@+id/cl_fragCreateVault_container"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <include
-                android:id="@+id/et_fragCreateVault_entityName"
-                layout="@layout/field_new_edit_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                app:hint="@{@string/hint_website_entity_name}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:textInputModel="@{model.websiteNameEditTextModel}"
-                app:title="@{@string/website_entity_name}" />
-
-            <include
-                android:id="@+id/et_fragCreateVault_webAddress"
-                layout="@layout/field_new_edit_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_x_medium"
-                app:hint="@{@string/hint_web_address}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_entityName"
-                app:textInputModel="@{model.websiteAddressEditTextModel}"
-                app:title="@{@string/web_address}" />
-
-            <include
-                android:id="@+id/et_fragCreateVault_userNameMobile"
-                layout="@layout/field_new_edit_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_x_medium"
-                app:hint="@{@string/empty}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_webAddress"
-                app:textInputModel="@{model.userNameMobileEditTextModel}"
-                app:title="@{@string/username_mobile_card_number}" />
-
-            <include
-                android:id="@+id/et_fragCreateVault_password"
-                layout="@layout/field_new_edit_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_x_medium"
-                android:layout_marginEnd="@dimen/spacing_x_small"
-                app:hint="@{@string/empty}"
-                app:layout_constraintEnd_toStartOf="@+id/tv_fragCreateVault_generatePassword"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_userNameMobile"
-                app:textInputModel="@{model.passwordEditTextModel}"
-                app:title="@{@string/password}" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_fragCreateVault_generatePassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_tiny"
-                android:background="@drawable/ripple_rounded_rect_primary_solid_small_corners"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingHorizontal="@dimen/spacing_x_medium"
-                android:paddingVertical="10dp"
-                android:text="@string/generate"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/et_fragCreateVault_password"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <include
-                android:id="@+id/et_fragCreateVault_notes"
-                layout="@layout/field_new_edit_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_x_medium"
-                android:layout_marginBottom="@dimen/spacing_medium"
-                app:hint="@{@string/empty}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_password"
-                app:textInputModel="@{model.notesEditTextModel}"
-                app:title="@{@string/notes}" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/et_fragCreateVault_selectTag"
-                style="@style/text_header"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/select_tag"
-                android:layout_marginTop="@dimen/spacing_small"
-                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_notes" />
+                android:layout_marginHorizontal="@dimen/spacing_small">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_fragCreateVault_folders"
+                <include
+                    android:id="@+id/et_fragCreateVault_entityName"
+                    layout="@layout/field_new_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    app:hint="@{@string/hint_website_entity_name}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:textInputModel="@{model.websiteNameEditTextModel}"
+                    app:title="@{@string/website_entity_name}" />
+
+                <include
+                    android:id="@+id/et_fragCreateVault_webAddress"
+                    layout="@layout/field_new_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_x_medium"
+                    app:hint="@{@string/hint_web_address}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_entityName"
+                    app:textInputModel="@{model.websiteAddressEditTextModel}"
+                    app:title="@{@string/web_address}" />
+
+                <include
+                    android:id="@+id/et_fragCreateVault_userNameMobile"
+                    layout="@layout/field_new_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_x_medium"
+                    app:hint="@{@string/empty}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_webAddress"
+                    app:textInputModel="@{model.userNameMobileEditTextModel}"
+                    app:title="@{@string/username_mobile_card_number}" />
+
+                <include
+                    android:id="@+id/et_fragCreateVault_password"
+                    layout="@layout/field_new_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_x_medium"
+                    android:layout_marginEnd="@dimen/spacing_x_small"
+                    app:hint="@{@string/empty}"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fragCreateVault_generatePassword"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_userNameMobile"
+                    app:textInputModel="@{model.passwordEditTextModel}"
+                    app:title="@{@string/password}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_fragCreateVault_generatePassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_tiny"
+                    android:background="@drawable/ripple_rounded_rect_primary_solid_small_corners"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="@dimen/spacing_x_medium"
+                    android:paddingVertical="10dp"
+                    android:text="@string/generate"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_fragCreateVault_password"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <include
+                    android:id="@+id/et_fragCreateVault_notes"
+                    layout="@layout/field_new_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_x_medium"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    app:hint="@{@string/empty}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_password"
+                    app:textInputModel="@{model.notesEditTextModel}"
+                    app:title="@{@string/notes}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/et_fragCreateVault_selectTag"
+                    style="@style/text_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="@string/select_tag"
+                    app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_notes" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_fragCreateVault_folders"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_selectTag"
+                    tools:listitem="@layout/item_view_folder" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_fragCreateVault_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_x_medium"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_x_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_fragCreateVault_cancelButton"
+                style="@style/text_body"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/spacing_tiny"
+                android:background="@drawable/ripple_rounded_rect_stroke_primary_radius_small"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:textColor="?colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/tv_fragCreateVault_confirmButton"
+                app:layout_constraintEnd_toStartOf="@+id/tv_fragCreateVault_confirmButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Cancel" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_fragCreateVault_confirmButton"
+                style="@style/text_body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small"
-                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+                android:layout_marginStart="@dimen/spacing_tiny"
+                android:background="@drawable/ripple_rounded_rect_primary_solid_small_corners"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_selectTag"
-                tools:listitem="@layout/item_view_folder" />
-
-
+                app:layout_constraintStart_toEndOf="@+id/tv_fragCreateVault_cancelButton"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="OK" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

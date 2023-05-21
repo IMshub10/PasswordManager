@@ -8,6 +8,7 @@ object AppUtils {
     //region Values
     const val KEY_FULL_NAME = "full_name"
     const val KEY_MOBILE_NUMBER = "mobile_number"
+    const val KEY_ADD = "add"
     //endregion
 
 

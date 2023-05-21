@@ -29,7 +29,7 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
         mBinding?.run {
             tvFragSignUpSave.setOnClickListener {
                 if (validate()) {
-                    lifecycleScope.launch {
+                    lifecycleScope.launch(Dispatchers.Default) {
                         viewModel.save()
                         withContext(Dispatchers.Main) {
                             LauncherUtils.startActivityWithClearTop(

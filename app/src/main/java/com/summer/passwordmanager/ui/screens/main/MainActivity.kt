@@ -98,7 +98,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.passGeneratorFrag
             )
         ) {
-            navController.navigateUp()
+            navController.popBackStack()
         } else {
             startActivity(Intent(Intent.ACTION_MAIN).apply {
                 addCategory(Intent.CATEGORY_HOME)

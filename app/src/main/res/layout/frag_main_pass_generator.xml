@@ -17,8 +17,8 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:fillViewport="true"
             android:animateLayoutChanges="true"
+            android:fillViewport="true"
             app:layout_constraintBottom_toTopOf="@+id/cl_fragPassGenerator_container"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -34,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_x_small"
-                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_tiny"
                     android:text="@string/password"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -217,7 +217,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/spacing_small"
                             android:layout_marginTop="8dp"
-                            android:checked="false"
+                            android:alpha="@{(model.hasUpperAlphas || model.hasNumbers || model.hasSpecialCharacters) ? 1.0f : 0.7f }"
+                            android:checked="true"
                             android:enabled="@{model.hasUpperAlphas || model.hasNumbers || model.hasSpecialCharacters}"
                             android:text="@string/a_z"
                             android:thumb="@drawable/switch_accent_thumb"
@@ -240,6 +241,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/spacing_small"
                             android:layout_marginTop="8dp"
+                            android:alpha="@{(model.hasLowerAlphas || model.hasNumbers || model.hasSpecialCharacters) ? 1.0f : 0.7f }"
                             android:checked="true"
                             android:enabled="@{model.hasLowerAlphas || model.hasNumbers || model.hasSpecialCharacters}"
                             android:text="@string/a_z_"
@@ -263,6 +265,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/spacing_small"
                             android:layout_marginTop="8dp"
+                            android:alpha="@{(model.hasLowerAlphas ||model.hasUpperAlphas ||  model.hasSpecialCharacters) ? 1.0f : 0.7f }"
                             android:checked="true"
                             android:enabled="@{model.hasLowerAlphas ||model.hasUpperAlphas ||  model.hasSpecialCharacters}"
                             android:text="@string/_0_9"
@@ -285,6 +288,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/spacing_small"
+                            android:alpha="@{(model.hasLowerAlphas || model.hasUpperAlphas || model.hasNumbers) ? 1.0f : 0.7f }"
                             android:checked="true"
                             android:enabled="@{model.hasLowerAlphas || model.hasUpperAlphas || model.hasNumbers}"
                             android:text="@string/special_characters_amp"
@@ -323,7 +327,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="@dimen/spacing_tiny"
-                android:background="@drawable/ripple_rounded_rect_primary_stroke"
+                android:background="@drawable/ripple_rounded_rect_stroke_primary_radius_small"
                 android:gravity="center"
                 android:paddingVertical="12dp"
                 android:text="@string/cancel"

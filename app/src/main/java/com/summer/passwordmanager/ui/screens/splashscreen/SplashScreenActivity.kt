@@ -1,17 +1,13 @@
 package com.summer.passwordmanager.ui.screens.splashscreen
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseActivity
 import com.summer.passwordmanager.databinding.ActivitySplashScreenBinding
 import com.summer.passwordmanager.ui.screens.main.MainActivity
 import com.summer.passwordmanager.ui.screens.signup.SignUpActivity
-import com.summer.passwordmanager.ui.screens.signup.viewmodels.SignUpViewModel
 import com.summer.passwordmanager.ui.screens.splashscreen.viewmodels.SplashScreenViewModel
 import com.summer.passwordmanager.utils.LauncherUtils
 import kotlinx.coroutines.Dispatchers
