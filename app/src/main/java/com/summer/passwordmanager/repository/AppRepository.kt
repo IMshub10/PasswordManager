@@ -1,9 +1,11 @@
 package com.summer.passwordmanager.repository
 
 import android.content.SharedPreferences
+import androidx.lifecycle.LiveData
 import androidx.security.crypto.EncryptedSharedPreferences
 import com.summer.passwordmanager.App
 import com.summer.passwordmanager.database.dao.AppDao
+import com.summer.passwordmanager.database.entities.FolderEntity
 import com.summer.passwordmanager.database.entities.PassHistoryEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
 import com.summer.passwordmanager.utils.AppUtils
@@ -34,6 +36,10 @@ class AppRepository(
 
     override suspend fun getMobileNumber(): String? {
         return sharedPreferences.getString(AppUtils.KEY_MOBILE_NUMBER, null)
+    }
+
+    override fun getAllFolders() :LiveData<List<FolderEntity>>{
+        return dao.getAllFolders()
     }
 
 }

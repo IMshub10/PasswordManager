@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,22 +10,121 @@
             type="com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-        <include
-            android:id="@+id/et_fragSignUp_name"
-            layout="@layout/field_new_edit_text"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_x_large"
-            app:hint="@{@string/hint_full_name}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:textInputModel="@{model.websiteNameEditTextModel}"
-            app:title="@{@string/name}" />
+            android:layout_marginHorizontal="@dimen/spacing_small">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                android:id="@+id/et_fragCreateVault_entityName"
+                layout="@layout/field_new_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                app:hint="@{@string/hint_website_entity_name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:textInputModel="@{model.websiteNameEditTextModel}"
+                app:title="@{@string/website_entity_name}" />
+
+            <include
+                android:id="@+id/et_fragCreateVault_webAddress"
+                layout="@layout/field_new_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_x_medium"
+                app:hint="@{@string/hint_web_address}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_entityName"
+                app:textInputModel="@{model.websiteAddressEditTextModel}"
+                app:title="@{@string/web_address}" />
+
+            <include
+                android:id="@+id/et_fragCreateVault_userNameMobile"
+                layout="@layout/field_new_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_x_medium"
+                app:hint="@{@string/empty}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_webAddress"
+                app:textInputModel="@{model.userNameMobileEditTextModel}"
+                app:title="@{@string/username_mobile_card_number}" />
+
+            <include
+                android:id="@+id/et_fragCreateVault_password"
+                layout="@layout/field_new_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_x_medium"
+                android:layout_marginEnd="@dimen/spacing_x_small"
+                app:hint="@{@string/empty}"
+                app:layout_constraintEnd_toStartOf="@+id/tv_fragCreateVault_generatePassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_userNameMobile"
+                app:textInputModel="@{model.passwordEditTextModel}"
+                app:title="@{@string/password}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_fragCreateVault_generatePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:background="@drawable/ripple_rounded_rect_primary_solid_small_corners"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingHorizontal="@dimen/spacing_x_medium"
+                android:paddingVertical="10dp"
+                android:text="@string/generate"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/et_fragCreateVault_password"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <include
+                android:id="@+id/et_fragCreateVault_notes"
+                layout="@layout/field_new_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_x_medium"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                app:hint="@{@string/empty}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_password"
+                app:textInputModel="@{model.notesEditTextModel}"
+                app:title="@{@string/notes}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/et_fragCreateVault_selectTag"
+                style="@style/text_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_tag"
+                android:layout_marginTop="@dimen/spacing_small"
+                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_notes" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_fragCreateVault_folders"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_fragCreateVault_selectTag"
+                tools:listitem="@layout/item_view_folder" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </layout>

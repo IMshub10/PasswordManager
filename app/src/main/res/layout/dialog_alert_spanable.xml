@@ -102,7 +102,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_tiny"
-                        android:background="@drawable/ripple_rounded_rect_primary_solid"
+                        android:background="@drawable/ripple_rounded_rect_primary_solid_small_corners"
                         android:gravity="center"
                         android:paddingVertical="12dp"
                         android:text="@{model.confirmText}"

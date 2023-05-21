@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_x_large"
-            android:background="@drawable/ripple_rounded_rect_primary_solid"
+            android:background="@drawable/ripple_rounded_rect_primary_solid_medium_corners"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"

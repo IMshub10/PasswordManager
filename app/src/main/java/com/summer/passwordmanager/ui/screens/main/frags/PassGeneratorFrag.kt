@@ -10,6 +10,7 @@ import android.text.style.ForegroundColorSpan
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainPassGeneratorBinding
@@ -30,6 +31,8 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
         mBinding?.model = viewModel.passGeneratorModel
         setPassText()
         listeners()
+        mBinding?.clFragPassGeneratorContainer?.isVisible =
+            arguments?.getBoolean("fetchPass") ?: false
     }
 
     private fun listeners() {

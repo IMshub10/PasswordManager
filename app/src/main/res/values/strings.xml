@@ -1,4 +1,5 @@
 <resources>
+    <string name="empty" />
     <string name="app_name">Password Manager</string>
     <string name="txt_ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -24,5 +25,13 @@
     <string name="save">Save</string>
     <string name="invalid_input">Invalid Input</string>
     <string name="hint_full_name">Johnny Depp</string>
-    <string name="hint_mobile_number">+919090909090</string>
+    <string name="hint_mobile_number">e.g +919090909090</string>
+    <string name="website_entity_name">Website/Entity Name</string>
+    <string name="hint_website_entity_name">e.g Google/HDFC Bank</string>
+    <string name="web_address">Web Address</string>
+    <string name="hint_web_address">e.g www.google.com</string>
+    <string name="username_mobile_card_number">Username/Mobile/Card Number</string>
+    <string name="notes">Notes</string>
+    <string name="select_tag">Select Tag</string>
+    <string name="generate">Generate</string>
 </resources>

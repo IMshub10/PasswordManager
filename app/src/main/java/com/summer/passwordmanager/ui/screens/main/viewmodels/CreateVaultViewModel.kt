@@ -1,6 +1,8 @@
 package com.summer.passwordmanager.ui.screens.main.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.summer.passwordmanager.database.entities.FolderEntity
 import com.summer.passwordmanager.repository.Repository
 import com.summer.passwordmanager.ui.uimodels.TextEditTextFieldType
 import com.summer.passwordmanager.ui.uimodels.TextEditTextModel
@@ -16,4 +18,8 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
         TextEditTextModel(fieldType = TextEditTextFieldType.PASSWORD, isRequired = true)
     val notesEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.NOTES, isRequired = false)
+
+    fun getAllFolders() :LiveData<List<FolderEntity>>{
+        return repository.getAllFolders()
+    }
 }

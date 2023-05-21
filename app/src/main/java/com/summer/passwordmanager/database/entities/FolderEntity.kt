@@ -1,6 +1,8 @@
 package com.summer.passwordmanager.database.entities
 
+import androidx.databinding.BaseObservable
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
 
@@ -13,4 +15,8 @@ data class FolderEntity(
     var name: String,
     var createdAt: Long,
     var updatedAt: Long,
-)
+) : BaseObservable() {
+
+    @Ignore
+    var isSelected = false
+}

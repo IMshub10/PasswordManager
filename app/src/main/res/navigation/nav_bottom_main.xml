@@ -9,15 +9,42 @@
         android:id="@+id/vaultFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.VaultFrag"
         android:label="Vault"
-        tools:layout="@layout/frag_main_vault" />
+        tools:layout="@layout/frag_main_vault">
+        <action
+            android:id="@+id/action_vaultFrag_to_createVaultFrag"
+            app:destination="@id/createVaultFrag"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_bottom"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/passGeneratorFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.PassGeneratorFrag"
         android:label="Password Generator"
-        tools:layout="@layout/frag_main_vault" />
+        tools:layout="@layout/frag_main_vault" >
+        <argument android:name="fetchPass"
+            android:defaultValue="false"
+            app:nullable="false"
+            app:argType="boolean"/>
+    </fragment>
     <fragment
         android:id="@+id/settingsFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.SettingsFrag"
         android:label="Settings"
         tools:layout="@layout/frag_main_vault" />
+    <fragment
+        android:id="@+id/createVaultFrag"
+        android:name="com.summer.passwordmanager.ui.screens.main.frags.CreateVaultFrag"
+        android:label="Create"
+        tools:layout="@layout/frag_create_vault">
+        <action
+            android:id="@+id/action_createVaultFrag_to_passGeneratorFrag"
+            app:destination="@id/passGeneratorFrag"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_bottom"
+            app:popExitAnim="@anim/slide_out_right" >
+        </action>
+    </fragment>
 </navigation>

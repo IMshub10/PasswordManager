@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.summer.passwordmanager.database.entities.FolderEntity" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/tv_itemViewFolder_root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_itemViewFolder_title"
+            style="@style/text_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_x_small"
+            android:background="@drawable/ripple_rounded_rect_color_label_small_corners"
+            android:paddingHorizontal="@dimen/spacing_x_medium"
+            android:paddingVertical="@dimen/spacing_x_small"
+            android:text="@{model.name}"
+            tools:text="Banking" />
+    </FrameLayout>
+</layout>
