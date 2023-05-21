@@ -26,6 +26,26 @@ data class TextEditTextModel(
             TextEditTextFieldType.MOBILE_NUMBER -> {
                 (editTextContent?.length ?: 0) > 9 && editTextContent?.contains("+") ?: false
             }
+
+            TextEditTextFieldType.VAULT_NAME -> {
+                (editTextContent?.length ?: 0) > 2
+            }
+
+            TextEditTextFieldType.WEBSITE_ADDRESS -> {
+                (editTextContent?.length ?: 0) > 5
+            }
+
+            TextEditTextFieldType.USERNAME_MOBILE -> {
+                (editTextContent?.length ?: 0) > 5
+            }
+
+            TextEditTextFieldType.PASSWORD -> {
+                (editTextContent?.length ?: 0) > 3
+            }
+
+            TextEditTextFieldType.NOTES -> {
+                (editTextContent?.length ?: 0) > 2
+            }
         }
     }
 
@@ -45,6 +65,38 @@ data class TextEditTextModel(
                 TextEditTextFieldType.MOBILE_NUMBER -> {
                     this.filters =
                         arrayOf(FilterUtils.universalPhoneFilter, InputFilter.LengthFilter(20))
+                }
+
+                TextEditTextFieldType.VAULT_NAME -> {
+                    this.filters = arrayOf(
+                        FilterUtils.alphaNumericWhiteSpaceFullStopFilter,
+                        InputFilter.LengthFilter(40)
+                    )
+                }
+
+                TextEditTextFieldType.WEBSITE_ADDRESS -> {
+                    this.filters = arrayOf(
+                        FilterUtils.alphaNumericWhiteSpaceFullStopFilter,
+                        InputFilter.LengthFilter(200)
+                    )
+                }
+
+                TextEditTextFieldType.USERNAME_MOBILE -> {
+                    this.filters = arrayOf(
+                        FilterUtils.alphaNumericWhiteSpaceFullStopFilter,
+                        InputFilter.LengthFilter(200)
+                    )
+                }
+
+                TextEditTextFieldType.PASSWORD -> {
+                    this.filters = arrayOf(
+                        InputFilter.LengthFilter(128)
+                    )
+                }
+                TextEditTextFieldType.NOTES -> {
+                    this.filters = arrayOf(
+                        InputFilter.LengthFilter(300)
+                    )
                 }
             }
 

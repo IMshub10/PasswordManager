@@ -4,6 +4,15 @@ import android.text.InputFilter
 
 object FilterUtils {
 
+    var alphaNumericWhiteSpaceFullStopFilter = InputFilter { source, start, end, dest, _, _ ->
+        for (i in start until end) {
+            if (!Regex("[A-Za-z0-9.\\s]*").matches(source.toString() + dest.toString())) { // Accept alpha numeric characters
+                return@InputFilter ""
+            }
+        }
+        null
+    }
+
     var alphaNumericWhiteSpaceFilter = InputFilter { source, start, end, dest, _, _ ->
         for (i in start until end) {
             if (!Regex("[A-Za-z0-9\\s]*").matches(source.toString() + dest.toString())) { // Accept alpha numeric characters
@@ -12,7 +21,6 @@ object FilterUtils {
         }
         null
     }
-
     var alphaWhiteSpaceFilter = InputFilter { source, start, end, dest, _, _ ->
         for (i in start until end) {
             if (!Regex("[A-Za-z]*").matches(dest.toString() + source.toString())) { // Accept alpha numeric characters
