@@ -22,11 +22,12 @@
         android:id="@+id/passGeneratorFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.PassGeneratorFrag"
         android:label="Password Generator"
-        tools:layout="@layout/frag_main_vault" >
-        <argument android:name="fetchPass"
+        tools:layout="@layout/frag_main_vault">
+        <argument
+            android:name="fetchPass"
             android:defaultValue="false"
-            app:nullable="false"
-            app:argType="boolean"/>
+            app:argType="boolean"
+            app:nullable="false" />
     </fragment>
     <fragment
         android:id="@+id/settingsFrag"
@@ -42,9 +43,6 @@
             android:id="@+id/action_createVaultFrag_to_passGeneratorFrag"
             app:destination="@id/passGeneratorFrag"
             app:enterAnim="@anim/slide_in_top"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_bottom"
-            app:popExitAnim="@anim/slide_out_right" >
-        </action>
+            app:popEnterAnim="@anim/slide_in_bottom" />
     </fragment>
 </navigation>

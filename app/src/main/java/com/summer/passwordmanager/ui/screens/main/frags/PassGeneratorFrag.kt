@@ -11,12 +11,14 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainPassGeneratorBinding
+import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
 import com.summer.passwordmanager.utils.AppUtils
-import com.summer.passwordmanager.utils.UiUtils
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
@@ -26,6 +28,7 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
 
 
     private val viewModel: PassGeneratorViewModel by viewModel()
+    private val createVaultViewModel: CreateVaultViewModel by activityViewModel()
 
     override fun onFragmentReady(instanceState: Bundle?) {
         mBinding?.model = viewModel.passGeneratorModel
@@ -89,6 +92,18 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
                     swFragPassGeneratorSpecialCharacters.isChecked
                 viewModel.passGeneratorModel.notifyChange()
                 setPassText()
+            }
+            tvFragPassGeneratorCancelButton.setOnClickListener {
+                if (findNavController().currentDestination?.id == R.id.passGeneratorFrag) {
+                    findNavController().navigateUp()
+                }
+            }
+            tvFragPassGeneratorConfirmButton.setOnClickListener {
+                if (findNavController().currentDestination?.id == R.id.passGeneratorFrag) {
+                    createVaultViewModel.passwordEditTextModel.editTextContent =
+                        tvFragPassGeneratorPassHolder.text.toString()
+                    findNavController().navigateUp()
+                }
             }
         }
     }
