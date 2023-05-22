@@ -34,4 +34,5 @@
     <string name="notes">Notes</string>
     <string name="select_tag">Select Tag</string>
     <string name="generate">Generate</string>
+    <string name="error_phone_number">Number should be of the format +91(Country Code)9876543210(Mobile number)</string>
 </resources>

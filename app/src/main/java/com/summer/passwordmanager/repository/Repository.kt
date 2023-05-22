@@ -12,6 +12,7 @@ interface Repository {
     suspend fun save(fullName: String?, mobileNumber: String?)
     suspend fun getFullName(): String?
     suspend fun getMobileNumber(): String?
-    fun getAllFolders() :LiveData<List<FolderEntity>>
+    fun getAllFolders(): LiveData<List<FolderEntity>>
+    fun getAllVaultsWithTheirFolder(): LiveData<Map<VaultEntity, FolderEntity?>>
     //endregion
 }

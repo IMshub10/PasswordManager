@@ -34,4 +34,11 @@ interface AppDao {
 
     @Query("Select * from folders order by createdAt")
     fun getAllFolders(): LiveData<List<FolderEntity>>
+
+    @Query(
+        "Select vaults.*, folders.* from vaults " +
+                " left join folders on folders.id = vaults.folderId " +
+                " order by vaults.entityName, vaults.createdAt "
+    )
+    fun getAllVaultsWithTheirFolder(): LiveData<Map<VaultEntity, FolderEntity?>>
 }
