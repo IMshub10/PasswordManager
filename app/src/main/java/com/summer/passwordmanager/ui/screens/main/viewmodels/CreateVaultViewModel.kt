@@ -18,19 +18,20 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
     var websiteAddressEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.WEBSITE_ADDRESS, isRequired = false)
     var userNameMobileEditTextModel =
-        TextEditTextModel(fieldType = TextEditTextFieldType.USERNAME_MOBILE, isRequired = false)
+        TextEditTextModel(fieldType = TextEditTextFieldType.USERNAME_MOBILE, isRequired = true)
     var passwordEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.PASSWORD, isRequired = true)
     var notesEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.NOTES, isRequired = false)
 
     fun resetUiModels() {
+        selectedFolderId = null
         websiteNameEditTextModel =
             TextEditTextModel(fieldType = TextEditTextFieldType.VAULT_NAME, isRequired = true)
         websiteAddressEditTextModel =
             TextEditTextModel(fieldType = TextEditTextFieldType.WEBSITE_ADDRESS, isRequired = false)
         userNameMobileEditTextModel =
-            TextEditTextModel(fieldType = TextEditTextFieldType.USERNAME_MOBILE, isRequired = false)
+            TextEditTextModel(fieldType = TextEditTextFieldType.USERNAME_MOBILE, isRequired = true)
         passwordEditTextModel =
             TextEditTextModel(fieldType = TextEditTextFieldType.PASSWORD, isRequired = true)
         notesEditTextModel =
