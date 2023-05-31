@@ -3,7 +3,7 @@ package com.summer.passwordmanager.repository
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import com.summer.passwordmanager.database.dao.AppDao
-import com.summer.passwordmanager.database.entities.FolderEntity
+import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.PassHistoryEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
 import com.summer.passwordmanager.utils.AppUtils
@@ -36,12 +36,12 @@ class AppRepository(
         return sharedPreferences.getString(AppUtils.KEY_MOBILE_NUMBER, null)
     }
 
-    override fun getAllFolders(): LiveData<List<FolderEntity>> {
-        return dao.getAllFolders()
+    override fun getAllTags(): LiveData<List<TagEntity>> {
+        return dao.getAllTags()
     }
 
-    override fun getAllVaultsWithTheirFolder(): LiveData<Map<VaultEntity, FolderEntity?>> {
-        return dao.getAllVaultsWithTheirFolder()
+    override fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>> {
+        return dao.getAllVaultsWithTheirTag()
     }
 
 }

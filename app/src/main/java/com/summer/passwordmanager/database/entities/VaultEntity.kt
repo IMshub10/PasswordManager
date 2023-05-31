@@ -10,8 +10,8 @@ import com.summer.passwordmanager.utils.AppUtils
 
 @Entity(
     tableName = "vaults", foreignKeys = [ForeignKey(
-        entity = FolderEntity::class,
-        childColumns = ["folderId"],
+        entity = TagEntity::class,
+        childColumns = ["tagId"],
         parentColumns = ["id"],
         onDelete = ForeignKey.SET_NULL,
     )]
@@ -23,10 +23,10 @@ data class VaultEntity(
     var userNameMobileCardNumber: String = "",
     var password: String = "",
     var notes: String = "",
-    var folderId: String? = null,
+    var tagId: String? = null,
     var createdAt: Long = 0L,
     var updatedAt: Long = 0L,
 ) : BaseObservable(){
     @Ignore
-    var folderEntity:FolderEntity? =null
+    var tagEntity:TagEntity? =null
 }

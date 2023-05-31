@@ -2,7 +2,7 @@ package com.summer.passwordmanager.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.summer.passwordmanager.database.entities.FolderEntity
+import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.PassHistoryEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
 
@@ -32,13 +32,13 @@ interface AppDao {
     @Query("Delete From pass_history")
     fun deleteAllPassHistoryRecords()
 
-    @Query("Select * from folders order by createdAt")
-    fun getAllFolders(): LiveData<List<FolderEntity>>
+    @Query("Select * from tags order by createdAt")
+    fun getAllTags(): LiveData<List<TagEntity>>
 
     @Query(
-        "Select vaults.*, folders.* from vaults " +
-                " left join folders on folders.id = vaults.folderId " +
+        "Select vaults.*, tags.* from vaults " +
+                " left join tags on tags.id = vaults.tagId " +
                 " order by vaults.entityName, vaults.createdAt "
     )
-    fun getAllVaultsWithTheirFolder(): LiveData<Map<VaultEntity, FolderEntity?>>
+    fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>>
 }

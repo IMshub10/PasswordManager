@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
 
 
-@Entity(tableName = "folders")
-data class FolderEntity(
+@Entity(tableName = "tags")
+data class TagEntity(
     @PrimaryKey(autoGenerate = false)
     var id: String,
     var name: String,

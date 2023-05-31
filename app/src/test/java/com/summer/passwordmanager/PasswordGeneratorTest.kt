@@ -1,19 +1,19 @@
 package com.summer.passwordmanager
 
-import com.summer.passwordmanager.utils.UiUtils.getRandomString
+import com.summer.passwordmanager.utils.AppUtils
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
 class PasswordGeneratorTest {
     @Test
     fun testDefaultConfiguration() {
-        val password = getRandomString(length = 10)
+        val password = AppUtils.getRandomString(length = 10)
         assertEquals(10, password.length)
     }
 
     @Test
     fun testOnlyUpperAlphas() {
-        val password = getRandomString(
+        val password = AppUtils.getRandomString(
             length = 10,
             hasUpperAlphas = true,
             hasLowerAlphas = false,
@@ -26,7 +26,7 @@ class PasswordGeneratorTest {
 
     @Test
     fun testOnlyLowerAlphas() {
-        val password = getRandomString(
+        val password = AppUtils.getRandomString(
             length = 10,
             hasUpperAlphas = false,
             hasLowerAlphas = true,
@@ -39,7 +39,7 @@ class PasswordGeneratorTest {
 
     @Test
     fun testOnlyNumbers() {
-        val password = getRandomString(
+        val password = AppUtils.getRandomString(
             length = 10,
             hasUpperAlphas = false,
             hasLowerAlphas = false,
@@ -52,7 +52,7 @@ class PasswordGeneratorTest {
 
     @Test
     fun testOnlySpecialCharacters() {
-        val password = getRandomString(
+        val password = AppUtils.getRandomString(
             length = 10,
             hasUpperAlphas = false,
             hasLowerAlphas = false,

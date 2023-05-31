@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.summer.passwordmanager.database.entities.FolderEntity" />
+            type="com.summer.passwordmanager.database.entities.TagEntity" />
     </data>
 
     <FrameLayout

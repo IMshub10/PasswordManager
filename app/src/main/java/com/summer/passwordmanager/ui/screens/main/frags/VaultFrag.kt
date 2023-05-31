@@ -1,22 +1,15 @@
 package com.summer.passwordmanager.ui.screens.main.frags
 
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.SimpleItemAnimator
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
-import com.summer.passwordmanager.database.entities.FolderEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
 import com.summer.passwordmanager.databinding.FragMainVaultBinding
-import com.summer.passwordmanager.ui.adapters.ViewFolderAdapter
 import com.summer.passwordmanager.ui.adapters.ViewVaultAdapter
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.VaultViewModel
-import com.summer.passwordmanager.utils.AppUtils
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,11 +29,11 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
     }
 
     private fun observeViewModel() {
-        mainViewModel.getAllVaultsWithTheirFolder().observe(viewLifecycleOwner) {
+        mainViewModel.getAllVaultsWithTheirTag().observe(viewLifecycleOwner) {
             it?.let {
                 adapter.submitList(it.toList().map { pair ->
                     pair.first.apply {
-                        folderEntity = pair.second
+                        tagEntity = pair.second
                     }
                 })
             }

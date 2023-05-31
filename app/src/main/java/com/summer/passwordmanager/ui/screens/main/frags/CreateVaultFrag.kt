@@ -9,9 +9,9 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
-import com.summer.passwordmanager.database.entities.FolderEntity
+import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.databinding.FragCreateVaultBinding
-import com.summer.passwordmanager.ui.adapters.ViewFolderAdapter
+import com.summer.passwordmanager.ui.adapters.ViewTagAdapter
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.utils.AppUtils
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +26,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
 
     private val viewModel: CreateVaultViewModel by activityViewModel()
 
-    private var adapter: ViewFolderAdapter? = null
+    private var adapter: ViewTagAdapter? = null
 
     override fun onFragmentReady(instanceState: Bundle?) {
         mBinding?.model = viewModel
@@ -67,7 +67,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
     }
 
     private fun observeViewModel() {
-        viewModel.getAllFolders().observe(viewLifecycleOwner) {
+        viewModel.getAllTags().observe(viewLifecycleOwner) {
             adapter?.submitList(it?.toMutableList()?.apply {
                 viewModel.selectedFolderId?.let { selectedId ->
                     this.find { selected -> selected.id == selectedId }?.apply {
@@ -75,7 +75,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                         notifyChange()
                     }
                 }
-                this.add(this.size, FolderEntity(AppUtils.KEY_ADD, "+ Add Tag", 0, 0))
+                this.add(this.size, TagEntity(AppUtils.KEY_ADD, "+ Add Tag", 0, 0))
             }?.toList() ?: listOf())
         }
     }
@@ -89,8 +89,8 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                 justifyContent = JustifyContent.FLEX_START
             }
             adapter =
-                ViewFolderAdapter(object : ViewFolderAdapter.SelectionCallBack {
-                    override fun onItemClick(item: FolderEntity) {
+                ViewTagAdapter(object : ViewTagAdapter.SelectionCallBack {
+                    override fun onItemClick(item: TagEntity) {
                         if (item.isSelected) {
                             viewModel.selectedFolderId = null
                             item.isSelected = false

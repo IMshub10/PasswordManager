@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.summer.passwordmanager.R
-import com.summer.passwordmanager.database.entities.FolderEntity
+import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.databinding.ItemViewFolderBinding
 
-class ViewFolderAdapter (private val selectionCallBack: SelectionCallBack) :
-    ListAdapter<FolderEntity, ViewFolderAdapter.ContentHolder>(Callback()) {
+class ViewTagAdapter (private val selectionCallBack: SelectionCallBack) :
+    ListAdapter<TagEntity, ViewTagAdapter.ContentHolder>(Callback()) {
 
     inner class ContentHolder(private val binding: ItemViewFolderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: FolderEntity) {
+        fun bind(model: TagEntity) {
             binding.run {
                 this.model = model
                 tvItemViewFolderRoot.setOnClickListener {
@@ -26,20 +26,20 @@ class ViewFolderAdapter (private val selectionCallBack: SelectionCallBack) :
     }
 
     interface SelectionCallBack {
-        fun onItemClick(item: FolderEntity)
+        fun onItemClick(item: TagEntity)
     }
 
-    internal class Callback : DiffUtil.ItemCallback<FolderEntity>() {
+    internal class Callback : DiffUtil.ItemCallback<TagEntity>() {
         override fun areItemsTheSame(
-            oldItem: FolderEntity,
-            newItem: FolderEntity,
+            oldItem: TagEntity,
+            newItem: TagEntity,
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: FolderEntity,
-            newItem: FolderEntity,
+            oldItem: TagEntity,
+            newItem: TagEntity,
         ): Boolean {
             return oldItem.id == newItem.id
         }
