@@ -2,6 +2,7 @@ package com.summer.passwordmanager.ui.screens.signup.frags
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragSignUpBinding
@@ -23,6 +24,16 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
     override fun onFragmentReady(instanceState: Bundle?) {
         mBinding?.model = viewModel
         listeners()
+        lifecycleScope.launch(Dispatchers.Default) {
+            val accountExists = viewModel.checkIfAccountExists()
+            withContext(Dispatchers.Main) {
+                if (accountExists) {
+                    if (findNavController().currentDestination?.id == R.id.signUpFrag) {
+                        findNavController().navigate(R.id.action_signUpFrag_to_setUpPinFrag)
+                    }
+                }
+            }
+        }
     }
 
     private fun listeners() {
@@ -32,10 +43,9 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
                     lifecycleScope.launch(Dispatchers.Default) {
                         viewModel.save()
                         withContext(Dispatchers.Main) {
-                            LauncherUtils.startActivityWithClearTop(
-                                requireActivity(),
-                                MainActivity::class.java
-                            )
+                            if (findNavController().currentDestination?.id == R.id.signUpFrag) {
+                                findNavController().navigate(R.id.action_signUpFrag_to_setUpPinFrag)
+                            }
                         }
                     }
                 }

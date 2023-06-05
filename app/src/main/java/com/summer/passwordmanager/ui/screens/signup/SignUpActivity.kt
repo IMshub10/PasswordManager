@@ -7,8 +7,7 @@ import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseActivity
 import com.summer.passwordmanager.databinding.ActivitySignUpBinding
 
-class SignUpActivity
-    : BaseActivity<ActivitySignUpBinding>() {
+class SignUpActivity : BaseActivity<ActivitySignUpBinding>() {
 
     private val navController: NavController by lazy { findNavController(R.id.fcv_signUp_container) }
 
@@ -16,6 +15,10 @@ class SignUpActivity
         get() = R.layout.activity_sign_up
 
     override fun onActivityReady(savedInstanceState: Bundle?) {
+
+    }
+
+    override fun onBackPressed() {
 
     }
 }

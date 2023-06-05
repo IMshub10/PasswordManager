@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="save">Save</string>
+    <string name="please_set_your_pin_for_security">Please set your pin for security</string>
+    <string name="re_enter_pin">Re-enter Pin</string>
+    <string name="enable_fingerprint">Enable FingerPrint</string>
 </resources>

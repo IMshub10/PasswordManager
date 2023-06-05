@@ -20,4 +20,8 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
             mobileNumberEditTextModel.editTextContent
         )
     }
+
+    suspend fun checkIfAccountExists(): Boolean {
+        return repository.getFullName() != null && repository.getMobileNumber() != null
+    }
 }

@@ -36,12 +36,32 @@ class AppRepository(
         return sharedPreferences.getString(AppUtils.KEY_MOBILE_NUMBER, null)
     }
 
+    override suspend fun getPin(): String? {
+        return sharedPreferences.getString(AppUtils.KEY_PIN, null)
+    }
+
+    override suspend fun setPin(pin: String) {
+        sharedPreferences.edit()?.apply {
+            putString(AppUtils.KEY_PIN, pin).apply()
+        }
+    }
+
     override fun getAllTags(): LiveData<List<TagEntity>> {
         return dao.getAllTags()
     }
 
     override fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>> {
         return dao.getAllVaultsWithTheirTag()
+    }
+
+    override fun isFingerPrintSet(): Boolean {
+        return sharedPreferences.getBoolean(AppUtils.KEY_FINGERPRINT_ENABLED, false)
+    }
+
+    override fun setFingerPrint(isFingerPrintSet: Boolean) {
+        sharedPreferences.edit()?.apply {
+            putBoolean(AppUtils.KEY_FINGERPRINT_ENABLED, isFingerPrintSet).apply()
+        }
     }
 
 }

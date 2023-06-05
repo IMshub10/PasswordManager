@@ -35,4 +35,12 @@
     <string name="select_tag">Select Tag</string>
     <string name="generate">Generate</string>
     <string name="error_phone_number">Number should be of the format +91(Country Code)9876543210(Mobile number)</string>
+    <string name="set_pin">Set PIN</string>
+    <string name="please_set_your_pin_for_security">Please set your pin for security</string>
+    <string name="enter_pin">Enter Pin</string>
+    <string name="re_enter_pin">Re-enter Pin</string>
+    <string name="enable_fingerprint">Enable FingerPrint</string>
+    <string name="next">Next</string>
+    <string name="welcome">Welcome</string>
+    <string name="login_with_fingerprint">Login with fingerprint</string>
 </resources>

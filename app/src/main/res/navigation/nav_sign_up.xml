@@ -8,6 +8,21 @@
         android:id="@+id/signUpFrag"
         android:name="com.summer.passwordmanager.ui.screens.signup.frags.SignUpFrag"
         android:label="Vault"
-        tools:layout="@layout/frag_sign_up" />
+        tools:layout="@layout/frag_sign_up" >
+        <action
+            android:id="@+id/action_signUpFrag_to_setUpPinFrag"
+            app:destination="@id/setUpPinFrag"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/setUpPinFrag"
+        android:name="com.summer.passwordmanager.ui.screens.signup.frags.SetUpPinFrag"
+        android:label="Vault"
+        tools:layout="@layout/frag_setup_pin" />
+
 
 </navigation>

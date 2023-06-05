@@ -12,7 +12,11 @@ interface Repository {
     suspend fun save(fullName: String?, mobileNumber: String?)
     suspend fun getFullName(): String?
     suspend fun getMobileNumber(): String?
+    suspend fun getPin(): String?
+    suspend fun setPin(pin: String)
     fun getAllTags(): LiveData<List<TagEntity>>
     fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>>
+    fun isFingerPrintSet(): Boolean
+    fun setFingerPrint(isFingerPrintSet: Boolean)
     //endregion
 }

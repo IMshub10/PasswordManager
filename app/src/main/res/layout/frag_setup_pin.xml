@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_small"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/text_title_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_x_large"
+                android:text="@string/set_pin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/text_body_secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:text="@string/please_set_your_pin_for_security"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/text_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_x_large"
+                android:gravity="center"
+                android:text="@string/enter_pin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.chaos.view.PinView
+                android:id="@+id/pv_fragSetupPin_pin1"
+                style="@style/PinWidget.PinView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:cursorVisible="true"
+                android:inputType="number"
+                android:padding="@dimen/spacing_tiny"
+                android:textColor="?label"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cursorColor="?label"
+                app:cursorWidth="1dp"
+                app:itemCount="4"
+                app:itemHeight="52dp"
+                app:itemRadius="@dimen/spacing_x_small"
+                app:itemSpacing="@dimen/spacing_small"
+                app:itemWidth="48dp"
+                app:lineColor="?label"
+                app:lineWidth="1dp"
+                app:viewType="rectangle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/text_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:gravity="center"
+                android:text="@string/re_enter_pin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.chaos.view.PinView
+                android:id="@+id/pv_fragSetupPin_pin2"
+                style="@style/PinWidget.PinView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/spacing_small"
+                android:cursorVisible="true"
+                android:inputType="number"
+                android:padding="@dimen/spacing_tiny"
+                android:textColor="?label"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cursorColor="?label"
+                app:cursorWidth="1dp"
+                app:itemCount="4"
+                app:itemHeight="52dp"
+                app:itemRadius="@dimen/spacing_x_small"
+                app:itemSpacing="@dimen/spacing_small"
+                app:itemWidth="48dp"
+                app:lineColor="?label"
+                app:lineWidth="1dp"
+                app:viewType="rectangle" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_fragSetUpPin_enableFingerPrint"
+                style="@style/text_caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:checked="false"
+                android:padding="@dimen/spacing_tiny"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:text="@string/enable_fingerprint" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_fragSetUpPin_save"
+                style="@style/text_body_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_x_large"
+                android:background="@drawable/ripple_rounded_rect_primary_solid_medium_corners"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:padding="@dimen/spacing_small"
+                android:text="@string/next"
+                android:textColor="@color/white_hole"
+                app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_mobileNumber" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+</layout>

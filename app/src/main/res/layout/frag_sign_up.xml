@@ -66,7 +66,7 @@
             android:focusable="true"
             android:gravity="center"
             android:padding="@dimen/spacing_small"
-            android:text="@string/save"
+            android:text="@string/next"
             android:textColor="@color/white_hole"
             app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_mobileNumber" />
     </androidx.constraintlayout.widget.ConstraintLayout>
