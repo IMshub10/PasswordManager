@@ -24,8 +24,8 @@ class PassGeneratorViewModel(private val repository: Repository) : ViewModel() {
                     hasUpperAlphas = passGeneratorModel.hasUpperAlphas,
                     hasNumbers = passGeneratorModel.hasNumbers,
                     hasSpecialCharacters = passGeneratorModel.hasSpecialCharacters,
-                    createdAt = System.currentTimeMillis() / 1000,
-                    updatedAt = System.currentTimeMillis() / 1000,
+                    createdAt = AppUtils.getCurrentTimeSecs(),
+                    updatedAt = AppUtils.getCurrentTimeSecs(),
                 )
             )
         }

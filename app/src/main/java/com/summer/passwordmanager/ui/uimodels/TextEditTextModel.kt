@@ -46,6 +46,14 @@ data class TextEditTextModel(
             TextEditTextFieldType.NOTES -> {
                 (editTextContent?.length ?: 0) > 2
             }
+
+            TextEditTextFieldType.TAG_NAME -> {
+                (editTextContent?.length ?: 0) > 2
+            }
+
+            TextEditTextFieldType.TAG_DESCRIPTION -> {
+                (editTextContent?.length ?: 0) > 5
+            }
         }
     }
 
@@ -95,6 +103,20 @@ data class TextEditTextModel(
                 TextEditTextFieldType.NOTES -> {
                     this.filters = arrayOf(
                         InputFilter.LengthFilter(300)
+                    )
+                }
+
+                TextEditTextFieldType.TAG_NAME -> {
+                    this.filters = arrayOf(
+                        FilterUtils.alphaNumericWhiteSpaceFullStopFilter,
+                        InputFilter.LengthFilter(40)
+                    )
+                }
+
+                TextEditTextFieldType.TAG_DESCRIPTION -> {
+                    this.filters = arrayOf(
+                        FilterUtils.alphaNumericWhiteSpaceFullStopFilter,
+                        InputFilter.LengthFilter(100)
                     )
                 }
             }

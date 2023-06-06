@@ -64,4 +64,8 @@ class AppRepository(
         }
     }
 
+    override suspend fun insertIgnoreReplaceTagEntity(tagEntity: TagEntity) {
+        dao.insertTagReplace(tagEntity)
+    }
+
 }

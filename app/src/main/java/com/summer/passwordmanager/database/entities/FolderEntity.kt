@@ -13,6 +13,7 @@ data class TagEntity(
     @PrimaryKey(autoGenerate = false)
     var id: String,
     var name: String,
+    var description: String,
     var createdAt: Long,
     var updatedAt: Long,
 ) : BaseObservable() {

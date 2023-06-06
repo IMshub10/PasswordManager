@@ -19,6 +19,10 @@ object AppUtils {
         return Xid.get().toHexString()
     }
 
+    fun getCurrentTimeSecs(): Long {
+        return System.currentTimeMillis() / 1000
+    }
+
     /**
      * Generate Random String
      * returns String of specified length

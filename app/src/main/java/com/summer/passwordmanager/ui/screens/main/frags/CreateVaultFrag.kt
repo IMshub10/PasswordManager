@@ -12,6 +12,7 @@ import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.databinding.FragCreateVaultBinding
 import com.summer.passwordmanager.ui.adapters.ViewTagAdapter
+import com.summer.passwordmanager.ui.dialogs.CreateTagDialog
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.utils.AppUtils
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +28,8 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
     private val viewModel: CreateVaultViewModel by activityViewModel()
 
     private var adapter: ViewTagAdapter? = null
+
+    private var createTagDialog: CreateTagDialog? = null
 
     override fun onFragmentReady(instanceState: Bundle?) {
         mBinding?.model = viewModel
@@ -75,7 +78,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                         notifyChange()
                     }
                 }
-                this.add(this.size, TagEntity(AppUtils.KEY_ADD, "+ Add Tag", 0, 0))
+                this.add(this.size, TagEntity(AppUtils.KEY_ADD, "+ Add Tag", "", 0, 0))
             }?.toList() ?: listOf())
         }
     }
@@ -102,6 +105,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                                     it.isSelected = false
                                     it.notifyChange()
                                 }
+                                showCreateTagDialog()
                             } else {
                                 viewModel.selectedFolderId = item.id
                                 adapter?.currentList?.forEach {
@@ -113,6 +117,27 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                     }
                 })
             this.rvFragCreateVaultFolders.adapter = adapter
+        }
+    }
+
+    private fun showCreateTagDialog() {
+        if (createTagDialog?.isAdded != true) {
+            createTagDialog = CreateTagDialog(object : CreateTagDialog.DismissLister {
+                override fun onSave(tagName: String, descriptionName: String?) {
+                    lifecycleScope.launch(Dispatchers.Default) {
+                        viewModel.insertTagEntity(
+                            TagEntity(
+                                id = AppUtils.generateXid(),
+                                tagName,
+                                descriptionName ?: "",
+                                createdAt = AppUtils.getCurrentTimeSecs(),
+                                updatedAt = AppUtils.getCurrentTimeSecs()
+                            )
+                        )
+                    }
+                }
+            })
+            createTagDialog?.show(childFragmentManager, "")
         }
     }
 

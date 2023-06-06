@@ -18,5 +18,6 @@ interface Repository {
     fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>>
     fun isFingerPrintSet(): Boolean
     fun setFingerPrint(isFingerPrintSet: Boolean)
+    suspend fun insertIgnoreReplaceTagEntity(tagEntity: TagEntity)
     //endregion
 }

@@ -50,11 +50,15 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
                 userNameMobileCardNumber = userNameMobileEditTextModel.editTextContent ?: "",
                 password = passwordEditTextModel.editTextContent ?: "",
                 notes = notesEditTextModel.editTextContent ?: "",
-                createdAt = System.currentTimeMillis() / 1000,
-                updatedAt = System.currentTimeMillis() / 1000,
+                createdAt = AppUtils.getCurrentTimeSecs(),
+                updatedAt = AppUtils.getCurrentTimeSecs(),
                 webAddress = websiteAddressEditTextModel.editTextContent ?: "",
                 tagId = selectedFolderId
             )
         )
+    }
+
+    suspend fun insertTagEntity(tagEntity: TagEntity) {
+        repository.insertIgnoreReplaceTagEntity(tagEntity)
     }
 }
