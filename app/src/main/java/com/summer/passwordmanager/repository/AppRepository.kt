@@ -46,7 +46,11 @@ class AppRepository(
         }
     }
 
-    override fun getAllTags(): LiveData<List<TagEntity>> {
+    override fun getAllTagsLive(): LiveData<List<TagEntity>> {
+        return dao.getAllTagsLive()
+    }
+
+    override fun getAllTags(): List<TagEntity> {
         return dao.getAllTags()
     }
 

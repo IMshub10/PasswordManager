@@ -32,8 +32,11 @@ interface AppDao {
     @Query("Delete From pass_history")
     fun deleteAllPassHistoryRecords()
 
-    @Query("Select * from tags order by createdAt")
-    fun getAllTags(): LiveData<List<TagEntity>>
+    @Query("Select * from tags order by lower(name)")
+    fun getAllTagsLive(): LiveData<List<TagEntity>>
+
+    @Query("Select * from tags order by lower(name)")
+    fun getAllTags(): List<TagEntity>
 
     @Query(
         "Select vaults.*, tags.* from vaults " +

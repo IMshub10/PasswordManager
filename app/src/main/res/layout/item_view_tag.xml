@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.summer.passwordmanager.database.entities.TagEntity" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/fl_itemViewTag_root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_tiny">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_itemViewTag_tag"
+            style="@style/text_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@{model.isSelected ? @drawable/ripple_rounded_rect_primary_solid_medium_corners : @drawable/ripple_rounded_rect_stroke_white_radius_medium}"
+            android:paddingHorizontal="@dimen/spacing_small"
+            android:paddingVertical="@dimen/spacing_x_small"
+            android:text="@{model.name}"
+            tools:background="@drawable/ripple_rounded_rect_primary_solid_medium_corners"
+            tools:text="Social Media" />
+    </FrameLayout>
+</layout>

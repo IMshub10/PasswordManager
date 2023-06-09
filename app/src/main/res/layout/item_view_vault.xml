@@ -55,8 +55,9 @@
             android:layout_margin="@dimen/spacing_x_small"
             android:background="@drawable/shape_rounded_rect_solid_grey"
             android:ellipsize="marquee"
-            android:marqueeRepeatLimit="1"
+            android:gravity="center"
             android:lines="1"
+            android:marqueeRepeatLimit="1"
             android:maxLines="1"
             android:padding="@dimen/spacing_tiny"
             android:singleLine="true"
@@ -66,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline_horizontal_70"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Hello world" />
+            tools:text="Mail" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_horizontal_70"

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/vaultFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.VaultFrag"
-        android:label="Vault"
+        android:label="My Vault"
         tools:layout="@layout/frag_main_vault">
         <action
             android:id="@+id/action_vaultFrag_to_createVaultFrag"

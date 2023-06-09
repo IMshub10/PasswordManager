@@ -11,7 +11,7 @@ import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.databinding.FragCreateVaultBinding
-import com.summer.passwordmanager.ui.adapters.ViewTagAdapter
+import com.summer.passwordmanager.ui.adapters.SelectTagAdapter
 import com.summer.passwordmanager.ui.dialogs.CreateTagDialog
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.utils.AppUtils
@@ -27,7 +27,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
 
     private val viewModel: CreateVaultViewModel by activityViewModel()
 
-    private var adapter: ViewTagAdapter? = null
+    private var adapter: SelectTagAdapter? = null
 
     private var createTagDialog: CreateTagDialog? = null
 
@@ -49,12 +49,12 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                         })
                 }
             }
-            tvFragCreateVaultCancelButton.setOnClickListener {
+            clFragCreateVaultContainer.tvLayoutCancelSaveCancelButton.setOnClickListener {
                 if (findNavController().currentDestination?.id == R.id.createVaultFrag) {
                     findNavController().navigateUp()
                 }
             }
-            tvFragCreateVaultConfirmButton.setOnClickListener {
+            clFragCreateVaultContainer.tvLayoutCancelSaveConfirmButton.setOnClickListener {
                 if (validate()) {
                     lifecycleScope.launch(Dispatchers.Default) {
                         viewModel.save()
@@ -92,7 +92,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                 justifyContent = JustifyContent.FLEX_START
             }
             adapter =
-                ViewTagAdapter(object : ViewTagAdapter.SelectionCallBack {
+                SelectTagAdapter(object : SelectTagAdapter.SelectionCallBack {
                     override fun onItemClick(item: TagEntity) {
                         if (item.isSelected) {
                             viewModel.selectedFolderId = null

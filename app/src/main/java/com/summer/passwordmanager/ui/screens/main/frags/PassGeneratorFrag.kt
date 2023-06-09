@@ -34,7 +34,7 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
         mBinding?.model = viewModel.passGeneratorModel
         setPassText()
         listeners()
-        mBinding?.clFragPassGeneratorContainer?.isVisible =
+        mBinding?.clFragPassGeneratorContainer?.clLayoutCancelSaveContainer?.isVisible =
             arguments?.getBoolean("fetchPass") ?: false
     }
 
@@ -93,12 +93,12 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
                 viewModel.passGeneratorModel.notifyChange()
                 setPassText()
             }
-            tvFragPassGeneratorCancelButton.setOnClickListener {
+            clFragPassGeneratorContainer.tvLayoutCancelSaveCancelButton.setOnClickListener {
                 if (findNavController().currentDestination?.id == R.id.passGeneratorFrag) {
                     findNavController().navigateUp()
                 }
             }
-            tvFragPassGeneratorConfirmButton.setOnClickListener {
+            clFragPassGeneratorContainer.tvLayoutCancelSaveConfirmButton.setOnClickListener {
                 if (findNavController().currentDestination?.id == R.id.passGeneratorFrag) {
                     createVaultViewModel.passwordEditTextModel.editTextContent =
                         tvFragPassGeneratorPassHolder.text.toString()

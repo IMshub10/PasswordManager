@@ -310,8 +310,9 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <include
             android:id="@+id/cl_fragPassGenerator_container"
+            layout="@layout/layout_cancel_save_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_x_medium"
@@ -319,44 +320,7 @@
             android:layout_marginBottom="@dimen/spacing_x_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_fragPassGenerator_cancelButton"
-                style="@style/text_body"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="@dimen/spacing_tiny"
-                android:background="@drawable/ripple_rounded_rect_stroke_primary_radius_small"
-                android:gravity="center"
-                android:paddingVertical="12dp"
-                android:text="@string/cancel"
-                android:textAllCaps="false"
-                android:textColor="?colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/tv_fragPassGenerator_confirmButton"
-                app:layout_constraintEnd_toStartOf="@+id/tv_fragPassGenerator_confirmButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Cancel" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_fragPassGenerator_confirmButton"
-                style="@style/text_body"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_tiny"
-                android:background="@drawable/ripple_rounded_rect_primary_solid_small_corners"
-                android:gravity="center"
-                android:paddingVertical="12dp"
-                android:text="@string/save"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_fragPassGenerator_cancelButton"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="OK" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.database.entities.TagEntity
-import com.summer.passwordmanager.databinding.ItemViewTagBinding
+import com.summer.passwordmanager.databinding.ItemSelectTagBinding
 
-class ViewTagAdapter(private val selectionCallBack: SelectionCallBack) :
-    ListAdapter<TagEntity, ViewTagAdapter.ContentHolder>(Callback()) {
+class SelectTagAdapter (private val selectionCallBack: SelectionCallBack) :
+    ListAdapter<TagEntity, SelectTagAdapter.ContentHolder>(Callback()) {
 
-    inner class ContentHolder(private val binding: ItemViewTagBinding) :
+    inner class ContentHolder(private val binding: ItemSelectTagBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(model: TagEntity) {
             binding.run {
                 this.model = model
-                flItemViewTagRoot.setOnClickListener {
+                tvItemViewFolderRoot.setOnClickListener {
                     selectionCallBack.onItemClick(item = model)
                 }
             }
@@ -48,7 +48,7 @@ class ViewTagAdapter(private val selectionCallBack: SelectionCallBack) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ContentHolder(
         DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.item_view_tag,
+            R.layout.item_select_tag,
             parent,
             false
         )

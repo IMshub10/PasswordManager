@@ -109,7 +109,7 @@ data class TextEditTextModel(
                 TextEditTextFieldType.TAG_NAME -> {
                     this.filters = arrayOf(
                         FilterUtils.alphaNumericWhiteSpaceFullStopFilter,
-                        InputFilter.LengthFilter(40)
+                        InputFilter.LengthFilter(25)
                     )
                 }
 

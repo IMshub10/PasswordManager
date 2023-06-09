@@ -11,7 +11,6 @@ import androidx.security.crypto.MasterKey
 class Preference {
 
     companion object {
-
         private const val MASTER_KEY_ALIAS = "_androidx_security_master_key_"
         private const val APP_PREFERENCE_NAME = "password_manager_pref"
 

@@ -21,7 +21,7 @@
             app:titleTextColor="@color/white">
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_actSectorProfile_title"
-                style="@style/text_title_2"
+                style="@style/text_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Password Generator" />

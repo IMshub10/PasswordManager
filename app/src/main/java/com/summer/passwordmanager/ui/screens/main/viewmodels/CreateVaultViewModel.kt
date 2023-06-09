@@ -39,7 +39,7 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun getAllTags(): LiveData<List<TagEntity>> {
-        return repository.getAllTags()
+        return repository.getAllTagsLive()
     }
 
     suspend fun save() {
