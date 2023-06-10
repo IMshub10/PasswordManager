@@ -1,9 +1,6 @@
 package com.summer.passwordmanager.utils
 
-fun System.currentTimeSecs() :Long{
-    return System.currentTimeMillis() / 1000
-}
-
+import com.summer.passwordmanager.database.entities.VaultEntity
 
 fun List<Int>?.getIntArray(): String? {
     if (this == null) return null
@@ -18,5 +15,22 @@ fun List<Int>?.getIntArray(): String? {
         resultString = resultString.substring(0, resultString.length - 1)
         resultString += "]"
         resultString
+    }
+}
+
+/**
+ * To check contains based on entityName, webAddress, notes
+ */
+fun VaultEntity.contains(searchValue: String): Boolean {
+    return entityName.lowercase().contains(searchValue.lowercase()) ||
+            webAddress.lowercase().contains(searchValue.lowercase()) ||
+            notes.lowercase().contains(searchValue.lowercase())
+}
+
+fun VaultEntity.filterByTagSearchValue(tagId: String?, searchValue: String): Boolean {
+    return if (tagId == null) {
+        contains(searchValue)
+    } else {
+        contains(searchValue) && (tagEntity?.id ?: "") == tagId
     }
 }

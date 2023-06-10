@@ -11,20 +11,15 @@
             android:id="@+id/tb_actSectorProfile_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/text_title"
             android:elevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_navigation_back"
             app:navigationIconTint="@color/white"
-            app:title="@string/empty"
+            app:title="My Vault"
             app:titleTextColor="@color/white">
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_actSectorProfile_title"
-                style="@style/text_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Password Generator" />
         </com.google.android.material.appbar.MaterialToolbar>
 
         <fragment

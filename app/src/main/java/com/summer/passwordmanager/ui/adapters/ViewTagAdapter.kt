@@ -33,16 +33,12 @@ class ViewTagAdapter(private val selectionCallBack: SelectionCallBack) :
         override fun areItemsTheSame(
             oldItem: TagEntity,
             newItem: TagEntity,
-        ): Boolean {
-            return oldItem == newItem
-        }
+        ) = false
 
         override fun areContentsTheSame(
             oldItem: TagEntity,
             newItem: TagEntity,
-        ): Boolean {
-            return oldItem.id == newItem.id
-        }
+        ) = oldItem.id == newItem.id
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ContentHolder(
@@ -54,7 +50,6 @@ class ViewTagAdapter(private val selectionCallBack: SelectionCallBack) :
         )
     )
 
-    override fun onBindViewHolder(holder: ContentHolder, position: Int) {
+    override fun onBindViewHolder(holder: ContentHolder, position: Int) =
         holder.bind(getItem(position))
-    }
 }

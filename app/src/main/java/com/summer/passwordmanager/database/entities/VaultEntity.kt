@@ -26,7 +26,8 @@ data class VaultEntity(
     var tagId: String? = null,
     var createdAt: Long = 0L,
     var updatedAt: Long = 0L,
-) : BaseObservable(){
+) : BaseObservable() {
     @Ignore
-    var tagEntity:TagEntity? =null
+    var tagEntity: TagEntity? = null
+
 }

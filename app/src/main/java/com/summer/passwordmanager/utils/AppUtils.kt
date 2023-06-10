@@ -11,7 +11,7 @@ object AppUtils {
     const val KEY_PIN = "pin"
     const val KEY_FINGERPRINT_ENABLED = "fingerprint_enabled"
     const val KEY_ADD = "add"
-    const val KEY_all = "all"
+    const val KEY_ALL = "all"
     //endregion
 
 

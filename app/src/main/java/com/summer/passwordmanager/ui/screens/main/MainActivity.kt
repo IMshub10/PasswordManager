@@ -2,11 +2,11 @@ package com.summer.passwordmanager.ui.screens.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
-import androidx.navigation.NavArgument
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -14,8 +14,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseActivity
 import com.summer.passwordmanager.databinding.ActivityMainBinding
+import com.summer.passwordmanager.ui.screens.main.viewmodels.VaultViewModel
 import com.summer.passwordmanager.utils.gone
 import com.summer.passwordmanager.utils.visible
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -23,6 +26,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         get() = R.layout.activity_main
 
     private val navController: NavController by lazy { findNavController(R.id.fcv_main_container) }
+
+    private val mainViewModel: VaultViewModel by viewModel()
+    private var searchView: SearchView? = null
 
     override fun onActivityReady(savedInstanceState: Bundle?) {
         setupActionBar(mBinding.tbActSectorProfileToolbar)
@@ -41,7 +47,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun setUpFragmentNavigation() {
         navController.addOnDestinationChangedListener { _, destination, arguments ->
-            mBinding.tvActSectorProfileTitle.text = destination.label
+            mBinding.tbActSectorProfileToolbar.title = destination.label
+            searchView?.isVisible = destination.id == R.id.vaultFrag
             when (destination.id) {
                 R.id.createVaultFrag -> {
                     mBinding.bmvMainNavigation.gone()
@@ -90,6 +97,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
             true
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        searchView = menu?.findItem(R.id.search_bar)?.actionView as SearchView
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                mainViewModel.searchQuery.value = query ?: ""
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                mainViewModel.searchQuery.value = newText ?: ""
+                return false
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onBackPressed() {

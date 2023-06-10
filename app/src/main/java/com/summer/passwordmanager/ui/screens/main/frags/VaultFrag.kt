@@ -12,7 +12,6 @@ import com.summer.passwordmanager.ui.adapters.ViewTagAdapter
 import com.summer.passwordmanager.ui.adapters.ViewVaultAdapter
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.VaultViewModel
-import com.summer.passwordmanager.utils.AppUtils
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,7 +21,7 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
         get() = R.layout.frag_main_vault
 
     private val viewModel: CreateVaultViewModel by activityViewModel()
-    private val mainViewModel: VaultViewModel by viewModel()
+    private val mainViewModel: VaultViewModel by activityViewModel()
 
     private var viewVaultAdapter: ViewVaultAdapter? = null
     private var viewTagAdapter: ViewTagAdapter? = null
@@ -31,27 +30,18 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
         initRecyclerView()
         listeners()
         observeViewModel()
-        mainViewModel.getAllTags()
     }
 
     private fun observeViewModel() {
-        mainViewModel.getAllVaultsWithTheirTag().observe(viewLifecycleOwner) {
+        mainViewModel.getFilteredVaultList().observe(viewLifecycleOwner) {
             it?.let {
-                viewVaultAdapter?.submitList(it.toList().map { pair ->
-                    pair.first.apply {
-                        tagEntity = pair.second
-                    }
-                })
+                viewVaultAdapter?.submitList(it)
             }
         }
         mainViewModel.tagListLive.observe(viewLifecycleOwner) {
-            it?.let {
-                viewTagAdapter?.submitList(
-                    it
-                )
-            }
-        }
-        mainViewModel.selectedTag.observe(viewLifecycleOwner){
+            viewTagAdapter?.submitList(
+                it ?: listOf()
+            )
         }
     }
 

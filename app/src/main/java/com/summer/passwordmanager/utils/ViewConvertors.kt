@@ -70,4 +70,10 @@ object ViewConvertors {
         }
     }
 
+
+    @BindingAdapter("setSelectableBackground")
+    @JvmStatic
+    fun AppCompatTextView.setSelectableBackground(isSelected: Boolean) {
+        this.setBackgroundResource(if (isSelected) R.drawable.ripple_rounded_rect_primary_solid_medium_corners else R.drawable.ripple_rounded_rect_stroke_white_radius_medium)
+    }
 }

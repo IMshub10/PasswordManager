@@ -45,4 +45,5 @@
     <string name="login_with_fingerprint">Login with fingerprint</string>
     <string name="tag_name">Tag name</string>
     <string name="tag_description">Tag description</string>
+    <string name="search">Search</string>
 </resources>
