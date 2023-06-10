@@ -37,7 +37,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 setOf(
                     R.id.vaultFrag,
                     R.id.passGeneratorFrag,
-                    R.id.settingsFrag,
+                    R.id.profileFrag,
                 )
             )
         )
@@ -88,7 +88,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
 
                 R.id.item_settings -> {
-                    navController.navigate(R.id.settingsFrag)
+                    navController.navigate(R.id.profileFrag)
                 }
 
                 else -> {
