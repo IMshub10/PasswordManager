@@ -10,7 +10,7 @@ import com.summer.passwordmanager.R
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.databinding.ItemSelectTagBinding
 
-class SelectTagAdapter (private val selectionCallBack: SelectionCallBack) :
+class SelectTagAdapter(private val selectionCallBack: SelectionCallBack) :
     ListAdapter<TagEntity, SelectTagAdapter.ContentHolder>(Callback()) {
 
     inner class ContentHolder(private val binding: ItemSelectTagBinding) :
@@ -18,7 +18,7 @@ class SelectTagAdapter (private val selectionCallBack: SelectionCallBack) :
         fun bind(model: TagEntity) {
             binding.run {
                 this.model = model
-                tvItemViewFolderRoot.setOnClickListener {
+                tvItemSelectTagTitle.setOnClickListener {
                     selectionCallBack.onItemClick(item = model)
                 }
             }

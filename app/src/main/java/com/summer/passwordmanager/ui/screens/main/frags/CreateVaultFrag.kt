@@ -72,7 +72,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
     private fun observeViewModel() {
         viewModel.getAllTags().observe(viewLifecycleOwner) {
             adapter?.submitList(it?.toMutableList()?.apply {
-                viewModel.selectedFolderId?.let { selectedId ->
+                viewModel.selectedTagId?.let { selectedId ->
                     this.find { selected -> selected.id == selectedId }?.apply {
                         isSelected = true
                         notifyChange()
@@ -85,9 +85,9 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
 
     private fun initRecyclerView() {
         mBinding?.run {
-            (rvFragCreateVaultFolders.itemAnimator as SimpleItemAnimator).supportsChangeAnimations =
+            (rvFragCreateVaultTags.itemAnimator as SimpleItemAnimator).supportsChangeAnimations =
                 false
-            rvFragCreateVaultFolders.layoutManager = FlexboxLayoutManager(requireContext()).apply {
+            rvFragCreateVaultTags.layoutManager = FlexboxLayoutManager(requireContext()).apply {
                 flexDirection = FlexDirection.ROW
                 justifyContent = JustifyContent.FLEX_START
             }
@@ -95,19 +95,19 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                 SelectTagAdapter(object : SelectTagAdapter.SelectionCallBack {
                     override fun onItemClick(item: TagEntity) {
                         if (item.isSelected) {
-                            viewModel.selectedFolderId = null
+                            viewModel.selectedTagId = null
                             item.isSelected = false
                             item.notifyChange()
                         } else {
                             if (item.id == AppUtils.KEY_ADD) {
-                                viewModel.selectedFolderId = null
+                                viewModel.selectedTagId = null
                                 adapter?.currentList?.forEach {
                                     it.isSelected = false
                                     it.notifyChange()
                                 }
                                 showCreateTagDialog()
                             } else {
-                                viewModel.selectedFolderId = item.id
+                                viewModel.selectedTagId = item.id
                                 adapter?.currentList?.forEach {
                                     it.isSelected = it.id == item.id
                                     it.notifyChange()
@@ -116,7 +116,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                         }
                     }
                 })
-            this.rvFragCreateVaultFolders.adapter = adapter
+            this.rvFragCreateVaultTags.adapter = adapter
         }
     }
 

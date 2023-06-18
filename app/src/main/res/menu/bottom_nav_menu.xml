@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_pass_generator_primary"
         android:title="@string/generator" />
     <item
-        android:id="@+id/item_settings"
-        android:icon="@drawable/ic_settings_primary"
-        android:title="@string/settings" />
+        android:id="@+id/item_profile"
+        android:icon="@drawable/ic_profile_circle"
+        android:title="@string/profile" />
 </menu>

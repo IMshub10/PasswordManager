@@ -11,12 +11,12 @@
     </data>
 
     <FrameLayout
-        android:id="@+id/tv_itemViewFolder_root"
+        android:id="@+id/fl_itemSelectTag_root"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_itemViewFolder_title"
+            android:id="@+id/tv_itemSelectTag_title"
             style="@style/text_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

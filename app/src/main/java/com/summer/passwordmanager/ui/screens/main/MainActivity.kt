@@ -87,7 +87,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     navController.navigate(R.id.passGeneratorFrag)
                 }
 
-                R.id.item_settings -> {
+                R.id.item_profile -> {
                     navController.navigate(R.id.profileFrag)
                 }
 

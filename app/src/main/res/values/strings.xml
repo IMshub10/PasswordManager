@@ -46,4 +46,5 @@
     <string name="tag_name">Tag name</string>
     <string name="tag_description">Tag description</string>
     <string name="search">Search</string>
+    <string name="profile">Profile</string>
 </resources>

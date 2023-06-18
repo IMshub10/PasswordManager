@@ -1,6 +1,7 @@
 package com.summer.passwordmanager.ui.screens.main.frags
 
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.summer.passwordmanager.R
@@ -39,6 +40,7 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
             }
         }
         mainViewModel.tagListLive.observe(viewLifecycleOwner) {
+            mBinding?.rvFragVaultTags?.isVisible = if (it == null) false else it.size > 1
             viewTagAdapter?.submitList(
                 it ?: listOf()
             )

@@ -1,11 +1,9 @@
 package com.summer.passwordmanager.database.entities
 
 import androidx.databinding.BaseObservable
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import org.jetbrains.annotations.NotNull
 
 
 @Entity(tableName = "tags")

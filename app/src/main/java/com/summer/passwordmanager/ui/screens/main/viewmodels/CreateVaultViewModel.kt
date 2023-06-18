@@ -12,7 +12,7 @@ import com.summer.passwordmanager.utils.AppUtils
 
 class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
 
-    var selectedFolderId: String? = null
+    var selectedTagId: String? = null
 
     var websiteNameEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.VAULT_NAME, isRequired = true)
@@ -26,7 +26,7 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
         TextEditTextModel(fieldType = TextEditTextFieldType.NOTES, isRequired = false)
 
     fun resetUiModels() {
-        selectedFolderId = null
+        selectedTagId = null
         websiteNameEditTextModel =
             TextEditTextModel(fieldType = TextEditTextFieldType.VAULT_NAME, isRequired = true)
         websiteAddressEditTextModel =
@@ -54,7 +54,7 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
                 createdAt = AppUtils.getCurrentTimeSecs(),
                 updatedAt = AppUtils.getCurrentTimeSecs(),
                 webAddress = websiteAddressEditTextModel.editTextContent ?: "",
-                tagId = selectedFolderId
+                tagId = selectedTagId
             )
         )
     }

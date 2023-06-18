@@ -1,7 +1,6 @@
 package com.summer.passwordmanager.database.entities
 
 import androidx.databinding.BaseObservable
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Ignore
