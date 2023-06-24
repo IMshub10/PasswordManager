@@ -9,18 +9,18 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/tb_actSectorProfile_toolbar"
+            style="@style/text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/text_title"
             android:elevation="0dp"
+            android:theme="@style/ToolbarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_navigation_back"
             app:navigationIconTint="@color/white"
             app:title="My Vault"
-            app:titleTextColor="@color/white">
-        </com.google.android.material.appbar.MaterialToolbar>
+            app:titleTextColor="@color/white" />
 
         <fragment
             android:id="@+id/fcv_main_container"

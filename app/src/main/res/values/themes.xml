@@ -65,6 +65,10 @@
         <item name="android:fontFamily">@font/roboto_mono_bold</item>
     </style>
 
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/roboto_mono_medium</item>
+    </style>
+
     <!--Bottom Navigation View===================================================================-->
     <style name="Bottom_Light" parent="Widget.Design.BottomNavigationView">
         <item name="android:itemBackground">?attr/colorSurface</item>

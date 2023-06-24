@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="userModel"
+            type="com.summer.passwordmanager.ui.screens.main.models.UserModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_fragMainProfile_icon"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="@dimen/spacing_medium"
+            android:background="@drawable/ripple_circle_solid_secondary"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/spacing_x_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_add_reaction" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fragMainProfile_name"
+            style="@style/text_header_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@{userModel.name}"
+            app:layout_constraintEnd_toStartOf="@+id/tv_fragMainProfile_mobile_edit"
+            app:layout_constraintStart_toEndOf="@+id/iv_fragMainProfile_icon"
+            app:layout_constraintTop_toTopOf="@+id/iv_fragMainProfile_icon"
+            tools:text="Shubham Meher" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fragMainProfile_mobile"
+            style="@style/text_body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@{userModel.mobile}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_fragMainProfile_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_fragMainProfile_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fragMainProfile_name"
+            tools:text="+91 9876543210" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tv_fragMainProfile_mobile_edit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="@dimen/spacing_medium"
+            android:background="@drawable/ripple_rounded_rect_solid_white"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/spacing_x_small"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_fragMainProfile_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_fragMainProfile_icon"
+            app:srcCompat="@drawable/ic_edit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
