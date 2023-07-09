@@ -1,5 +1,8 @@
 package com.summer.passwordmanager.utils
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import com.github.shamil.Xid
 import java.util.Random
 import kotlin.streams.asSequence
@@ -61,4 +64,12 @@ object AppUtils {
             .joinToString("")
     }
     //endregion
+
+    fun copyText(context: Context?, textToBeCopied: String) {
+        (context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?)?.setPrimaryClip(
+            ClipData.newPlainText(
+                "Copy", textToBeCopied
+            )
+        )
+    }
 }

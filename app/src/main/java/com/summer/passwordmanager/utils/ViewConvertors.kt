@@ -70,6 +70,19 @@ object ViewConvertors {
         }
     }
 
+    @BindingAdapter("setIconTextColor")
+    @JvmStatic
+    fun AppCompatTextView.setIconTextColor(isRed: Boolean) {
+        if (isRed) {
+            this.setTextColor(ResourcesCompat.getColor(context.resources, R.color.red_light, null))
+        } else {
+            val typedValue = TypedValue()
+            context.theme.resolveAttribute(R.attr.label, typedValue, true)
+            @ColorInt val color: Int = typedValue.data
+            this.setTextColor(color)
+        }
+    }
+
 
     @BindingAdapter("viewTagSelectableBackground")
     @JvmStatic

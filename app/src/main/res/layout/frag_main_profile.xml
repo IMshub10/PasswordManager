@@ -10,67 +10,115 @@
             type="com.summer.passwordmanager.ui.screens.main.models.UserModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_fragMainProfile_icon"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_margin="@dimen/spacing_medium"
-            android:background="@drawable/ripple_circle_solid_secondary"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="@dimen/spacing_x_medium"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_add_reaction" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_fragMainProfile_name"
-            style="@style/text_header_bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_medium"
-            android:layout_marginTop="@dimen/spacing_x_small"
-            android:ellipsize="end"
-            android:lines="1"
-            android:maxLines="1"
-            android:text="@{userModel.name}"
-            app:layout_constraintEnd_toStartOf="@+id/tv_fragMainProfile_mobile_edit"
-            app:layout_constraintStart_toEndOf="@+id/iv_fragMainProfile_icon"
-            app:layout_constraintTop_toTopOf="@+id/iv_fragMainProfile_icon"
-            tools:text="Shubham Meher" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_fragMainProfile_icon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="@dimen/spacing_x_medium"
+                android:background="@drawable/ripple_circle_solid_secondary"
+                android:clickable="false"
+                android:focusable="false"
+                android:padding="@dimen/spacing_x_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_add_reaction" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_fragMainProfile_mobile"
-            style="@style/text_body"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_x_small"
-            android:ellipsize="end"
-            android:lines="1"
-            android:maxLines="1"
-            android:text="@{userModel.mobile}"
-            app:layout_constraintEnd_toEndOf="@+id/tv_fragMainProfile_name"
-            app:layout_constraintStart_toStartOf="@+id/tv_fragMainProfile_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_fragMainProfile_name"
-            tools:text="+91 9876543210" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_fragMainProfile_name"
+                style="@style/text_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_x_small"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
+                android:text="@{userModel.name}"
+                app:layout_constraintEnd_toStartOf="@+id/tv_fragMainProfile_mobile_edit"
+                app:layout_constraintStart_toEndOf="@+id/iv_fragMainProfile_icon"
+                app:layout_constraintTop_toTopOf="@+id/iv_fragMainProfile_icon"
+                tools:text="Shubham Meher" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/tv_fragMainProfile_mobile_edit"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="@dimen/spacing_medium"
-            android:background="@drawable/ripple_rounded_rect_solid_white"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="@dimen/spacing_x_small"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_fragMainProfile_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iv_fragMainProfile_icon"
-            app:srcCompat="@drawable/ic_edit" />
+            <!--
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_fragMainProfile_mobile"
+                        style="@style/text_body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_x_small"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:text="@{userModel.mobile}"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_fragMainProfile_name"
+                        app:layout_constraintStart_toStartOf="@+id/tv_fragMainProfile_name"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_fragMainProfile_name"
+                        tools:text="+91 9876543210" />
+            -->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tv_fragMainProfile_mobile_edit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="@dimen/spacing_x_medium"
+                android:background="@drawable/ripple_rounded_rect_solid_white"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/spacing_x_small"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_fragMainProfile_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_fragMainProfile_icon"
+                app:srcCompat="@drawable/ic_edit" />
+
+            <include
+                android:id="@+id/layout_fragMainProfile_importFile"
+                layout="@layout/layout_icon_text_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_x_medium"
+                android:layout_marginTop="@dimen/spacing_x_large"
+                app:isRed="@{false}"
+                app:layout_constraintTop_toBottomOf="@+id/iv_fragMainProfile_icon"
+                app:startIcon="@{@drawable/ic_import}"
+                app:text="@{@string/import_file}" />
+
+            <include
+                android:id="@+id/layout_fragMainProfile_exportFile"
+                layout="@layout/layout_icon_text_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_x_medium"
+                android:layout_marginTop="@dimen/spacing_medium"
+                app:isRed="@{false}"
+                app:layout_constraintTop_toBottomOf="@+id/layout_fragMainProfile_importFile"
+                app:startIcon="@{@drawable/ic_export}"
+                app:text="@{@string/export_file}" />
+
+            <include
+                android:id="@+id/layout_fragMainProfile_clearData"
+                layout="@layout/layout_icon_text_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_x_medium"
+                android:layout_marginVertical="@dimen/spacing_medium"
+                app:isRed="@{true}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_fragMainProfile_exportFile"
+                app:layout_constraintVertical_bias="1"
+                app:startIcon="@{@drawable/ic_logout}"
+                app:text="@{@string/clear_data}"
+                tools:layout_editor_absoluteX="28dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

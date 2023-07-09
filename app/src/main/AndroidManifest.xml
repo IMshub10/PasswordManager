@@ -19,10 +19,27 @@
         <activity
             android:name=".ui.screens.pin.PinActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".ui.screens.splashscreen.SplashScreenActivity"
-            android:exported="true">
+            android:exported="false"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.screens.signup.SignUpActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.screens.main.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -30,15 +47,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity
-            android:name=".ui.screens.signup.SignUpActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".ui.screens.main.MainActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

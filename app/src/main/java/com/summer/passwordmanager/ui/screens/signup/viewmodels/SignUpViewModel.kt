@@ -11,17 +11,17 @@ import kotlinx.coroutines.launch
 class SignUpViewModel(private val repository: Repository) : ViewModel() {
     val fullNameEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.FULL_NAME, isRequired = true)
-    val mobileNumberEditTextModel =
-        TextEditTextModel(fieldType = TextEditTextFieldType.MOBILE_NUMBER, isRequired = true)
+    /* val mobileNumberEditTextModel =
+         TextEditTextModel(fieldType = TextEditTextFieldType.MOBILE_NUMBER, isRequired = true)*/
 
     suspend fun save() {
         repository.save(
-            fullNameEditTextModel.editTextContent,
-            mobileNumberEditTextModel.editTextContent
+            fullName = fullNameEditTextModel.editTextContent,
+            mobileNumber = null//mobileNumberEditTextModel.editTextContent
         )
     }
 
     suspend fun checkIfAccountExists(): Boolean {
-        return repository.getFullName() != null && repository.getMobileNumber() != null
+        return repository.getFullName() != null //&& repository.getMobileNumber() != null
     }
 }

@@ -6,9 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragSignUpBinding
-import com.summer.passwordmanager.ui.screens.main.MainActivity
 import com.summer.passwordmanager.ui.screens.signup.viewmodels.SignUpViewModel
-import com.summer.passwordmanager.utils.LauncherUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -58,11 +56,11 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
             mBinding?.etFragSignUpName?.tilEditTextEdit?.error = getString(R.string.invalid_input)
             return false
         }
-        if (!viewModel.mobileNumberEditTextModel.validate()) {
+        /*if (!viewModel.mobileNumberEditTextModel.validate()) {
             mBinding?.etFragSignUpMobileNumber?.tilEditTextEdit?.error =
                 getString(R.string.error_phone_number)
             return false
-        }
+        }*/
         return true
     }
 }

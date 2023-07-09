@@ -42,6 +42,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_fragSignUp_subTitle"
             app:textInputModel="@{model.fullNameEditTextModel}" />
 
+<!--
         <include
             android:id="@+id/et_fragSignUp_mobileNumber"
             layout="@layout/field_new_edit_text"
@@ -54,6 +55,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_name"
             app:textInputModel="@{model.mobileNumberEditTextModel}" />
+-->
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_fragSignUp_save"
@@ -68,6 +70,6 @@
             android:padding="@dimen/spacing_small"
             android:text="@string/next"
             android:textColor="@color/white_hole"
-            app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_mobileNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

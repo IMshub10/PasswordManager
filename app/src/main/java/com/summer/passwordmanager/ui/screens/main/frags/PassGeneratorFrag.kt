@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.summer.passwordmanager.App
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainPassGeneratorBinding
@@ -25,7 +26,6 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
 
     override val layoutResId: Int
         get() = R.layout.frag_main_pass_generator
-
 
     private val viewModel: PassGeneratorViewModel by viewModel()
     private val createVaultViewModel: CreateVaultViewModel by activityViewModel()
@@ -44,11 +44,7 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
                 setPassText()
             }
             ivFragPassGeneratorCopy.setOnClickListener {
-                (requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?)?.setPrimaryClip(
-                    ClipData.newPlainText(
-                        "Copy", tvFragPassGeneratorPassHolder.text.toString()
-                    )
-                )
+                AppUtils.copyText(context, tvFragPassGeneratorPassHolder.text.toString())
                 Toast.makeText(
                     requireContext(), getString(R.string.copied_to_clipboard), Toast.LENGTH_SHORT
                 ).show()

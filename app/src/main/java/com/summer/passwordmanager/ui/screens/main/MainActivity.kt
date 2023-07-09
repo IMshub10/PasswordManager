@@ -102,6 +102,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         searchView = menu?.findItem(R.id.search_bar)?.actionView as SearchView
+        searchView?.maxWidth = Int.MAX_VALUE
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 mainViewModel.searchQuery.value = query ?: ""
@@ -113,6 +114,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 return false
             }
         })
+        searchView?.setOnSearchClickListener {
+            mBinding.tbActSectorProfileToolbar.title = null
+        }
+        searchView?.setOnCloseListener {
+            mBinding.tbActSectorProfileToolbar.title = navController.currentDestination?.label
+            return@setOnCloseListener false
+        }
         return super.onCreateOptionsMenu(menu)
     }
 
