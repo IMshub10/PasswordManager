@@ -1,11 +1,14 @@
 package com.summer.passwordmanager.ui.screens.main.frags
 
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainProfileBinding
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.ProfileViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFrag : BaseFragment<FragMainProfileBinding>() {
@@ -17,6 +20,15 @@ class ProfileFrag : BaseFragment<FragMainProfileBinding>() {
 
     override fun onFragmentReady(instanceState: Bundle?) {
         mBinding?.userModel = viewModel.userModel
+        listeners()
+    }
+
+    private fun listeners() {
+        mBinding?.run {
+            layoutFragMainProfileExportFile.clLayoutIconTextButtonRoot.setOnClickListener {
+                viewModel.exportFile()
+            }
+        }
     }
 
 }

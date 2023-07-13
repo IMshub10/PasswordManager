@@ -50,4 +50,5 @@
     <string name="export_file">Export File</string>
     <string name="import_file">Import File</string>
     <string name="clear_data">Clear Data</string>
+    <string name="tags">Tags</string>
 </resources>

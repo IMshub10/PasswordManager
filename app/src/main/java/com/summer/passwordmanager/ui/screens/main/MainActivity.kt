@@ -101,7 +101,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
-        searchView = menu?.findItem(R.id.search_bar)?.actionView as SearchView
+        searchView = menu?.findItem(R.id.item_search)?.actionView as SearchView
         searchView?.maxWidth = Int.MAX_VALUE
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

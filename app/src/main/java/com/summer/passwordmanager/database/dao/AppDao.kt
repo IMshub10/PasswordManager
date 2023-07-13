@@ -45,6 +45,9 @@ interface AppDao {
     )
     fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>>
 
+    @Query("Select * from vaults order by createdAt")
+    suspend fun getAllVaults(): List<VaultEntity>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertTagIgnore(vaultEntity: TagEntity)
 

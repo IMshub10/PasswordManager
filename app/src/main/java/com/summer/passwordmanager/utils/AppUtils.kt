@@ -4,6 +4,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import com.github.shamil.Xid
+import com.google.gson.Gson
+import com.summer.passwordmanager.beans.FileBean
 import java.util.Random
 import kotlin.streams.asSequence
 
@@ -72,4 +74,13 @@ object AppUtils {
             )
         )
     }
+
+    fun FileBean.toJSON(): String {
+        return Gson().toJson(this)
+    }
+
+    fun String.toFileBean(): FileBean {
+        return Gson().fromJson(this, FileBean::class.java)
+    }
+
 }

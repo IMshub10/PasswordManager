@@ -72,4 +72,8 @@ class AppRepository(
         dao.insertTagReplace(tagEntity)
     }
 
+    override suspend fun getAllVaults(): List<VaultEntity> {
+        return dao.getAllVaults()
+    }
+
 }

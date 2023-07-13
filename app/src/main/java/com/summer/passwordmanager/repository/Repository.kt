@@ -20,5 +20,6 @@ interface Repository {
     fun isFingerPrintSet(): Boolean
     fun setFingerPrint(isFingerPrintSet: Boolean)
     suspend fun insertIgnoreReplaceTagEntity(tagEntity: TagEntity)
+    suspend fun getAllVaults(): List<VaultEntity>
     //endregion
 }
