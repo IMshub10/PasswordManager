@@ -47,7 +47,8 @@ object ViewConvertors {
         if (text == null) return
         text = buildSpannedString {
             append(text)
-            color(resources.getColor(R.color.error)) { append("*") }
+            if (text[text.lastIndex] != '*')
+                color(resources.getColor(R.color.error)) { append("*") }
         }
     }
 

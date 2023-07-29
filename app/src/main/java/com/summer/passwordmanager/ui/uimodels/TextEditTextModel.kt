@@ -54,9 +54,20 @@ data class TextEditTextModel(
             TextEditTextFieldType.TAG_DESCRIPTION -> {
                 (editTextContent?.length ?: 0) > 5
             }
+
+            TextEditTextFieldType.EXPORT_FILE_NAME -> {
+                (editTextContent?.length ?: 0) > 2
+            }
+
+            TextEditTextFieldType.EXPORT_KEY -> {
+                (editTextContent?.length ?: 0) == 32
+            }
         }
     }
 
+    fun reset(){
+        editTextContent = ""
+    }
     companion object {
         @BindingAdapter("setUpTextEditText")
         @JvmStatic
@@ -117,6 +128,19 @@ data class TextEditTextModel(
                     this.filters = arrayOf(
                         FilterUtils.alphaNumericWhiteSpaceFullStopFilter,
                         InputFilter.LengthFilter(100)
+                    )
+                }
+
+                TextEditTextFieldType.EXPORT_FILE_NAME -> {
+                    this.filters = arrayOf(
+                        FilterUtils.alphaNumericSpaceUnderscoreHyphenFilter,
+                        InputFilter.LengthFilter(30)
+                    )
+                }
+
+                TextEditTextFieldType.EXPORT_KEY -> {
+                    this.filters = arrayOf(
+                        InputFilter.LengthFilter(32)
                     )
                 }
             }

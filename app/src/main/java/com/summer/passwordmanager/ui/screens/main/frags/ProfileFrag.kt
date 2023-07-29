@@ -1,22 +1,19 @@
 package com.summer.passwordmanager.ui.screens.main.frags
 
 import android.os.Bundle
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainProfileBinding
-import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.ProfileViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class ProfileFrag : BaseFragment<FragMainProfileBinding>() {
 
     override val layoutResId: Int
         get() = R.layout.frag_main_profile
 
-    private val viewModel: ProfileViewModel by viewModel()
+    private val viewModel: ProfileViewModel by activityViewModel()
 
     override fun onFragmentReady(instanceState: Bundle?) {
         mBinding?.userModel = viewModel.userModel
@@ -26,7 +23,11 @@ class ProfileFrag : BaseFragment<FragMainProfileBinding>() {
     private fun listeners() {
         mBinding?.run {
             layoutFragMainProfileExportFile.clLayoutIconTextButtonRoot.setOnClickListener {
-                viewModel.exportFile()
+                findNavController().navigate(R.id.action_profileFrag_to_fileExportDetailsFrag)
+            }
+
+            layoutFragMainProfileImportFile.clLayoutIconTextButtonRoot.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFrag_to_fileImportDetailsFrag)
             }
         }
     }

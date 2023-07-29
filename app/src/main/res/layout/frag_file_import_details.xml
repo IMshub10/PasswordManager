@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.summer.passwordmanager.ui.screens.main.viewmodels.ProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_medium">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/importFileBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_x_medium"
+            android:text="@string/import_file"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/importFileKeyTv"
+            layout="@layout/field_new_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_x_medium"
+            app:hint="@{@string/file_key}"
+            app:layout_constraintTop_toBottomOf="@id/importFileBtn"
+            app:textInputModel="@{model.key}"
+            app:title="@{@string/file_key}" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/importOkBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_tiny"
+            android:layout_weight="0.2"
+            android:text="@string/txt_ok"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/importFileKeyTv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

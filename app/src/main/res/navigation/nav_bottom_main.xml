@@ -33,7 +33,14 @@
         android:id="@+id/profileFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.ProfileFrag"
         android:label="Profile"
-        tools:layout="@layout/frag_main_profile" />
+        tools:layout="@layout/frag_main_profile">
+        <action
+            android:id="@+id/action_profileFrag_to_fileExportDetailsFrag"
+            app:destination="@id/fileExportDetailsFrag" />
+        <action
+            android:id="@+id/action_profileFrag_to_fileImportDetailsFrag"
+            app:destination="@id/fileImportDetailsFrag" />
+    </fragment>
     <fragment
         android:id="@+id/createVaultFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.CreateVaultFrag"
@@ -45,4 +52,14 @@
             app:enterAnim="@anim/slide_in_top"
             app:popEnterAnim="@anim/slide_in_bottom" />
     </fragment>
+    <fragment
+        android:id="@+id/fileExportDetailsFrag"
+        android:name="com.summer.passwordmanager.ui.screens.main.frags.FileExportDetailsFrag"
+        android:label="FileExportDetailsFrag"
+        tools:layout="@layout/frag_file_export_details" />
+    <fragment
+        android:id="@+id/fileImportDetailsFrag"
+        android:name="com.summer.passwordmanager.ui.screens.main.frags.FileImportDetailsFrag"
+        android:label="FileImportDetailsFrag"
+        tools:layout="@layout/frag_file_import_details" />
 </navigation>
