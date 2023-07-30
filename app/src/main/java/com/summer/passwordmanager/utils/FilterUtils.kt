@@ -21,6 +21,15 @@ object FilterUtils {
         }
         null
     }
+
+    var alphaNumericSpaceUnderscoreHyphenFilter = InputFilter { source, start, end, dest, _, _ ->
+        for (i in start until end) {
+            if (!Regex("[A-Za-z\\d\\s_-]*").matches(source.toString() + dest.toString())) { // Accept alpha numeric characters
+                return@InputFilter ""
+            }
+        }
+        null
+    }
     var alphaWhiteSpaceFilter = InputFilter { source, start, end, dest, _, _ ->
         for (i in start until end) {
             if (!Regex("[A-Za-z]*").matches(dest.toString() + source.toString())) { // Accept alpha numeric characters

@@ -9,5 +9,7 @@ enum class TextEditTextFieldType {
     WEBSITE_ADDRESS,
     USERNAME_MOBILE,
     PASSWORD,
-    NOTES
+    NOTES,
+    EXPORT_FILE_NAME,
+    EXPORT_KEY
 }

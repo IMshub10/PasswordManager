@@ -51,4 +51,7 @@
     <string name="import_file">Import File</string>
     <string name="clear_data">Clear Data</string>
     <string name="tags">Tags</string>
+    <string name="file_name">File Name</string>
+    <string name="file_key">File Key</string>
+    <string name="generate_key">Generate Key</string>
 </resources>
