@@ -1,24 +1,20 @@
 package com.summer.passwordmanager.ui.screens.main.frags
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
-import com.summer.passwordmanager.App
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainPassGeneratorBinding
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
 import com.summer.passwordmanager.utils.AppUtils
+import com.summer.passwordmanager.utils.extensions.showShortToast
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -45,9 +41,7 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
             }
             ivFragPassGeneratorCopy.setOnClickListener {
                 AppUtils.copyText(context, tvFragPassGeneratorPassHolder.text.toString())
-                Toast.makeText(
-                    requireContext(), getString(R.string.copied_to_clipboard), Toast.LENGTH_SHORT
-                ).show()
+                showShortToast(getString(R.string.copied_to_clipboard))
             }
             sbFragPassGeneratorLength.setOnSeekBarChangeListener(object :
                 SeekBar.OnSeekBarChangeListener {

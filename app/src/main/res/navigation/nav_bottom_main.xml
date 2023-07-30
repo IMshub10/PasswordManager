@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/vaultFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.VaultFrag"
-        android:label="My Vault"
+        android:label="@string/my_vault"
         tools:layout="@layout/frag_main_vault">
         <action
             android:id="@+id/action_vaultFrag_to_createVaultFrag"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/passGeneratorFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.PassGeneratorFrag"
-        android:label="Password Generator"
+        android:label="@string/password_generator"
         tools:layout="@layout/frag_main_pass_generator">
         <argument
             android:name="fetchPass"
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/profileFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.ProfileFrag"
-        android:label="Profile"
+        android:label="@string/profile"
         tools:layout="@layout/frag_main_profile">
         <action
             android:id="@+id/action_profileFrag_to_fileExportDetailsFrag"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/createVaultFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.CreateVaultFrag"
-        android:label="Create"
+        android:label="@string/create"
         tools:layout="@layout/frag_create_vault">
         <action
             android:id="@+id/action_createVaultFrag_to_passGeneratorFrag"
@@ -55,11 +55,11 @@
     <fragment
         android:id="@+id/fileExportDetailsFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.FileExportDetailsFrag"
-        android:label="FileExportDetailsFrag"
+        android:label="@string/export_file"
         tools:layout="@layout/frag_file_export_details" />
     <fragment
         android:id="@+id/fileImportDetailsFrag"
         android:name="com.summer.passwordmanager.ui.screens.main.frags.FileImportDetailsFrag"
-        android:label="FileImportDetailsFrag"
+        android:label="@string/import_file"
         tools:layout="@layout/frag_file_import_details" />
 </navigation>

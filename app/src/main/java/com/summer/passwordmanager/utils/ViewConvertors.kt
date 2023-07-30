@@ -11,6 +11,8 @@ import androidx.core.text.color
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.summer.passwordmanager.R
+import com.summer.passwordmanager.utils.extensions.gone
+import com.summer.passwordmanager.utils.extensions.visible
 
 
 object ViewConvertors {

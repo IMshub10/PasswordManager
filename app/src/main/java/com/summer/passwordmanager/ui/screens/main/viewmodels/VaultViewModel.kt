@@ -9,7 +9,7 @@ import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
 import com.summer.passwordmanager.repository.Repository
 import com.summer.passwordmanager.utils.AppUtils
-import com.summer.passwordmanager.utils.filterByTagSearchValue
+import com.summer.passwordmanager.utils.extensions.filterByTagSearchValue
 
 class VaultViewModel(private val repository: Repository) : ViewModel() {
 

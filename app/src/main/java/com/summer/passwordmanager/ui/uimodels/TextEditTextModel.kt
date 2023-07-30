@@ -65,9 +65,11 @@ data class TextEditTextModel(
         }
     }
 
-    fun reset(){
+    fun reset() {
         editTextContent = ""
+        notifyChange()
     }
+
     companion object {
         @BindingAdapter("setUpTextEditText")
         @JvmStatic

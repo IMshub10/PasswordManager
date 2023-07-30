@@ -16,8 +16,8 @@ import androidx.fragment.app.DialogFragment
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.databinding.DialogAlertSpanableBinding
 import com.summer.passwordmanager.utils.UiUtils
-import com.summer.passwordmanager.utils.gone
-import com.summer.passwordmanager.utils.visible
+import com.summer.passwordmanager.utils.extensions.gone
+import com.summer.passwordmanager.utils.extensions.visible
 
 class HelperAlertDialog(
     private var spannableDialogType: DialogType,
@@ -37,7 +37,7 @@ class HelperAlertDialog(
         val cancelText: ObservableField<String> = ObservableField(""),
     )
 
-    private lateinit var mBinding: DialogAlertSpanableBinding
+    private var mBinding: DialogAlertSpanableBinding? = null
     private val uiModels = UiModels()
     private var confirmClickListener: View.OnClickListener? = null
     private var cancelClickListener: View.OnClickListener? = null
@@ -46,7 +46,7 @@ class HelperAlertDialog(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
+    ): View? {
         dialog?.window?.attributes?.windowAnimations = R.style.SpannableDialogAnimation
         mBinding = DialogAlertSpanableBinding.inflate(layoutInflater)
         if (uiModels.confirmText.get().isNullOrEmpty()) {
@@ -57,16 +57,16 @@ class HelperAlertDialog(
             uiModels.cancelText.set(getString(R.string.cancel))
             uiModels.cancelText.notifyChange()
         }
-        mBinding.run {
+        mBinding?.run {
             model = uiModels
         }
         isCancelable = false
         initUI()
-        return mBinding.root
+        return mBinding?.root
     }
 
     private fun initUI() {
-        mBinding.run {
+        mBinding?.run {
             tvDialogAlertConfirmButton.setOnClickListener(confirmClickListener)
             tvDialogAlertCancelButton.setOnClickListener(
                 cancelClickListener ?: View.OnClickListener { dismiss() })
@@ -75,38 +75,41 @@ class HelperAlertDialog(
                     dismiss()
                 }
             })
-        }
-        when (spannableDialogType) {
-            DialogType.NO_BUTTON -> {
-                mBinding.ivDialogAlertIcon.setBackgroundResource(R.drawable.ic_error_circular_primary_filled)
-                mBinding.pgDialogAlertProgress.gone()
-                mBinding.clDialogAlertContainer.gone()
-                mBinding.ivDialogAlertClose.visible()
-                mBinding.ivDialogAlertIcon.visible()
-            }
-            DialogType.TWO_BUTTON -> {
-                mBinding.ivDialogAlertIcon.setBackgroundResource(R.drawable.ic_error_circular_primary_filled)
-                mBinding.pgDialogAlertProgress.gone()
-                mBinding.ivDialogAlertClose.gone()
-                mBinding.clDialogAlertContainer.visible()
-                mBinding.ivDialogAlertIcon.visible()
-            }
-            DialogType.PROGRESS -> {
-                mBinding.ivDialogAlertIcon.setBackgroundResource(R.drawable.ic_error_circular_primary_filled)
-                mBinding.ivDialogAlertIcon.gone()
-                mBinding.clDialogAlertContainer.gone()
-                mBinding.ivDialogAlertClose.gone()
-                mBinding.pgDialogAlertProgress.visible()
-            }
-            DialogType.SUCCESS -> {
-                mBinding.ivDialogAlertIcon.setBackgroundResource(R.drawable.round_check_circle_24)
-                mBinding.clDialogAlertContainer.gone()
-                mBinding.ivDialogAlertClose.gone()
-                mBinding.pgDialogAlertProgress.gone()
-                mBinding.tvDialogAlertCancelButton.gone()
-                mBinding.ivDialogAlertIcon.visible()
-                mBinding.clDialogAlertContainer.visible()
-                mBinding.tvDialogAlertConfirmButton.visible()
+            when (spannableDialogType) {
+                DialogType.NO_BUTTON -> {
+                    ivDialogAlertIcon.setBackgroundResource(R.drawable.ic_error_circular_primary_filled)
+                    pgDialogAlertProgress.gone()
+                    clDialogAlertContainer.gone()
+                    ivDialogAlertClose.visible()
+                    ivDialogAlertIcon.visible()
+                }
+
+                DialogType.TWO_BUTTON -> {
+                    ivDialogAlertIcon.setBackgroundResource(R.drawable.ic_error_circular_primary_filled)
+                    pgDialogAlertProgress.gone()
+                    ivDialogAlertClose.gone()
+                    clDialogAlertContainer.visible()
+                    ivDialogAlertIcon.visible()
+                }
+
+                DialogType.PROGRESS -> {
+                    ivDialogAlertIcon.setBackgroundResource(R.drawable.ic_error_circular_primary_filled)
+                    ivDialogAlertIcon.gone()
+                    clDialogAlertContainer.gone()
+                    ivDialogAlertClose.gone()
+                    pgDialogAlertProgress.visible()
+                }
+
+                DialogType.SUCCESS -> {
+                    ivDialogAlertIcon.setBackgroundResource(R.drawable.round_check_circle_24)
+                    clDialogAlertContainer.gone()
+                    ivDialogAlertClose.gone()
+                    pgDialogAlertProgress.gone()
+                    tvDialogAlertCancelButton.gone()
+                    ivDialogAlertIcon.visible()
+                    clDialogAlertContainer.visible()
+                    tvDialogAlertConfirmButton.visible()
+                }
             }
         }
     }
@@ -117,9 +120,7 @@ class HelperAlertDialog(
         uiModels.titleText.notifyChange()
         uiModels.contentText.set(SpannableString(""))
         uiModels.contentText.notifyChange()
-        if (this::mBinding.isInitialized) {
-            initUI()
-        }
+        initUI()
     }
 
     fun setContentText(
@@ -164,17 +165,13 @@ class HelperAlertDialog(
 
     fun setConfirmClickListener(clickListener: View.OnClickListener) {
         confirmClickListener = clickListener
-        if (this::mBinding.isInitialized) {
-            mBinding.tvDialogAlertConfirmButton.setOnClickListener(clickListener)
-        }
+        mBinding?.tvDialogAlertConfirmButton?.setOnClickListener(clickListener)
     }
 
     fun setCancelClickListener(clickListener: View.OnClickListener) {
         cancelClickListener = clickListener
-        if (this::mBinding.isInitialized) {
-            mBinding.tvDialogAlertCancelButton.setOnClickListener(clickListener)
-            mBinding.ivDialogAlertClose.setOnClickListener(clickListener)
-        }
+        mBinding?.tvDialogAlertCancelButton?.setOnClickListener(clickListener)
+        mBinding?.ivDialogAlertClose?.setOnClickListener(clickListener)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?) = Dialog(requireActivity()).apply {

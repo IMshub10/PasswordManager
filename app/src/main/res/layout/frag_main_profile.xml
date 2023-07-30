@@ -74,6 +74,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="@dimen/spacing_x_small"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_fragMainProfile_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/iv_fragMainProfile_icon"

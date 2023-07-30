@@ -1,4 +1,4 @@
-package com.summer.passwordmanager.utils
+package com.summer.passwordmanager.utils.extensions
 
 import com.summer.passwordmanager.database.entities.VaultEntity
 

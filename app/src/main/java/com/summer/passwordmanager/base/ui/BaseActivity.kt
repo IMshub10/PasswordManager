@@ -17,7 +17,7 @@ abstract class BaseActivity<B : ViewDataBinding> : AppCompatActivity() {
 
     var helperDialog: HelperAlertDialog? = null
 
-    lateinit var mBinding: B
+    var mBinding: B? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         onPreCreated()

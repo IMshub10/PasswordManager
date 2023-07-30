@@ -83,4 +83,13 @@ object AppUtils {
         return Gson().fromJson(this, FileBean::class.java)
     }
 
+    fun getAppName(context: Context): String {
+        val applicationInfo = context.applicationInfo
+        val stringId = applicationInfo.labelRes
+        return if (stringId == 0) {
+            applicationInfo.nonLocalizedLabel.toString()
+        } else {
+            context.getString(stringId)
+        }
+    }
 }
