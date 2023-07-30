@@ -78,7 +78,16 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                         notifyChange()
                     }
                 }
-                this.add(this.size, TagEntity(AppUtils.KEY_ADD, "+ Add Tag", "", 0, 0))
+                this.add(
+                    this.size,
+                    TagEntity(
+                        id = AppUtils.KEY_ADD,
+                        createdAtApp = 0,
+                        updatedAtApp = 0,
+                        name = "+ Add Tag",
+                        description = null
+                    )
+                )
             }?.toList() ?: listOf())
         }
     }
@@ -127,12 +136,13 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                     lifecycleScope.launch(Dispatchers.Default) {
                         viewModel.insertTagEntity(
                             TagEntity(
-                                id = AppUtils.generateXid(),
-                                tagName,
-                                descriptionName ?: "",
-                                createdAt = AppUtils.getCurrentTimeSecs(),
-                                updatedAt = AppUtils.getCurrentTimeSecs()
-                            )
+                                name = tagName,
+                                description = descriptionName
+                            ).apply {
+                                id = AppUtils.generateXid()
+                                createdAtApp = AppUtils.getCurrentTimeSecs()
+                                updatedAtApp = AppUtils.getCurrentTimeSecs()
+                            }
                         )
                     }
                 }

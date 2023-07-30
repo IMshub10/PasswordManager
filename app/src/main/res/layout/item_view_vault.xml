@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_small"
             android:layout_marginVertical="@dimen/spacing_x_small"
-            android:text="@{model.userNameMobileCardNumber}"
+            android:text="@{model.usernameMobileCardNumber}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/guideline_horizontal_70"
             app:layout_constraintStart_toStartOf="parent"

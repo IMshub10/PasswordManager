@@ -24,7 +24,7 @@ fun List<Int>?.getIntArray(): String? {
 fun VaultEntity.contains(searchValue: String): Boolean {
     return entityName.lowercase().contains(searchValue.lowercase()) ||
             webAddress.lowercase().contains(searchValue.lowercase()) ||
-            userNameMobileCardNumber.lowercase().contains(searchValue.lowercase()) ||
+            usernameMobileCardNumber.lowercase().contains(searchValue.lowercase()) ||
             notes.lowercase().contains(searchValue.lowercase())
 }
 

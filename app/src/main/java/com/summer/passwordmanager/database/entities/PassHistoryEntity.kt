@@ -1,16 +1,29 @@
 package com.summer.passwordmanager.database.entities
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.summer.passwordmanager.utils.AppUtils
 
 @Entity(tableName = "pass_history")
 data class PassHistoryEntity(
-    @PrimaryKey(autoGenerate = false) var id: String,
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo("id")
+    var id: String = AppUtils.generateXid(),
+
+    @ColumnInfo("created_at_app")
+    var createdAtApp: Long = 0,
+    @ColumnInfo("updated_at_app")
+    var updatedAtApp: Long = 0,
+
+    @ColumnInfo("password")
     var password: String,
+    @ColumnInfo("has_lower_alphas")
     var hasLowerAlphas: Boolean,
+    @ColumnInfo("has_upper_alphas")
     var hasUpperAlphas: Boolean,
+    @ColumnInfo("has_numbers")
     var hasNumbers: Boolean,
-    var hasSpecialCharacters: Boolean,
-    var createdAt: Long,
-    var updatedAt: Long,
+    @ColumnInfo("has_special_characters")
+    var hasSpecialCharacters: Boolean
 )

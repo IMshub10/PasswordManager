@@ -40,12 +40,12 @@ interface AppDao {
 
     @Query(
         "Select vaults.*, tags.* from vaults " +
-                " left join tags on tags.id = vaults.tagId " +
-                " order by vaults.entityName, vaults.createdAt "
+                " left join tags on tags.id = vaults.tag_id " +
+                " order by vaults.entity_name, vaults.created_at_app "
     )
     fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>>
 
-    @Query("Select * from vaults order by createdAt")
+    @Query("Select * from vaults order by created_at_app")
     suspend fun getAllVaults(): List<VaultEntity>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

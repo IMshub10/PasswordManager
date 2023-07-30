@@ -1,7 +1,6 @@
 package com.summer.passwordmanager.ui.screens.main.viewmodels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
@@ -48,11 +47,11 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
             VaultEntity(
                 id = AppUtils.generateXid(),
                 entityName = websiteNameEditTextModel.editTextContent ?: "",
-                userNameMobileCardNumber = userNameMobileEditTextModel.editTextContent ?: "",
+                usernameMobileCardNumber = userNameMobileEditTextModel.editTextContent ?: "",
                 password = passwordEditTextModel.editTextContent ?: "",
                 notes = notesEditTextModel.editTextContent ?: "",
-                createdAt = AppUtils.getCurrentTimeSecs(),
-                updatedAt = AppUtils.getCurrentTimeSecs(),
+                createdAtApp = AppUtils.getCurrentTimeSecs(),
+                updatedAtApp = AppUtils.getCurrentTimeSecs(),
                 webAddress = websiteAddressEditTextModel.editTextContent ?: "",
                 tagId = selectedTagId
             )
