@@ -2,6 +2,9 @@ package com.summer.passwordmanager.ui.screens.pin
 
 import android.os.Bundle
 import androidx.biometric.BiometricPrompt
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.andrognito.pinlockview.PinLockListener
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseActivity
@@ -12,6 +15,8 @@ import com.summer.passwordmanager.utils.BiometricResultListener
 import com.summer.passwordmanager.utils.LauncherUtils
 import com.summer.passwordmanager.utils.extensions.showShortToast
 import com.summer.passwordmanager.utils.verifyFingerPrint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PinActivity : BaseActivity<ActivityPinBinding>(), BiometricResultListener {
@@ -26,6 +31,15 @@ class PinActivity : BaseActivity<ActivityPinBinding>(), BiometricResultListener 
         viewModel.init()
         mBinding?.fragPinUseLock?.attachIndicatorDots(mBinding?.fragPinIndicatorDots)
         listeners()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isFingerPrintEnabled.collectLatest {
+                    if (it) {
+                        verifyFingerPrint(this@PinActivity)
+                    }
+                }
+            }
+        }
     }
 
     private fun listeners() {
@@ -51,6 +65,11 @@ class PinActivity : BaseActivity<ActivityPinBinding>(), BiometricResultListener 
             override fun onPinChange(pinLength: Int, intermediatePin: String?) {}
 
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 
     override fun onBiometricSuccess(result: BiometricPrompt.AuthenticationResult) =

@@ -65,6 +65,11 @@ data class TextEditTextModel(
         }
     }
 
+    fun setModel(content: String) {
+        editTextContent = content
+        notifyChange()
+    }
+
     fun reset() {
         editTextContent = ""
         notifyChange()

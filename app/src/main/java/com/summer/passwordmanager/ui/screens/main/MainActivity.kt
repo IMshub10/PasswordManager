@@ -129,9 +129,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         })
         searchView?.setOnSearchClickListener {
             mBinding?.tbActSectorProfileToolbar?.title = null
+            mBinding?.bmvMainNavigation?.gone()
         }
         searchView?.setOnCloseListener {
             mBinding?.tbActSectorProfileToolbar?.title = navController.currentDestination?.label
+            mBinding?.bmvMainNavigation?.visible()
             return@setOnCloseListener false
         }
         return super.onCreateOptionsMenu(menu)

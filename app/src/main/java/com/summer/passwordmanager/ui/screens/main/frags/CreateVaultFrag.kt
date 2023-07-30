@@ -33,6 +33,9 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
 
     override fun onFragmentReady(instanceState: Bundle?) {
         mBinding?.model = viewModel
+        arguments?.getString("vaultId").let {
+            viewModel.setUpVaultEntity(it)
+        }
         initRecyclerView()
         observeViewModel()
         listeners()

@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_x_small"
         android:background="@drawable/ripple_rounded_rect_color_on_secondary_solid_grey_stroke_small_corners"
-        android:padding="@dimen/spacing_tiny">
+        android:padding="@dimen/spacing_small">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_itemViewVault_entityName"
@@ -26,12 +26,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_small"
-            android:layout_marginTop="@dimen/spacing_x_small"
             android:text="@{model.entityName}"
             app:layout_constraintEnd_toEndOf="@+id/guideline_horizontal_70"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Google" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_itemViewVault_webAddress"
+            style="@style/text_body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_small"
+            android:layout_marginVertical="@dimen/spacing_x_small"
+            android:autoLink="all"
+            android:linksClickable="true"
+            android:text="@{model.webAddress}"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_horizontal_70"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_itemViewVault_entityName"
+            tools:text="www.google.com" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_itemViewVault_userName"
@@ -41,11 +55,24 @@
             android:layout_marginHorizontal="@dimen/spacing_small"
             android:layout_marginVertical="@dimen/spacing_x_small"
             android:text="@{model.usernameMobileCardNumber}"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_horizontal_70"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_itemViewVault_webAddress"
+            tools:text="mehershubham.work@gmail.com" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_itemViewVault_password"
+            style="@style/text_body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_small"
+            android:text="@{model.passwordVisible ? model.password : @string/dummy_pass }"
+            android:visibility="@{model.hidden ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/guideline_horizontal_70"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_itemViewVault_entityName"
-            tools:text="mehershubham.work@gmail.com" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_itemViewVault_userName"
+            tools:text="pop@pop1234" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_itemViewVault_tag"
@@ -63,11 +90,39 @@
             android:singleLine="true"
             android:text="@{model.tagEntity != null ? model.tagEntity.name : @string/empty}"
             android:visibility="@{model.tagEntity == null ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tv_itemViewVault_webAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline_horizontal_70"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Mail" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_itemViewVault_viewPass"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@drawable/ripple_circle_solid_secondary"
+            android:padding="@dimen/spacing_tiny"
+            android:src="@{model.passwordVisible ? @drawable/ic_visibility_on :@drawable/ic_visibility_off}"
+            android:visibility="@{model.hidden ?View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_itemViewVault_password"
+            app:layout_constraintStart_toStartOf="@id/guideline_horizontal_70"
+            app:layout_constraintTop_toTopOf="@id/tv_itemViewVault_password" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_itemViewVault_copyPass"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@drawable/ripple_circle_solid_secondary"
+            android:padding="@dimen/spacing_tiny"
+            android:src="@drawable/ic_copy"
+            android:visibility="@{model.hidden ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_itemViewVault_password"
+            app:layout_constraintStart_toEndOf="@id/iv_itemViewVault_viewPass"
+            app:layout_constraintTop_toTopOf="@id/tv_itemViewVault_password" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_horizontal_70"

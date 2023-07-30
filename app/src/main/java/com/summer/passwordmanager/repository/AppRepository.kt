@@ -17,6 +17,10 @@ class AppRepository(
         dao.insertVaultIgnore(vaultEntity)
     }
 
+    override suspend fun insertReplaceVaultEntity(vaultEntity: VaultEntity) {
+        dao.insertVaultReplace(vaultEntity)
+    }
+
     override suspend fun insertPastHistory(passHistoryEntity: PassHistoryEntity) {
         dao.insertPassHistoryReplace(passHistoryEntity)
     }
@@ -68,12 +72,20 @@ class AppRepository(
         }
     }
 
-    override suspend fun insertIgnoreReplaceTagEntity(tagEntity: TagEntity) {
+    override suspend fun deleteVaultById(vaultId: String) {
+        dao.deleteVaultById(vaultId)
+    }
+
+    override suspend fun insertReplaceTagEntity(tagEntity: TagEntity) {
         dao.insertTagReplace(tagEntity)
     }
 
     override suspend fun getAllVaults(): List<VaultEntity> {
         return dao.getAllVaults()
+    }
+
+    override suspend fun getVaultById(vaultId: String): VaultEntity? {
+        return dao.getVaultById(vaultId)
     }
 
 }

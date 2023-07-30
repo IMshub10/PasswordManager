@@ -5,11 +5,14 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
 import com.summer.passwordmanager.repository.Repository
 import com.summer.passwordmanager.utils.AppUtils
 import com.summer.passwordmanager.utils.extensions.filterByTagSearchValue
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class VaultViewModel(private val repository: Repository) : ViewModel() {
 
@@ -43,6 +46,12 @@ class VaultViewModel(private val repository: Repository) : ViewModel() {
 
     fun getFilteredVaultList() =
         GetFilteredVaultList(searchQuery, selectedTag, getAllVaultsWithTheirTag())
+
+    fun deleteVaultById(vaultId: String) {
+        viewModelScope.launch(Dispatchers.Default) {
+            repository.deleteVaultById(vaultId)
+        }
+    }
 
     inner class GetFilteredVaultList(
         searchQuery: MutableLiveData<String>,

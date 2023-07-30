@@ -34,14 +34,14 @@ class SelectTagAdapter(private val selectionCallBack: SelectionCallBack) :
             oldItem: TagEntity,
             newItem: TagEntity,
         ): Boolean {
-            return oldItem == newItem
+            return false
         }
 
         override fun areContentsTheSame(
             oldItem: TagEntity,
             newItem: TagEntity,
         ): Boolean {
-            return oldItem.id == newItem.id
+            return false
         }
     }
 

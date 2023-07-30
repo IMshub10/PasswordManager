@@ -53,4 +53,7 @@ interface AppDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTagReplace(vaultEntity: TagEntity)
+
+    @Query("Select * from vaults where id =:vaultId")
+    suspend fun getVaultById(vaultId: String): VaultEntity?
 }

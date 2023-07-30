@@ -61,4 +61,10 @@
     <string name="authenticate_with_biometric">Complete authentication with your fingerprint!</string>
     <string name="please_enter_pin">Please enter Pin</string>
     <string name="entered_pin_do_not_match">Entered Pin do not match.</string>
+    <string name="vault_options">Vault Options</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="view_edit">View/Edit</string>
+    <string name="dummy_pass">********</string>
+    <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete? Once deleted data cannot be restored.</string>
 </resources>

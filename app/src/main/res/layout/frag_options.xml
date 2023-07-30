@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bottomsheet"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_medium"
+        android:paddingVertical="@dimen/spacing_x_medium">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/grey" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/text_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@string/options"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="?label" />
+
+        <include
+            android:id="@+id/layout_fragVaultOptions_viewEdit"
+            layout="@layout/layout_icon_text_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            app:isRed="@{false}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_fragMainProfile_exportFile"
+            app:layout_constraintVertical_bias="1"
+            app:startIcon="@{@drawable/ic_edit}"
+            app:text="@{@string/view_edit}"
+            tools:layout_editor_absoluteX="28dp" />
+
+
+        <include
+            android:id="@+id/layout_fragVaultOptions_delete"
+            layout="@layout/layout_icon_text_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/spacing_small"
+            app:isRed="@{true}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_fragMainProfile_exportFile"
+            app:layout_constraintVertical_bias="1"
+            app:startIcon="@{@drawable/ic_delete}"
+            app:text="@{@string/delete}"
+            tools:layout_editor_absoluteX="28dp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</layout>

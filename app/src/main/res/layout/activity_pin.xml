@@ -47,7 +47,7 @@
                 android:padding="@dimen/spacing_x_small"
                 android:paddingHorizontal="@dimen/spacing_small"
                 android:text="@string/login_with_fingerprint"
-                android:visibility="@{model.isFingerPrintEnabled ? View.VISIBLE : View.INVISIBLE}" />
+                android:visibility="@{model.isFingerPrintEnable ? View.VISIBLE : View.INVISIBLE}" />
 
             <com.andrognito.pinlockview.IndicatorDots
                 android:id="@+id/frag_pin_indicatorDots"

@@ -41,4 +41,11 @@ data class VaultEntity(
 ) : BaseObservable() {
     @Ignore
     var tagEntity: TagEntity? = null
+
+    @Ignore
+    var passwordVisible: Boolean = false
+
+    @Ignore
+    var isHidden: Boolean = true
+
 }
