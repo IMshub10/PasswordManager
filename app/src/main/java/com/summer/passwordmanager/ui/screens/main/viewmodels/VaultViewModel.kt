@@ -21,8 +21,8 @@ class VaultViewModel(private val repository: Repository) : ViewModel() {
     val searchQuery = MutableLiveData("")
 
     val tagListLive = repository.getAllTagsLive().map {
-        val list = it.toMutableList()
-        list.add(0, TagEntity(
+        val list = it?.toMutableList()
+        list?.add(0, TagEntity(
             id = AppUtils.KEY_ALL, createdAtApp = 0,
             updatedAtApp = 0, name = "All", description = null
         ).apply {

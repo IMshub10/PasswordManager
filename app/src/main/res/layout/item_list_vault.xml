@@ -13,7 +13,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_itemViewVault_root"
+        android:id="@+id/cl_itemListVault_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_x_small"
@@ -21,7 +21,7 @@
         android:padding="@dimen/spacing_small">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_itemViewVault_entityName"
+            android:id="@+id/tv_itemListVault_entityName"
             style="@style/text_body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             tools:text="Google" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_itemViewVault_webAddress"
+            android:id="@+id/tv_itemListVault_webAddress"
             style="@style/text_body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -44,11 +44,11 @@
             android:text="@{model.webAddress}"
             app:layout_constraintEnd_toEndOf="@+id/guideline_horizontal_70"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_itemViewVault_entityName"
+            app:layout_constraintTop_toBottomOf="@+id/tv_itemListVault_entityName"
             tools:text="www.google.com" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_itemViewVault_userName"
+            android:id="@+id/tv_itemListVault_userName"
             style="@style/text_body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -57,11 +57,11 @@
             android:text="@{model.usernameMobileCardNumber}"
             app:layout_constraintEnd_toEndOf="@+id/guideline_horizontal_70"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_itemViewVault_webAddress"
+            app:layout_constraintTop_toBottomOf="@+id/tv_itemListVault_webAddress"
             tools:text="mehershubham.work@gmail.com" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_itemViewVault_password"
+            android:id="@+id/tv_itemListVault_password"
             style="@style/text_body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -71,11 +71,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/guideline_horizontal_70"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_itemViewVault_userName"
+            app:layout_constraintTop_toBottomOf="@+id/tv_itemListVault_userName"
             tools:text="pop@pop1234" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_itemViewVault_tag"
+            android:id="@+id/tv_itemListVault_tag"
             style="@style/text_body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -90,14 +90,14 @@
             android:singleLine="true"
             android:text="@{model.tagEntity != null ? model.tagEntity.name : @string/empty}"
             android:visibility="@{model.tagEntity == null ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="@id/tv_itemViewVault_webAddress"
+            app:layout_constraintBottom_toBottomOf="@id/tv_itemListVault_webAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline_horizontal_70"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Mail" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_itemViewVault_viewPass"
+            android:id="@+id/iv_itemListVault_viewPass"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginStart="@dimen/spacing_small"
@@ -106,12 +106,12 @@
             android:padding="@dimen/spacing_tiny"
             android:src="@{model.passwordVisible ? @drawable/ic_visibility_on :@drawable/ic_visibility_off}"
             android:visibility="@{model.hidden ?View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="@id/tv_itemViewVault_password"
+            app:layout_constraintBottom_toBottomOf="@id/tv_itemListVault_password"
             app:layout_constraintStart_toStartOf="@id/guideline_horizontal_70"
-            app:layout_constraintTop_toTopOf="@id/tv_itemViewVault_password" />
+            app:layout_constraintTop_toTopOf="@id/tv_itemListVault_password" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_itemViewVault_copyPass"
+            android:id="@+id/iv_itemListVault_copyPass"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginStart="@dimen/spacing_small"
@@ -120,9 +120,9 @@
             android:padding="@dimen/spacing_tiny"
             android:src="@drawable/ic_copy"
             android:visibility="@{model.hidden ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="@id/tv_itemViewVault_password"
-            app:layout_constraintStart_toEndOf="@id/iv_itemViewVault_viewPass"
-            app:layout_constraintTop_toTopOf="@id/tv_itemViewVault_password" />
+            app:layout_constraintBottom_toBottomOf="@id/tv_itemListVault_password"
+            app:layout_constraintStart_toEndOf="@id/iv_itemListVault_viewPass"
+            app:layout_constraintTop_toTopOf="@id/tv_itemListVault_password" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_horizontal_70"

@@ -31,11 +31,15 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
 
     private var createTagDialog: CreateTagDialog? = null
 
-    override fun onFragmentReady(instanceState: Bundle?) {
-        mBinding?.model = viewModel
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         arguments?.getString("vaultId").let {
             viewModel.setUpVaultEntity(it)
         }
+    }
+
+    override fun onFragmentReady(instanceState: Bundle?) {
+        mBinding?.model = viewModel
         initRecyclerView()
         observeViewModel()
         listeners()
@@ -73,7 +77,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
     }
 
     private fun observeViewModel() {
-        viewModel.getAllTags().observe(viewLifecycleOwner) {
+        viewModel.tagsLive.observe(viewLifecycleOwner) {
             adapter?.submitList(it?.toMutableList()?.apply {
                 viewModel.selectedTagId?.let { selectedId ->
                     this.find { selected -> selected.id == selectedId }?.apply {
@@ -134,22 +138,14 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
 
     private fun showCreateTagDialog() {
         if (createTagDialog?.isAdded != true) {
-            createTagDialog = CreateTagDialog(object : CreateTagDialog.DismissLister {
-                override fun onSave(tagName: String, descriptionName: String?) {
-                    lifecycleScope.launch(Dispatchers.Default) {
-                        viewModel.insertTagEntity(
-                            TagEntity(
-                                name = tagName,
-                                description = descriptionName
-                            ).apply {
-                                id = AppUtils.generateXid()
-                                createdAtApp = AppUtils.getCurrentTimeSecs()
-                                updatedAtApp = AppUtils.getCurrentTimeSecs()
-                            }
-                        )
+            createTagDialog =
+                CreateTagDialog(dismissListener = object : CreateTagDialog.DismissLister {
+                    override fun onSave(tagEntity: TagEntity) {
+                        lifecycleScope.launch(Dispatchers.Default) {
+                            viewModel.insertTagEntity(tagEntity)
+                        }
                     }
-                }
-            })
+                })
             createTagDialog?.show(childFragmentManager, "")
         }
     }

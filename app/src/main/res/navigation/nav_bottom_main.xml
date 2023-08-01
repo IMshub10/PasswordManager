@@ -17,6 +17,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_bottom"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_vaultFrag_to_tagFrag"
+            app:destination="@id/tagFrag" />
     </fragment>
     <fragment
         android:id="@+id/passGeneratorFrag"
@@ -62,4 +65,9 @@
         android:name="com.summer.passwordmanager.ui.screens.main.frags.FileImportDetailsFrag"
         android:label="@string/import_file"
         tools:layout="@layout/frag_file_import_details" />
+    <fragment
+        android:id="@+id/tagFrag"
+        android:name="com.summer.passwordmanager.ui.screens.main.frags.TagFrag"
+        android:label="@string/tags"
+        tools:layout="@layout/frag_main_tag" />
 </navigation>

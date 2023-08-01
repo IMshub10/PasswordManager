@@ -33,7 +33,7 @@ interface AppDao {
     fun deleteAllPassHistoryRecords()
 
     @Query("Select * from tags order by lower(name)")
-    fun getAllTagsLive(): LiveData<List<TagEntity>>
+    fun getAllTagsLive(): LiveData<List<TagEntity>?>
 
     @Query("Select * from tags order by lower(name)")
     fun getAllTags(): List<TagEntity>
@@ -56,4 +56,7 @@ interface AppDao {
 
     @Query("Select * from vaults where id =:vaultId")
     suspend fun getVaultById(vaultId: String): VaultEntity?
+
+    @Query("Delete from tags where id =:tagId ")
+    suspend fun deleteTagById(tagId: String)
 }

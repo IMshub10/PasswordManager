@@ -10,12 +10,17 @@ import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.summer.passwordmanager.R
+import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.databinding.DialogCreateTagBinding
 import com.summer.passwordmanager.ui.uimodels.TextEditTextFieldType
 import com.summer.passwordmanager.ui.uimodels.TextEditTextModel
+import com.summer.passwordmanager.utils.AppUtils
 import com.summer.passwordmanager.utils.UiUtils
 
-class CreateTagDialog(private val dismissListener: DismissLister) : DialogFragment() {
+class CreateTagDialog(
+    private val dismissListener: DismissLister,
+    private val tagEntity: TagEntity? = null
+) : DialogFragment() {
 
     private var tagNameEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.TAG_NAME, isRequired = true)
@@ -31,9 +36,15 @@ class CreateTagDialog(private val dismissListener: DismissLister) : DialogFragme
     ): View? {
         isCancelable = false
         mBinding = DialogCreateTagBinding.inflate(layoutInflater)
+        setUpInputModels()
         mBinding?.tagNameModel = tagNameEditTextModel
         mBinding?.tagDescriptionModel = tagDescriptionEditTextModel
         return mBinding?.root
+    }
+
+    private fun setUpInputModels() {
+        tagNameEditTextModel.editTextContent = tagEntity?.name ?: ""
+        tagDescriptionEditTextModel.editTextContent = tagEntity?.description ?: ""
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,11 +59,21 @@ class CreateTagDialog(private val dismissListener: DismissLister) : DialogFragme
             }
             tvDialogCreateTagConfirmButton.setOnClickListener {
                 if (validate()) {
-                    dismissListener.onSave(
-                        tagName = tagNameEditTextModel.editTextContent ?: "",
-                        descriptionName = tagDescriptionModel?.editTextContent
-                    )
                     dismiss()
+                    dismissListener.onSave(
+                        tagEntity?.apply {
+                            name = tagNameEditTextModel.editTextContent ?: ""
+                            description = tagDescriptionModel?.editTextContent
+                            updatedAtApp = AppUtils.getCurrentTimeSecs()
+                        }
+                            ?: TagEntity(
+                                name = tagNameEditTextModel.editTextContent ?: "",
+                                description = tagDescriptionModel?.editTextContent
+                            ).apply {
+                                createdAtApp = AppUtils.getCurrentTimeSecs()
+                                updatedAtApp = AppUtils.getCurrentTimeSecs()
+                            }
+                    )
                 }
             }
         }
@@ -73,7 +94,7 @@ class CreateTagDialog(private val dismissListener: DismissLister) : DialogFragme
     }
 
     interface DismissLister {
-        fun onSave(tagName: String, descriptionName: String?)
+        fun onSave(tagEntity: TagEntity)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?) = Dialog(requireActivity()).apply {

@@ -11,9 +11,8 @@ import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
 import com.summer.passwordmanager.databinding.FragMainVaultBinding
 import com.summer.passwordmanager.ui.adapters.ViewTagAdapter
-import com.summer.passwordmanager.ui.adapters.ViewVaultAdapter
+import com.summer.passwordmanager.ui.adapters.VaultListAdapter
 import com.summer.passwordmanager.ui.dialogs.HelperAlertDialog
-import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.VaultViewModel
 import com.summer.passwordmanager.utils.AppUtils
 import com.summer.passwordmanager.utils.extensions.showShortToast
@@ -24,10 +23,9 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
     override val layoutResId: Int
         get() = R.layout.frag_main_vault
 
-    private val viewModel: CreateVaultViewModel by activityViewModel()
     private val mainViewModel: VaultViewModel by activityViewModel()
 
-    private var viewVaultAdapter: ViewVaultAdapter? = null
+    private var vaultListAdapter: VaultListAdapter? = null
     private var viewTagAdapter: ViewTagAdapter? = null
 
     private val optionsFrag by lazy {
@@ -71,8 +69,9 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
 
     private fun observeViewModel() {
         mainViewModel.getFilteredVaultList().observe(viewLifecycleOwner) {
+            mBinding?.pgFragVaultVaults?.isVisible = it == null
             it?.let {
-                viewVaultAdapter?.submitList(it)
+                vaultListAdapter?.submitList(it)
             }
         }
         mainViewModel.tagListLive.observe(viewLifecycleOwner) {
@@ -96,7 +95,7 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
 
             //vault adapter
             (rvFragVaultVaults.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
-            viewVaultAdapter = ViewVaultAdapter(object : ViewVaultAdapter.SelectionCallBack {
+            vaultListAdapter = VaultListAdapter(object : VaultListAdapter.SelectionCallBack {
                 override fun onItemClick(item: VaultEntity) {
                     item.isHidden = !item.isHidden
                     item.notifyChange()
@@ -118,7 +117,7 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
 
                 }
             })
-            this.rvFragVaultVaults.adapter = viewVaultAdapter
+            this.rvFragVaultVaults.adapter = vaultListAdapter
         }
     }
 

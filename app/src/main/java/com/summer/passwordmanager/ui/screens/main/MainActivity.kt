@@ -76,7 +76,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     mBinding?.tbActSectorProfileToolbar?.navigationIcon = null
                 }
 
-                R.id.createVaultFrag, R.id.fileExportDetailsFrag, R.id.fileImportDetailsFrag -> {
+                R.id.tagFrag, R.id.createVaultFrag, R.id.fileExportDetailsFrag, R.id.fileImportDetailsFrag -> {
                     mBinding?.bmvMainNavigation?.gone()
                     mBinding?.tbActSectorProfileToolbar?.navigationIcon =
                         ResourcesCompat.getDrawable(resources, R.drawable.ic_navigation_back, null)
@@ -145,6 +145,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.createVaultFrag,
                 R.id.fileImportDetailsFrag,
                 R.id.fileExportDetailsFrag,
+                R.id.tagFrag
             ) -> {
                 navController.popBackStack()
             }
@@ -173,5 +174,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             searchItem?.isVisible = false
             tagItem?.isVisible = false
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.item_tag) {
+            if (navController.currentDestination?.id == R.id.vaultFrag) {
+                navController.navigate(R.id.action_vaultFrag_to_tagFrag)
+            }
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

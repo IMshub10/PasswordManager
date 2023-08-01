@@ -11,7 +11,7 @@ interface Repository {
     suspend fun insertReplaceVaultEntity(vaultEntity: VaultEntity)
     suspend fun insertPastHistory(passHistoryEntity: PassHistoryEntity)
     suspend fun insertReplaceTagEntity(tagEntity: TagEntity)
-    fun getAllTagsLive(): LiveData<List<TagEntity>>
+    fun getAllTagsLive(): LiveData<List<TagEntity>?>
     fun getAllTags(): List<TagEntity>
     fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>>
     suspend fun getAllVaults(): List<VaultEntity>
@@ -27,5 +27,6 @@ interface Repository {
     fun isFingerPrintSet(): Boolean
     fun setFingerPrint(isFingerPrintSet: Boolean)
     suspend fun deleteVaultById(vaultId: String)
+    suspend fun deleteTagById(tagId: String)
     //endregion
 }

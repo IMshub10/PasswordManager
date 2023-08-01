@@ -2,38 +2,36 @@ package com.summer.passwordmanager.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.database.entities.VaultEntity
-import com.summer.passwordmanager.databinding.ItemViewVaultBinding
-import com.summer.passwordmanager.utils.extensions.showShortToast
+import com.summer.passwordmanager.databinding.ItemListVaultBinding
 
-class ViewVaultAdapter(private val selectionCallBack: SelectionCallBack) :
-    ListAdapter<VaultEntity, ViewVaultAdapter.ContentHolder>(Callback()) {
+class VaultListAdapter(private val selectionCallBack: SelectionCallBack) :
+    ListAdapter<VaultEntity, VaultListAdapter.ContentHolder>(Callback()) {
 
-    inner class ContentHolder(private val binding: ItemViewVaultBinding) :
+    inner class ContentHolder(private val binding: ItemListVaultBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(model: VaultEntity) {
             binding.run {
                 this.model = model
 
-                clItemViewVaultRoot.setOnClickListener {
-                    binding.tvItemViewVaultTag.isSelected = false
-                    binding.tvItemViewVaultTag.isSelected = true
+                clItemListVaultRoot.setOnClickListener {
+                    binding.tvItemListVaultTag.isSelected = false
+                    binding.tvItemListVaultTag.isSelected = true
                     selectionCallBack.onItemClick(item = model)
                 }
-                clItemViewVaultRoot.setOnLongClickListener {
+                clItemListVaultRoot.setOnLongClickListener {
                     selectionCallBack.onLongPress(item = model)
                     return@setOnLongClickListener true
                 }
-                ivItemViewVaultViewPass.setOnClickListener {
+                ivItemListVaultViewPass.setOnClickListener {
                     selectionCallBack.onPassVisibilityClick(item = model)
                 }
-                ivItemViewVaultCopyPass.setOnClickListener {
+                ivItemListVaultCopyPass.setOnClickListener {
                     selectionCallBack.onCopyPas(item = model)
                 }
             }
@@ -51,28 +49,25 @@ class ViewVaultAdapter(private val selectionCallBack: SelectionCallBack) :
         override fun areItemsTheSame(
             oldItem: VaultEntity,
             newItem: VaultEntity,
-        ): Boolean {
-            return oldItem == newItem
-        }
+        ) = oldItem == newItem
 
         override fun areContentsTheSame(
             oldItem: VaultEntity,
             newItem: VaultEntity,
-        ): Boolean {
-            return oldItem.id == newItem.id
-        }
+        ) = oldItem.id == newItem.id
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ContentHolder(
         DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.item_view_vault,
+            R.layout.item_list_vault,
             parent,
             false
         )
     )
 
-    override fun onBindViewHolder(holder: ContentHolder, position: Int) {
+    override fun onBindViewHolder(holder: ContentHolder, position: Int) =
         holder.bind(getItem(position))
-    }
+
 }

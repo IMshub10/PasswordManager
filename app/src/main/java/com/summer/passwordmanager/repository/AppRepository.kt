@@ -13,17 +13,14 @@ class AppRepository(
     private val sharedPreferences: SharedPreferences
 ) : Repository {
 
-    override suspend fun insertIgnoreVaultEntity(vaultEntity: VaultEntity) {
+    override suspend fun insertIgnoreVaultEntity(vaultEntity: VaultEntity) =
         dao.insertVaultIgnore(vaultEntity)
-    }
 
-    override suspend fun insertReplaceVaultEntity(vaultEntity: VaultEntity) {
+    override suspend fun insertReplaceVaultEntity(vaultEntity: VaultEntity) =
         dao.insertVaultReplace(vaultEntity)
-    }
 
-    override suspend fun insertPastHistory(passHistoryEntity: PassHistoryEntity) {
+    override suspend fun insertPastHistory(passHistoryEntity: PassHistoryEntity) =
         dao.insertPassHistoryReplace(passHistoryEntity)
-    }
 
     override suspend fun save(fullName: String?, mobileNumber: String?) {
         sharedPreferences.edit()?.apply {
@@ -32,17 +29,14 @@ class AppRepository(
         }
     }
 
-    override suspend fun getFullName(): String? {
-        return sharedPreferences.getString(AppUtils.KEY_FULL_NAME, null)
-    }
+    override suspend fun getFullName(): String? =
+        sharedPreferences.getString(AppUtils.KEY_FULL_NAME, null)
 
-    override suspend fun getMobileNumber(): String? {
-        return sharedPreferences.getString(AppUtils.KEY_MOBILE_NUMBER, null)
-    }
+    override suspend fun getMobileNumber(): String? =
+        sharedPreferences.getString(AppUtils.KEY_MOBILE_NUMBER, null)
 
-    override suspend fun getPin(): String? {
-        return sharedPreferences.getString(AppUtils.KEY_PIN, null)
-    }
+    override suspend fun getPin(): String? =
+        sharedPreferences.getString(AppUtils.KEY_PIN, null)
 
     override suspend fun setPin(pin: String) {
         sharedPreferences.edit()?.apply {
@@ -50,21 +44,17 @@ class AppRepository(
         }
     }
 
-    override fun getAllTagsLive(): LiveData<List<TagEntity>> {
-        return dao.getAllTagsLive()
-    }
+    override fun getAllTagsLive(): LiveData<List<TagEntity>?> =
+        dao.getAllTagsLive()
 
-    override fun getAllTags(): List<TagEntity> {
-        return dao.getAllTags()
-    }
+    override fun getAllTags(): List<TagEntity> =
+        dao.getAllTags()
 
-    override fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>> {
-        return dao.getAllVaultsWithTheirTag()
-    }
+    override fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>> =
+        dao.getAllVaultsWithTheirTag()
 
-    override fun isFingerPrintSet(): Boolean {
-        return sharedPreferences.getBoolean(AppUtils.KEY_FINGERPRINT_ENABLED, false)
-    }
+    override fun isFingerPrintSet(): Boolean =
+        sharedPreferences.getBoolean(AppUtils.KEY_FINGERPRINT_ENABLED, false)
 
     override fun setFingerPrint(isFingerPrintSet: Boolean) {
         sharedPreferences.edit()?.apply {
@@ -72,9 +62,10 @@ class AppRepository(
         }
     }
 
-    override suspend fun deleteVaultById(vaultId: String) {
+    override suspend fun deleteVaultById(vaultId: String) =
         dao.deleteVaultById(vaultId)
-    }
+
+    override suspend fun deleteTagById(tagId: String) = dao.deleteTagById(tagId)
 
     override suspend fun insertReplaceTagEntity(tagEntity: TagEntity) {
         dao.insertTagReplace(tagEntity)

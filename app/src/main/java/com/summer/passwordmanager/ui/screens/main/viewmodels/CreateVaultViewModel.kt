@@ -35,6 +35,10 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
         TextEditTextModel(fieldType = TextEditTextFieldType.NOTES, isRequired = false)
     }
 
+    val tagsLive: LiveData<List<TagEntity>?>
+        get() =
+            repository.getAllTagsLive()
+
     private fun resetUiModels() {
         selectedTagId = vaultEntity?.tagId
         websiteNameEditTextModel.setModel(vaultEntity?.entityName ?: "")
@@ -42,10 +46,6 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
         userNameMobileEditTextModel.setModel(vaultEntity?.usernameMobileCardNumber ?: "")
         passwordEditTextModel.setModel(vaultEntity?.password ?: "")
         notesEditTextModel.setModel(vaultEntity?.notes ?: "")
-    }
-
-    fun getAllTags(): LiveData<List<TagEntity>> {
-        return repository.getAllTagsLive()
     }
 
     fun setUpVaultEntity(vaultId: String?) {
