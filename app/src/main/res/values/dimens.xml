@@ -4,6 +4,7 @@
     <dimen name="design_bottom_navigation_text_size" tools:override="true">12sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">12sp</dimen>
 
+    <dimen name="spacing_nothing">0dp</dimen>
     <dimen name="spacing_atom">1dp</dimen>
     <dimen name="spacing_minute">2dp</dimen>
     <dimen name="spacing_tiny">4dp</dimen>
@@ -13,4 +14,5 @@
     <dimen name="spacing_medium">24dp</dimen>
     <dimen name="spacing_large">32dp</dimen>
     <dimen name="spacing_x_large">40dp</dimen>
+    <dimen name="spacing_huge">64dp</dimen>
 </resources>

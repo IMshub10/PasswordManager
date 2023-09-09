@@ -13,7 +13,7 @@ import org.koin.core.logger.Level
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        enableStrictMode()
+        //enableStrictMode()
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@App)

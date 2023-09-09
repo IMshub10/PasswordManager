@@ -20,6 +20,10 @@
         <variable
             name="singleLine"
             type="java.lang.Boolean" />
+
+        <variable
+            name="hasIconEnd"
+            type="java.lang.Boolean"/>
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -51,10 +55,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@{hint}"
+                android:paddingEnd="@{hasIconEnd ? @dimen/spacing_x_large : @dimen/spacing_nothing }"
                 android:singleLine="@{singleLine, default = true}"
                 android:textSize="15sp"
                 app:setUpTextEditText="@{textInputModel}"
-                tools:text="Village Name" />
+                tools:ignore="RtlSymmetry"
+                tools:text="Villsdfsddfsdfsdfsdfsdfsdsdsffdsdfsdfssdfdage Name" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
