@@ -35,7 +35,7 @@ android {
     }
 
     viewBinding {
-         enabled true
+        enabled true
     }
     dataBinding {
         enabled true
@@ -78,8 +78,18 @@ dependencies {
 
     //test libraries
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:4.2.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2'
+    testImplementation 'androidx.arch.core:core-testing:2.2.0'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.2.0'
+    androidTestImplementation 'org.mockito:mockito-core:4.2.0'
+
 
     //xid Generator
     implementation 'com.github.0xshamil:java-xid:1.0.0'
@@ -96,7 +106,9 @@ dependencies {
     // Biometric android-x
     implementation 'androidx.biometric:biometric:1.2.0-alpha05'
 
+    //Pin Lock View
     implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
 
+    //Gson convertor
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }

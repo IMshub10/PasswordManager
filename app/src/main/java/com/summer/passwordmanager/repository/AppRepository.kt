@@ -5,7 +5,6 @@ import android.os.Environment
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.google.gson.Gson
 import com.summer.passwordmanager.beans.FileBean
 import com.summer.passwordmanager.beans.toTagBeans
 import com.summer.passwordmanager.beans.toTagEntities
@@ -17,10 +16,10 @@ import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
 import com.summer.passwordmanager.utils.AESEncryption
 import com.summer.passwordmanager.utils.AppUtils
+import com.summer.passwordmanager.utils.AppUtils.toFileBean
 import com.summer.passwordmanager.utils.AppUtils.toJSON
 import com.summer.passwordmanager.utils.EncryptionUtils
 import com.summer.passwordmanager.utils.EncryptionUtils.toCharArray
-import com.summer.passwordmanager.utils.extensions.fromJson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.BufferedReader
@@ -148,7 +147,7 @@ class AppRepository(
                     }.toString()
                 )
                 Log.d("TestingJson", "Decrypted $decryptedString")
-                with(Gson().fromJson<FileBean>(decryptedString)) {
+                with(decryptedString.toFileBean()) {
                     dao.insertTagReplace(tagBeans.toTagEntities())
                     dao.insertVaultReplace(vaultBeans.toVaultEntities())
                 }

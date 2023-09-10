@@ -9,11 +9,12 @@ import com.summer.passwordmanager.repository.Repository
 import com.summer.passwordmanager.ui.uimodels.TextEditTextFieldType
 import com.summer.passwordmanager.ui.uimodels.TextEditTextModel
 import com.summer.passwordmanager.utils.AppUtils
+import com.summer.passwordmanager.utils.time.TimeProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
+class CreateVaultViewModel(private val repository: Repository,private val timeProvider: TimeProvider) : ViewModel() {
 
     var selectedTagId: String? = null
 
@@ -69,7 +70,7 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
             notes = notesEditTextModel.editTextContent ?: ""
             webAddress = websiteAddressEditTextModel.editTextContent ?: ""
             tagId = selectedTagId
-            updatedAtApp = AppUtils.getCurrentTimeSecs()
+            updatedAtApp = timeProvider.getCurrentTimeSecs()
         }
         repository.insertReplaceVaultEntity(
             vaultEntity ?: VaultEntity(
@@ -78,8 +79,8 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
                 usernameMobileCardNumber = userNameMobileEditTextModel.editTextContent ?: "",
                 password = passwordEditTextModel.editTextContent ?: "",
                 notes = notesEditTextModel.editTextContent ?: "",
-                createdAtApp = AppUtils.getCurrentTimeSecs(),
-                updatedAtApp = AppUtils.getCurrentTimeSecs(),
+                createdAtApp = timeProvider.getCurrentTimeSecs(),
+                updatedAtApp = timeProvider.getCurrentTimeSecs(),
                 webAddress = websiteAddressEditTextModel.editTextContent ?: "",
                 tagId = selectedTagId
             )

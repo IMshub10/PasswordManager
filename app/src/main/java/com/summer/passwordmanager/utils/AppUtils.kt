@@ -6,6 +6,7 @@ import android.content.Context
 import com.github.shamil.Xid
 import com.google.gson.Gson
 import com.summer.passwordmanager.beans.FileBean
+import com.summer.passwordmanager.utils.extensions.fromJson
 import java.util.Random
 import kotlin.streams.asSequence
 
@@ -19,15 +20,8 @@ object AppUtils {
     const val KEY_ALL = "all"
     //endregion
 
-
     //region Functions
-    fun generateXid(): String {
-        return Xid.get().toHexString()
-    }
-
-    fun getCurrentTimeSecs(): Long {
-        return System.currentTimeMillis() / 1000
-    }
+    fun generateXid() = Xid.get().toHexString()!!
 
     /**
      * Generate Random String
@@ -75,13 +69,9 @@ object AppUtils {
         )
     }
 
-    fun FileBean.toJSON(): String {
-        return Gson().toJson(this)
-    }
+    fun FileBean.toJSON(): String = Gson().toJson(this)
 
-    fun String.toFileBean(): FileBean {
-        return Gson().fromJson(this, FileBean::class.java)
-    }
+    fun String.toFileBean() = Gson().fromJson<FileBean>(this)!!
 
     fun getAppName(context: Context): String {
         val applicationInfo = context.applicationInfo

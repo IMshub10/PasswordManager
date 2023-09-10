@@ -3,7 +3,7 @@ package com.summer.passwordmanager.utils
 import android.app.Activity
 import android.util.DisplayMetrics
 
-object  UiUtils {
+object UiUtils {
 
     fun getScreenWidthIntDp(activity: Activity): Int {
         val displayMetrics = DisplayMetrics()

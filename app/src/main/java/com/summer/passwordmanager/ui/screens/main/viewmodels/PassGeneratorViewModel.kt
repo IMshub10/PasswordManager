@@ -6,10 +6,11 @@ import com.summer.passwordmanager.database.entities.PassHistoryEntity
 import com.summer.passwordmanager.repository.Repository
 import com.summer.passwordmanager.ui.screens.main.models.PassGeneratorModel
 import com.summer.passwordmanager.utils.AppUtils
+import com.summer.passwordmanager.utils.time.TimeProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class PassGeneratorViewModel(private val repository: Repository) : ViewModel() {
+class PassGeneratorViewModel(private val repository: Repository,private val timeProvider: TimeProvider) : ViewModel() {
     val passGeneratorModel = PassGeneratorModel()
 
     fun insertPassHistory(
@@ -24,8 +25,8 @@ class PassGeneratorViewModel(private val repository: Repository) : ViewModel() {
                     hasUpperAlphas = passGeneratorModel.hasUpperAlphas,
                     hasNumbers = passGeneratorModel.hasNumbers,
                     hasSpecialCharacters = passGeneratorModel.hasSpecialCharacters,
-                    createdAtApp = AppUtils.getCurrentTimeSecs(),
-                    updatedAtApp = AppUtils.getCurrentTimeSecs(),
+                    createdAtApp = timeProvider.getCurrentTimeSecs(),
+                    updatedAtApp = timeProvider.getCurrentTimeSecs(),
                 )
             )
         }
