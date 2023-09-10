@@ -6,12 +6,9 @@
     <data>
 
         <variable
-            name="tagNameModel"
-            type="com.summer.passwordmanager.ui.uimodels.TextEditTextModel" />
+            name="model"
+            type="com.summer.passwordmanager.ui.dialogs.CreateTagViewModel" />
 
-        <variable
-            name="tagDescriptionModel"
-            type="com.summer.passwordmanager.ui.uimodels.TextEditTextModel" />
     </data>
 
     <FrameLayout
@@ -43,7 +40,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_dialogCreateTag_webAddress"
-                    app:textInputModel="@{tagNameModel}"
+                    app:textInputModel="@{model.tagNameEditTextModel}"
                     app:title="@{@string/tag_name}" />
 
                 <include
@@ -56,7 +53,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_dialogCreateTag_webAddress"
-                    app:textInputModel="@{tagDescriptionModel}"
+                    app:textInputModel="@{model.tagDescriptionEditTextModel}"
                     app:title="@{@string/tag_description}" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout

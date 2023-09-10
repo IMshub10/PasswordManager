@@ -12,39 +12,35 @@ import androidx.fragment.app.DialogFragment
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.databinding.DialogCreateTagBinding
-import com.summer.passwordmanager.ui.uimodels.TextEditTextFieldType
-import com.summer.passwordmanager.ui.uimodels.TextEditTextModel
-import com.summer.passwordmanager.utils.AppUtils
 import com.summer.passwordmanager.utils.UiUtils
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreateTagDialog(
     private val dismissListener: DismissLister,
     private val tagEntity: TagEntity? = null
 ) : DialogFragment() {
 
-    private var tagNameEditTextModel =
-        TextEditTextModel(fieldType = TextEditTextFieldType.TAG_NAME, isRequired = true)
-    private var tagDescriptionEditTextModel =
-        TextEditTextModel(fieldType = TextEditTextFieldType.TAG_DESCRIPTION, isRequired = false)
-
     private var mBinding: DialogCreateTagBinding? = null
+    private val binding: DialogCreateTagBinding
+        get() = mBinding!!
+
+    private val viewModel: CreateTagViewModel by viewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.tagEntity = tagEntity
+        viewModel.setUpInputModels()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         isCancelable = false
         mBinding = DialogCreateTagBinding.inflate(layoutInflater)
-        setUpInputModels()
-        mBinding?.tagNameModel = tagNameEditTextModel
-        mBinding?.tagDescriptionModel = tagDescriptionEditTextModel
-        return mBinding?.root
-    }
-
-    private fun setUpInputModels() {
-        tagNameEditTextModel.editTextContent = tagEntity?.name ?: ""
-        tagDescriptionEditTextModel.editTextContent = tagEntity?.description ?: ""
+        binding.model = viewModel
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,7 +49,7 @@ class CreateTagDialog(
     }
 
     private fun listeners() {
-        mBinding?.run {
+        with(binding) {
             tvDialogCreateTagCancelButton.setOnClickListener {
                 dismiss()
             }
@@ -61,18 +57,7 @@ class CreateTagDialog(
                 if (validate()) {
                     dismiss()
                     dismissListener.onSave(
-                        tagEntity?.apply {
-                            name = tagNameEditTextModel.editTextContent ?: ""
-                            description = tagDescriptionModel?.editTextContent
-                            updatedAtApp = AppUtils.getCurrentTimeSecs()
-                        }
-                            ?: TagEntity(
-                                name = tagNameEditTextModel.editTextContent ?: "",
-                                description = tagDescriptionModel?.editTextContent
-                            ).apply {
-                                createdAtApp = AppUtils.getCurrentTimeSecs()
-                                updatedAtApp = AppUtils.getCurrentTimeSecs()
-                            }
+                        viewModel.toSaveTagEntity()
                     )
                 }
             }
@@ -80,12 +65,12 @@ class CreateTagDialog(
     }
 
     private fun validate(): Boolean {
-        if (!tagNameEditTextModel.validate()) {
+        if (!viewModel.tagNameEditTextModel.validate()) {
             mBinding?.etDialogCreateTagTagName?.tilEditTextEdit?.error =
                 getString(R.string.invalid_input)
             return false
         }
-        if (!tagDescriptionEditTextModel.validate()) {
+        if (!viewModel.tagDescriptionEditTextModel.validate()) {
             mBinding?.etDialogCreateTagTagDescription?.tilEditTextEdit?.error =
                 getString(R.string.invalid_input)
             return false
@@ -116,5 +101,10 @@ class CreateTagDialog(
             UiUtils.getScreenWidthIntDp(requireActivity()) - 128,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mBinding = null
     }
 }

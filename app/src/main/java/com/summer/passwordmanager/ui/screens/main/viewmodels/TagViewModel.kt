@@ -2,7 +2,6 @@ package com.summer.passwordmanager.ui.screens.main.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.repository.Repository
@@ -15,7 +14,7 @@ class TagViewModel(private val repository: Repository) : ViewModel() {
         get() = repository.getAllTagsLive()
 
     fun deleteTagById(tagId: String) {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.deleteTagById(tagId)
         }
     }

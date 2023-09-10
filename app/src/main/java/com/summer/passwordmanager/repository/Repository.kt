@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.PassHistoryEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
+import java.io.InputStream
 
 interface Repository {
     //region room db methods
@@ -16,8 +17,10 @@ interface Repository {
     fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>>
     suspend fun getAllVaults(): List<VaultEntity>
     suspend fun getVaultById(vaultId: String): VaultEntity?
-
+    suspend fun deleteVaultById(vaultId: String)
+    suspend fun deleteTagById(tagId: String)
     //endregion
+
     //region Preference methods
     suspend fun save(fullName: String?, mobileNumber: String?)
     suspend fun getFullName(): String?
@@ -26,7 +29,10 @@ interface Repository {
     suspend fun setPin(pin: String)
     fun isFingerPrintSet(): Boolean
     fun setFingerPrint(isFingerPrintSet: Boolean)
-    suspend fun deleteVaultById(vaultId: String)
-    suspend fun deleteTagById(tagId: String)
+    //endregion
+
+    //region File methods
+    suspend fun exportFile(appName: String, fileName: String, key: String): String?
+    suspend fun importFile(inputStream: InputStream, key: String): Boolean
     //endregion
 }

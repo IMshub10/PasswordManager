@@ -14,6 +14,9 @@ interface AppDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertVaultReplace(vaultEntity: VaultEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertVaultReplace(vaultEntities: List<VaultEntity>)
+
     @Update
     fun updateVault(vaultEntity: VaultEntity)
 
@@ -52,7 +55,10 @@ interface AppDao {
     fun insertTagIgnore(vaultEntity: TagEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTagReplace(vaultEntity: TagEntity)
+    fun insertTagReplace(tagEntity: TagEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertTagReplace(tagEntities: List<TagEntity>)
 
     @Query("Select * from vaults where id =:vaultId")
     suspend fun getVaultById(vaultId: String): VaultEntity?

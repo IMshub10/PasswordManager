@@ -152,7 +152,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
             R.id.passGeneratorFrag -> {
                 val fetchPass =
-                    navController.backQueue.last().arguments?.getBoolean("fetchPass") ?: false
+                    navController.currentBackStackEntry?.arguments?.getBoolean("fetchPass") ?: false
                 if (fetchPass) {
                     navController.popBackStack()
                 } else {

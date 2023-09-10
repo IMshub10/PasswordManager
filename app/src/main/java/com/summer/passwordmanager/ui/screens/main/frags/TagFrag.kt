@@ -85,7 +85,7 @@ class TagFrag : BaseFragment<FragMainTagBinding>() {
             createTagDialog =
                 CreateTagDialog(dismissListener = object : CreateTagDialog.DismissLister {
                     override fun onSave(tagEntity: TagEntity) {
-                        lifecycleScope.launch(Dispatchers.Default) {
+                        lifecycleScope.launch(Dispatchers.IO) {
                             viewModel.insertTagEntity(tagEntity)
                         }
                     }

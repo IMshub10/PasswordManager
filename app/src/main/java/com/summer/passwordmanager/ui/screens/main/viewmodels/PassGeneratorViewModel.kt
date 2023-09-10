@@ -15,7 +15,7 @@ class PassGeneratorViewModel(private val repository: Repository) : ViewModel() {
     fun insertPassHistory(
         password: String,
     ) {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.insertPastHistory(
                 PassHistoryEntity(
                     id = AppUtils.generateXid(),

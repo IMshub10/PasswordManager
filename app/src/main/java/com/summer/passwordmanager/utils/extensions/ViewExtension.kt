@@ -9,7 +9,6 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 
-
 fun View.visible() {
     isVisible = true
 }
@@ -22,23 +21,19 @@ fun View.invisible() {
     isInvisible = true
 }
 
-fun Fragment.showShortToast(content: String) {
+fun Fragment.showShortToast(content: String) =
     Toast.makeText(requireContext(), content, Toast.LENGTH_SHORT).show()
-}
 
-fun Fragment.showLongToast(content: String) {
+fun Fragment.showLongToast(content: String) =
     Toast.makeText(requireContext(), content, Toast.LENGTH_LONG).show()
-}
 
-fun Activity.showShortToast(content: String) {
+fun Activity.showShortToast(content: String) =
     Toast.makeText(this, content, Toast.LENGTH_SHORT).show()
-}
 
-fun Activity.showLongToast(content: String) {
+fun Activity.showLongToast(content: String) =
     Toast.makeText(this, content, Toast.LENGTH_LONG).show()
-}
 
-fun Activity.closeApp(){
+fun Activity.closeApp() {
     startActivity(Intent(Intent.ACTION_MAIN).apply {
         addCategory(Intent.CATEGORY_HOME)
     })

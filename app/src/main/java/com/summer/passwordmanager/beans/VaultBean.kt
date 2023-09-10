@@ -15,7 +15,7 @@ data class VaultBean(
     @SerializedName("web_address")
     var webAddress: String,
     @SerializedName("username_mobile_card_number")
-    var userNameMobileCardNumber: String,
+    var usernameMobileCardNumber: String,
     @SerializedName("password")
     var password: String,
     @SerializedName("notes")

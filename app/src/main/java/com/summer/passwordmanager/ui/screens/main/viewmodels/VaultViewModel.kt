@@ -48,7 +48,7 @@ class VaultViewModel(private val repository: Repository) : ViewModel() {
         GetFilteredVaultList(searchQuery, selectedTag, getAllVaultsWithTheirTag())
 
     fun deleteVaultById(vaultId: String) {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.deleteVaultById(vaultId)
         }
     }

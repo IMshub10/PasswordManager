@@ -49,7 +49,7 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun setUpVaultEntity(vaultId: String?) {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.IO) {
             vaultEntity = if (vaultId == null) {
                 null
             } else {

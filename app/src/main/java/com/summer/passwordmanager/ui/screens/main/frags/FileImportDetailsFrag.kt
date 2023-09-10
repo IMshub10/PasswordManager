@@ -5,11 +5,15 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragFileImportDetailsBinding
 import com.summer.passwordmanager.ui.screens.main.viewmodels.ProfileViewModel
+import com.summer.passwordmanager.utils.extensions.showShortToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class FileImportDetailsFrag : BaseFragment<FragFileImportDetailsBinding>() {
@@ -31,21 +35,24 @@ class FileImportDetailsFrag : BaseFragment<FragFileImportDetailsBinding>() {
         viewModel.fileName.reset()
         mBinding?.model = viewModel
         mBinding?.importFileBtn?.setOnClickListener {
-            var filePickerIntent = Intent(Intent.ACTION_GET_CONTENT)
-            filePickerIntent.type = "text/plain"
-            filePickerIntent =
-                Intent.createChooser(filePickerIntent, getString(R.string.import_file))
-            acc.launch(filePickerIntent)
+            acc.launch(Intent.createChooser(Intent(Intent.ACTION_GET_CONTENT).apply {
+                type = "text/plain"
+            }, getString(R.string.import_file)))
         }
 
         mBinding?.importOkBtn?.setOnClickListener {
             fileData?.let { uri ->
                 requireContext().contentResolver.openInputStream(uri)?.let { inputStream ->
-                    viewModel.importFile(inputStream)
-                    findNavController().navigateUp()
+                    lifecycleScope.launch(Dispatchers.Main) {
+                        val result = viewModel.importFile(inputStream)
+                        if (result) {
+                            findNavController().navigateUp()
+                        }else{
+                            showShortToast("Unable to import this file.")
+                        }
+                    }
                 }
             }
         }
     }
-
 }

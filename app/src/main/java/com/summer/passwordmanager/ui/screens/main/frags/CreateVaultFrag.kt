@@ -63,7 +63,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
             }
             clFragCreateVaultContainer.tvLayoutCancelSaveConfirmButton.setOnClickListener {
                 if (validate()) {
-                    lifecycleScope.launch(Dispatchers.Default) {
+                    lifecycleScope.launch(Dispatchers.IO) {
                         viewModel.save()
                         withContext(Dispatchers.Main) {
                             if (findNavController().currentDestination?.id == R.id.createVaultFrag) {
@@ -141,7 +141,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
             createTagDialog =
                 CreateTagDialog(dismissListener = object : CreateTagDialog.DismissLister {
                     override fun onSave(tagEntity: TagEntity) {
-                        lifecycleScope.launch(Dispatchers.Default) {
+                        lifecycleScope.launch(Dispatchers.IO) {
                             viewModel.insertTagEntity(tagEntity)
                         }
                     }
