@@ -2,6 +2,7 @@ package com.summer.passwordmanager
 
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.ui.dialogs.CreateTagViewModel
+import com.summer.passwordmanager.utils.AppUtils
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -75,7 +76,7 @@ class CreateTagViewModelTest {
 
         assertEquals("", result.name)
         assertEquals(result.description, result.description)
-        assertEquals(result.updatedAtApp, System.currentTimeMillis() / 1000)
+        assertEquals(result.updatedAtApp, AppUtils.getCurrentTimeSecs())
     }
 
     @Test
@@ -89,7 +90,7 @@ class CreateTagViewModelTest {
 
         assertEquals("TestName", result.name)
         assertNull(result.description)
-        assertEquals(result.updatedAtApp, System.currentTimeMillis() / 1000)
+        assertEquals(result.updatedAtApp, AppUtils.getCurrentTimeSecs())
     }
 
     @Test
