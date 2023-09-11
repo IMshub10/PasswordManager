@@ -23,6 +23,9 @@ object AppUtils {
     //region Functions
     fun generateXid() = Xid.get().toHexString()!!
 
+    fun getCurrentTimeSecs() =
+        System.currentTimeMillis() / 1000
+
     /**
      * Generate Random String
      * returns String of specified length

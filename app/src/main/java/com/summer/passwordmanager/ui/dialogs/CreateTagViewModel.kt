@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.ui.uimodels.TextEditTextFieldType
 import com.summer.passwordmanager.ui.uimodels.TextEditTextModel
-import com.summer.passwordmanager.utils.time.TimeProvider
+import com.summer.passwordmanager.utils.AppUtils
 
-class CreateTagViewModel(private val timeProvider: TimeProvider) : ViewModel() {
+class CreateTagViewModel() : ViewModel() {
 
     var tagEntity: TagEntity? = null
 
@@ -26,14 +26,14 @@ class CreateTagViewModel(private val timeProvider: TimeProvider) : ViewModel() {
     fun toSaveTagEntity() = tagEntity?.apply {
         name = tagNameEditTextModel.editTextContent ?: ""
         description = tagDescriptionEditTextModel.editTextContent
-        updatedAtApp = timeProvider.getCurrentTimeSecs()
+        updatedAtApp = AppUtils.getCurrentTimeSecs()
     }
         ?: TagEntity(
             name = tagNameEditTextModel.editTextContent ?: "",
             description = tagDescriptionEditTextModel.editTextContent
         ).apply {
-            createdAtApp = timeProvider.getCurrentTimeSecs()
-            updatedAtApp = timeProvider.getCurrentTimeSecs()
+            createdAtApp = AppUtils.getCurrentTimeSecs()
+            updatedAtApp = AppUtils.getCurrentTimeSecs()
         }
 
 }

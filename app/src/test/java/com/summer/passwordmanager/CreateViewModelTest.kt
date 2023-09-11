@@ -2,7 +2,6 @@ package com.summer.passwordmanager
 
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.ui.dialogs.CreateTagViewModel
-import com.summer.passwordmanager.utils.time.TimeProvider
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -17,13 +16,9 @@ class CreateTagViewModelTest {
 
     private lateinit var viewModel: CreateTagViewModel
 
-    private val updatedTime: Long = 10000000
-
     @Before
     fun setup() {
-        viewModel = CreateTagViewModel(object : TimeProvider {
-            override fun getCurrentTimeSecs() = updatedTime
-        })
+        viewModel = CreateTagViewModel()
         MockitoAnnotations.openMocks(this)
     }
 
@@ -80,7 +75,7 @@ class CreateTagViewModelTest {
 
         assertEquals("", result.name)
         assertEquals(result.description, result.description)
-        assertEquals(result.updatedAtApp, updatedTime)
+        assertEquals(result.updatedAtApp, System.currentTimeMillis() / 1000)
     }
 
     @Test
@@ -94,7 +89,7 @@ class CreateTagViewModelTest {
 
         assertEquals("TestName", result.name)
         assertNull(result.description)
-        assertEquals(result.updatedAtApp, updatedTime)
+        assertEquals(result.updatedAtApp, System.currentTimeMillis() / 1000)
     }
 
     @Test

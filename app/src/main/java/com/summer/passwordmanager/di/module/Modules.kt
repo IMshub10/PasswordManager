@@ -18,7 +18,6 @@ import com.summer.passwordmanager.ui.screens.pin.viewmodels.PinViewModel
 import com.summer.passwordmanager.ui.screens.signup.viewmodels.SetUpPinViewModel
 import com.summer.passwordmanager.ui.screens.signup.viewmodels.SignUpViewModel
 import com.summer.passwordmanager.ui.screens.splashscreen.viewmodels.SplashScreenViewModel
-import com.summer.passwordmanager.utils.time.AppTimeProvider
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -59,10 +58,10 @@ val viewModelModule = module {
         SignUpViewModel(repository = get())
     }
     viewModel {
-        PassGeneratorViewModel(repository = get(), timeProvider = AppTimeProvider)
+        PassGeneratorViewModel(repository = get())
     }
     viewModel {
-        CreateVaultViewModel(repository = get(), timeProvider = AppTimeProvider)
+        CreateVaultViewModel(repository = get())
     }
     viewModel {
         VaultViewModel(repository = get())
@@ -80,6 +79,6 @@ val viewModelModule = module {
         TagViewModel(repository = get())
     }
     viewModel {
-        CreateTagViewModel(timeProvider = AppTimeProvider)
+        CreateTagViewModel()
     }
 }
