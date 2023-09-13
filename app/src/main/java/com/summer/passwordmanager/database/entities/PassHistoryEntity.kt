@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.summer.passwordmanager.utils.AppUtils
 
-@Entity(tableName = "pass_history")
+@Entity(tableName = "pass_histories")
 data class PassHistoryEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo("id")

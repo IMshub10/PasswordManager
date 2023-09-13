@@ -19,6 +19,7 @@ interface Repository {
     suspend fun getVaultById(vaultId: String): VaultEntity?
     suspend fun deleteVaultById(vaultId: String)
     suspend fun deleteTagById(tagId: String)
+    suspend fun getPassHistoryModel(id: String): PassHistoryEntity?
     //endregion
 
     //region Preference methods

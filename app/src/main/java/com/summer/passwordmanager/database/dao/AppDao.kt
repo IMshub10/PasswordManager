@@ -32,7 +32,7 @@ interface AppDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPassHistoryReplace(passHistoryEntity: PassHistoryEntity)
 
-    @Query("Delete From pass_history")
+    @Query("Delete From pass_histories")
     fun deleteAllPassHistoryRecords()
 
     @Query("Select * from tags order by lower(name)")
@@ -65,4 +65,7 @@ interface AppDao {
 
     @Query("Delete from tags where id =:tagId ")
     suspend fun deleteTagById(tagId: String)
+
+    @Query("Select * from pass_histories where id =:id ")
+    suspend fun getPassHistoryModelById(id: String): PassHistoryEntity?
 }

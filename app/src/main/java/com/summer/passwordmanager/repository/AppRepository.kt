@@ -165,6 +165,8 @@ class AppRepository(
 
     override suspend fun deleteTagById(tagId: String) = dao.deleteTagById(tagId)
 
+    override suspend fun getPassHistoryModel(id: String) = dao.getPassHistoryModelById(id)
+
     override suspend fun insertReplaceTagEntity(tagEntity: TagEntity) =
         dao.insertTagReplace(tagEntity)
 

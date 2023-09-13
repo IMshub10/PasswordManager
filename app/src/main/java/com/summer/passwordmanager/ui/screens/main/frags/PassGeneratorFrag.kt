@@ -7,6 +7,7 @@ import android.text.style.ForegroundColorSpan
 import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
@@ -15,6 +16,8 @@ import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewMode
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
 import com.summer.passwordmanager.utils.AppUtils
 import com.summer.passwordmanager.utils.extensions.showShortToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -108,7 +111,9 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
                     viewModel.passGeneratorModel.hasNumbers,
                     viewModel.passGeneratorModel.hasSpecialCharacters
                 ).also {
-                    viewModel.insertPassHistory(it)
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        viewModel.insertPassHistory(viewModel.buildPassHistoryModel(it))
+                    }
                 }
             ).apply {
                 for (i in 0 until this.toString().length) {
