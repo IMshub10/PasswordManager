@@ -1,27 +1,22 @@
 package com.summer.passwordmanager.ui.screens.signup.viewmodels
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.summer.passwordmanager.repository.Repository
+import com.summer.passwordmanager.repository.UserRepository
 import com.summer.passwordmanager.ui.uimodels.TextEditTextFieldType
 import com.summer.passwordmanager.ui.uimodels.TextEditTextModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-class SignUpViewModel(private val repository: Repository) : ViewModel() {
+class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() {
     val fullNameEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.FULL_NAME, isRequired = true)
-    /* val mobileNumberEditTextModel =
-         TextEditTextModel(fieldType = TextEditTextFieldType.MOBILE_NUMBER, isRequired = true)*/
 
     suspend fun save() {
-        repository.save(
+        userRepository.save(
             fullName = fullNameEditTextModel.editTextContent,
             mobileNumber = null//mobileNumberEditTextModel.editTextContent
         )
     }
 
-    suspend fun checkIfAccountExists(): Boolean {
-        return repository.getFullName() != null //&& repository.getMobileNumber() != null
-    }
+    suspend fun checkUserHasSavedHisName() =
+        userRepository.getFullName() != null //&& repository.getMobileNumber() != null
+
 }

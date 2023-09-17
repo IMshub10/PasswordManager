@@ -4,22 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.summer.passwordmanager.database.entities.TagEntity
-import com.summer.passwordmanager.repository.Repository
+import com.summer.passwordmanager.repository.LocalRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TagViewModel(private val repository: Repository) : ViewModel() {
+class TagViewModel(private val localRepository: LocalRepository) : ViewModel() {
 
     val tagsLive: LiveData<List<TagEntity>?>
-        get() = repository.getAllTagsLive()
+        get() = localRepository.getAllTagsLive()
 
     fun deleteTagById(tagId: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteTagById(tagId)
+            localRepository.deleteTagById(tagId)
         }
     }
 
     suspend fun insertTagEntity(tagEntity: TagEntity) =
-        repository.insertReplaceTagEntity(tagEntity)
+        localRepository.insertReplaceTagEntity(tagEntity)
 
 }

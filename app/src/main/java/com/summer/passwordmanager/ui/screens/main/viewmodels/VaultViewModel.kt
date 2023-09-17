@@ -8,19 +8,19 @@ import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
-import com.summer.passwordmanager.repository.Repository
+import com.summer.passwordmanager.repository.LocalRepository
 import com.summer.passwordmanager.utils.AppUtils
 import com.summer.passwordmanager.utils.extensions.filterByTagSearchValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class VaultViewModel(private val repository: Repository) : ViewModel() {
+class VaultViewModel(private val localRepository: LocalRepository) : ViewModel() {
 
     private val selectedTag = MutableLiveData<TagEntity?>(null)
 
     val searchQuery = MutableLiveData("")
 
-    val tagListLive = repository.getAllTagsLive().map {
+    val tagListLive = localRepository.getAllTagsLive().map {
         val list = it?.toMutableList()
         list?.add(0, TagEntity(
             id = AppUtils.KEY_ALL, createdAtApp = 0,
@@ -31,9 +31,8 @@ class VaultViewModel(private val repository: Repository) : ViewModel() {
         return@map list
     }
 
-    private fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>> {
-        return repository.getAllVaultsWithTheirTag()
-    }
+    private fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>> =
+        localRepository.getAllVaultsWithTheirTag()
 
     fun resetSelectedTag(tagEntity: TagEntity) {
         selectedTag.value = if (tagEntity.id == AppUtils.KEY_ALL) null else tagEntity
@@ -49,7 +48,7 @@ class VaultViewModel(private val repository: Repository) : ViewModel() {
 
     fun deleteVaultById(vaultId: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteVaultById(vaultId)
+            localRepository.deleteVaultById(vaultId)
         }
     }
 

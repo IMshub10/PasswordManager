@@ -6,7 +6,7 @@ import com.summer.passwordmanager.ui.uimodels.TextEditTextFieldType
 import com.summer.passwordmanager.ui.uimodels.TextEditTextModel
 import com.summer.passwordmanager.utils.AppUtils
 
-class CreateTagViewModel() : ViewModel() {
+class CreateTagViewModel : ViewModel() {
 
     var tagEntity: TagEntity? = null
 

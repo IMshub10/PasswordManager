@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
-import com.summer.passwordmanager.repository.Repository
+import com.summer.passwordmanager.repository.LocalRepository
 import com.summer.passwordmanager.ui.uimodels.TextEditTextFieldType
 import com.summer.passwordmanager.ui.uimodels.TextEditTextModel
 import com.summer.passwordmanager.utils.AppUtils
@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
+class CreateVaultViewModel(private val localRepository: LocalRepository) : ViewModel() {
 
     var selectedTagId: String? = null
 
@@ -37,7 +37,7 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
 
     val tagsLive: LiveData<List<TagEntity>?>
         get() =
-            repository.getAllTagsLive()
+            localRepository.getAllTagsLive()
 
     private fun resetUiModels() {
         selectedTagId = vaultEntity?.tagId
@@ -50,11 +50,7 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
 
     fun setUpVaultEntity(vaultId: String?) {
         viewModelScope.launch(Dispatchers.IO) {
-            vaultEntity = if (vaultId == null) {
-                null
-            } else {
-                repository.getVaultById(vaultId)
-            }
+            vaultEntity = vaultId?.let { localRepository.getVaultById(vaultId) }
             withContext(Dispatchers.Main) {
                 resetUiModels()
             }
@@ -71,7 +67,7 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
             tagId = selectedTagId
             updatedAtApp = AppUtils.getCurrentTimeSecs()
         }
-        repository.insertReplaceVaultEntity(
+        localRepository.insertReplaceVaultEntity(
             vaultEntity ?: VaultEntity(
                 id = AppUtils.generateXid(),
                 entityName = websiteNameEditTextModel.editTextContent ?: "",
@@ -86,7 +82,7 @@ class CreateVaultViewModel(private val repository: Repository) : ViewModel() {
         )
     }
 
-    suspend fun insertTagEntity(tagEntity: TagEntity) {
-        repository.insertReplaceTagEntity(tagEntity)
-    }
+    suspend fun insertTagEntity(tagEntity: TagEntity) =
+        localRepository.insertReplaceTagEntity(tagEntity)
+
 }

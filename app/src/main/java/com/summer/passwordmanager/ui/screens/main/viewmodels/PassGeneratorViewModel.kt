@@ -2,20 +2,18 @@ package com.summer.passwordmanager.ui.screens.main.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.summer.passwordmanager.database.entities.PassHistoryEntity
-import com.summer.passwordmanager.repository.Repository
+import com.summer.passwordmanager.repository.LocalRepository
 import com.summer.passwordmanager.ui.screens.main.models.PassGeneratorModel
 import com.summer.passwordmanager.utils.AppUtils
 
-class PassGeneratorViewModel(private val repository: Repository) : ViewModel() {
+class PassGeneratorViewModel(private val localRepository: LocalRepository) : ViewModel() {
     val passGeneratorModel = PassGeneratorModel()
 
     suspend fun insertPassHistory(
         passwordHistoryEntity: PassHistoryEntity,
-    ) {
-        repository.insertPastHistory(
-            passwordHistoryEntity
-        )
-    }
+    ) = localRepository.insertPastHistory(
+        passwordHistoryEntity
+    )
 
     fun buildPassHistoryModel(password: String) =
         PassHistoryEntity(
