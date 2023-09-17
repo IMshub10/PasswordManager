@@ -23,7 +23,7 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
         mBinding?.model = viewModel
         listeners()
         lifecycleScope.launch(Dispatchers.Default) {
-            val accountExists = viewModel.checkIfAccountExists()
+            val accountExists = viewModel.checkUserHasSavedHisName()
             withContext(Dispatchers.Main) {
                 if (accountExists) {
                     if (findNavController().currentDestination?.id == R.id.signUpFrag) {

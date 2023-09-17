@@ -5,9 +5,8 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.summer.passwordmanager.database.AppDatabase
-import com.summer.passwordmanager.database.preferences.Preference
-import com.summer.passwordmanager.repository.AppRepository
-import com.summer.passwordmanager.repository.Repository
+import com.summer.passwordmanager.repository.LocalRepository
+import com.summer.passwordmanager.repository.LocalRepositoryImpl
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
 import com.summer.passwordmanager.utils.AppUtils
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -21,7 +20,7 @@ import org.junit.runner.RunWith
 class PassGeneratorViewModelTest {
 
     private lateinit var viewModel: PassGeneratorViewModel
-    private lateinit var repository: Repository
+    private lateinit var repository: LocalRepository
 
     private val testCoroutineDispatcher = StandardTestDispatcher()
     private val testCoroutineScope = TestScope(testCoroutineDispatcher)
@@ -29,11 +28,10 @@ class PassGeneratorViewModelTest {
     @Before
     fun setup() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repository = AppRepository(
+        repository = LocalRepositoryImpl(
             Room.databaseBuilder(context, AppDatabase::class.java, "pass_generator_db")
                 .createFromAsset("db/init.db")
-                .build().appDao(),
-            Preference.createdEncryptedPreference(context)
+                .build().appDao()
         )
         viewModel = PassGeneratorViewModel(repository)
     }
@@ -54,7 +52,7 @@ class PassGeneratorViewModelTest {
         }
 
         viewModel.insertPassHistory(passHistoryModel)
-        
+
         val dbPassHistoryModel = repository.getPassHistoryModel(passHistoryModel.id)
         assert(dbPassHistoryModel?.password == passHistoryModel.password)
         assert(dbPassHistoryModel?.hasLowerAlphas == viewModel.passGeneratorModel.hasLowerAlphas)
@@ -81,7 +79,7 @@ class PassGeneratorViewModelTest {
         viewModel.insertPassHistory(passHistoryModel)
 
         val dbPassHistoryModel = repository.getPassHistoryModel(passHistoryModel.id)
-        
+
         Log.e("Test", dbPassHistoryModel?.password.toString())
         Log.e("Test", passHistoryModel.password)
         assert(dbPassHistoryModel?.password == passHistoryModel.password)
@@ -107,7 +105,7 @@ class PassGeneratorViewModelTest {
         }
 
         viewModel.insertPassHistory(passHistoryModel)
-        
+
         val dbPassHistoryModel = repository.getPassHistoryModel(passHistoryModel.id)
         assert(dbPassHistoryModel?.password == passHistoryModel.password)
         assert(dbPassHistoryModel?.hasLowerAlphas == viewModel.passGeneratorModel.hasLowerAlphas)
@@ -115,6 +113,7 @@ class PassGeneratorViewModelTest {
         assert(dbPassHistoryModel?.hasNumbers == viewModel.passGeneratorModel.hasNumbers)
         assert(dbPassHistoryModel?.hasSpecialCharacters == viewModel.passGeneratorModel.hasSpecialCharacters)
     }
+
     @Test
     fun specialCharactersPassword() = testCoroutineScope.runTest {
         val password = "&&^**^"
