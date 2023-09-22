@@ -2,11 +2,6 @@ package com.summer.passwordmanager.ui.screens.splashscreen
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseActivity

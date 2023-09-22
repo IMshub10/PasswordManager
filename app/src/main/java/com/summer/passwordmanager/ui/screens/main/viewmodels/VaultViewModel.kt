@@ -5,29 +5,34 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
-import com.summer.passwordmanager.repository.Repository
+import com.summer.passwordmanager.repository.LocalRepository
 import com.summer.passwordmanager.utils.AppUtils
-import com.summer.passwordmanager.utils.filterByTagSearchValue
+import com.summer.passwordmanager.utils.extensions.filterByTagSearchValue
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class VaultViewModel(private val repository: Repository) : ViewModel() {
+class VaultViewModel(private val localRepository: LocalRepository) : ViewModel() {
 
-    val selectedTag = MutableLiveData<TagEntity?>(null)
+    private val selectedTag = MutableLiveData<TagEntity?>(null)
 
     val searchQuery = MutableLiveData("")
 
-    val tagListLive = repository.getAllTagsLive().map {
-        val list = it.toMutableList()
-        list.add(0, TagEntity(AppUtils.KEY_ALL, "All", "", 0, 0).apply {
+    val tagListLive = localRepository.getAllTagsLive().map {
+        val list = it?.toMutableList()
+        list?.add(0, TagEntity(
+            id = AppUtils.KEY_ALL, createdAtApp = 0,
+            updatedAtApp = 0, name = "All", description = null
+        ).apply {
             isSelected = true
         })
         return@map list
     }
 
-    private fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>> {
-        return repository.getAllVaultsWithTheirTag()
-    }
+    private fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>> =
+        localRepository.getAllVaultsWithTheirTag()
 
     fun resetSelectedTag(tagEntity: TagEntity) {
         selectedTag.value = if (tagEntity.id == AppUtils.KEY_ALL) null else tagEntity
@@ -40,6 +45,12 @@ class VaultViewModel(private val repository: Repository) : ViewModel() {
 
     fun getFilteredVaultList() =
         GetFilteredVaultList(searchQuery, selectedTag, getAllVaultsWithTheirTag())
+
+    fun deleteVaultById(vaultId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            localRepository.deleteVaultById(vaultId)
+        }
+    }
 
     inner class GetFilteredVaultList(
         searchQuery: MutableLiveData<String>,

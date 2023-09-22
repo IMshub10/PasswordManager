@@ -1,6 +1,11 @@
-package com.summer.passwordmanager.utils
+package com.summer.passwordmanager.utils.extensions
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.summer.passwordmanager.database.entities.VaultEntity
+
+inline fun <reified T> Gson.fromJson(json: String) =
+    this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
 fun List<Int>?.getIntArray(): String? {
     if (this == null) return null
@@ -24,7 +29,7 @@ fun List<Int>?.getIntArray(): String? {
 fun VaultEntity.contains(searchValue: String): Boolean {
     return entityName.lowercase().contains(searchValue.lowercase()) ||
             webAddress.lowercase().contains(searchValue.lowercase()) ||
-            userNameMobileCardNumber.lowercase().contains(searchValue.lowercase()) ||
+            usernameMobileCardNumber.lowercase().contains(searchValue.lowercase()) ||
             notes.lowercase().contains(searchValue.lowercase())
 }
 

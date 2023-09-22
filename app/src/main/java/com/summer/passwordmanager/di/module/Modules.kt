@@ -6,11 +6,17 @@ import androidx.room.Room
 import com.summer.passwordmanager.database.AppDatabase
 import com.summer.passwordmanager.database.dao.AppDao
 import com.summer.passwordmanager.database.preferences.Preference
-import com.summer.passwordmanager.repository.AppRepository
-import com.summer.passwordmanager.repository.Repository
+import com.summer.passwordmanager.repository.FileRepository
+import com.summer.passwordmanager.repository.FileRepositoryImpl
+import com.summer.passwordmanager.repository.LocalRepository
+import com.summer.passwordmanager.repository.LocalRepositoryImpl
+import com.summer.passwordmanager.repository.UserRepository
+import com.summer.passwordmanager.repository.UserRepositoryImpl
+import com.summer.passwordmanager.ui.dialogs.CreateTagViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.ProfileViewModel
+import com.summer.passwordmanager.ui.screens.main.viewmodels.TagViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.VaultViewModel
 import com.summer.passwordmanager.ui.screens.pin.viewmodels.PinViewModel
 import com.summer.passwordmanager.ui.screens.signup.viewmodels.SetUpPinViewModel
@@ -42,35 +48,47 @@ val databaseModule = module {
 }
 
 val repositoryModule = module {
-    fun provideRepository(dao: AppDao, sharedPreferences: SharedPreferences): Repository {
-        return AppRepository(dao, sharedPreferences)
-    }
-    single { provideRepository(get(), get()) }
+    fun provideFileRepository(): FileRepository = FileRepositoryImpl()
+
+    fun provideLocalRepository(appDao: AppDao): LocalRepository = LocalRepositoryImpl(appDao)
+
+    fun provideUserRepository(sharedPreferences: SharedPreferences): UserRepository =
+        UserRepositoryImpl(sharedPreferences)
+
+    single { provideFileRepository() }
+    single { provideLocalRepository(get()) }
+    single { provideUserRepository(get()) }
 }
 
 val viewModelModule = module {
     viewModel {
-        SplashScreenViewModel(repository = get())
+        SplashScreenViewModel(userRepository = get())
     }
     viewModel {
-        SignUpViewModel(repository = get())
+        SignUpViewModel(userRepository = get())
     }
     viewModel {
-        PassGeneratorViewModel(repository = get())
+        PassGeneratorViewModel(localRepository = get())
     }
     viewModel {
-        CreateVaultViewModel(repository = get())
+        CreateVaultViewModel(localRepository = get())
     }
     viewModel {
-        VaultViewModel(repository = get())
+        VaultViewModel(localRepository = get())
     }
     viewModel {
-        SetUpPinViewModel(repository = get())
+        SetUpPinViewModel(userRepository = get())
     }
     viewModel {
-        PinViewModel(repository = get())
+        PinViewModel(userRepository = get())
     }
     viewModel {
-        ProfileViewModel(repository = get())
+        ProfileViewModel(userRepository = get(), localRepository = get(), fileRepository = get())
+    }
+    viewModel {
+        TagViewModel(localRepository = get())
+    }
+    viewModel {
+        CreateTagViewModel()
     }
 }

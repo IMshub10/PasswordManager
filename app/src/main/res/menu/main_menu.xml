@@ -7,9 +7,4 @@
         android:title="@string/search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|withText" />
-    <item
-        android:id="@+id/item_tags"
-        android:icon="@drawable/ic_collections_bookmark"
-        android:title="@string/tags"
-        app:showAsAction="ifRoom" />
 </menu>

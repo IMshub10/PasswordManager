@@ -10,30 +10,37 @@ import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.summer.passwordmanager.R
+import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.databinding.DialogCreateTagBinding
-import com.summer.passwordmanager.ui.uimodels.TextEditTextFieldType
-import com.summer.passwordmanager.ui.uimodels.TextEditTextModel
 import com.summer.passwordmanager.utils.UiUtils
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CreateTagDialog(private val dismissListener: DismissLister) : DialogFragment() {
-
-    private var tagNameEditTextModel =
-        TextEditTextModel(fieldType = TextEditTextFieldType.TAG_NAME, isRequired = true)
-    private var tagDescriptionEditTextModel =
-        TextEditTextModel(fieldType = TextEditTextFieldType.TAG_DESCRIPTION, isRequired = false)
+class CreateTagDialog(
+    private val dismissListener: DismissLister,
+    private val tagEntity: TagEntity? = null
+) : DialogFragment() {
 
     private var mBinding: DialogCreateTagBinding? = null
+    private val binding: DialogCreateTagBinding
+        get() = mBinding!!
+
+    private val viewModel: CreateTagViewModel by viewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.tagEntity = tagEntity
+        viewModel.setUpInputModels()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         isCancelable = false
         mBinding = DialogCreateTagBinding.inflate(layoutInflater)
-        mBinding?.tagNameModel = tagNameEditTextModel
-        mBinding?.tagDescriptionModel = tagDescriptionEditTextModel
-        return mBinding?.root
+        binding.model = viewModel
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,29 +49,28 @@ class CreateTagDialog(private val dismissListener: DismissLister) : DialogFragme
     }
 
     private fun listeners() {
-        mBinding?.run {
+        with(binding) {
             tvDialogCreateTagCancelButton.setOnClickListener {
                 dismiss()
             }
             tvDialogCreateTagConfirmButton.setOnClickListener {
                 if (validate()) {
-                    dismissListener.onSave(
-                        tagName = tagNameEditTextModel.editTextContent ?: "",
-                        descriptionName = tagDescriptionModel?.editTextContent
-                    )
                     dismiss()
+                    dismissListener.onSave(
+                        viewModel.toSaveTagEntity()
+                    )
                 }
             }
         }
     }
 
     private fun validate(): Boolean {
-        if (!tagNameEditTextModel.validate()) {
+        if (!viewModel.tagNameEditTextModel.validate()) {
             mBinding?.etDialogCreateTagTagName?.tilEditTextEdit?.error =
                 getString(R.string.invalid_input)
             return false
         }
-        if (!tagDescriptionEditTextModel.validate()) {
+        if (!viewModel.tagDescriptionEditTextModel.validate()) {
             mBinding?.etDialogCreateTagTagDescription?.tilEditTextEdit?.error =
                 getString(R.string.invalid_input)
             return false
@@ -73,7 +79,7 @@ class CreateTagDialog(private val dismissListener: DismissLister) : DialogFragme
     }
 
     interface DismissLister {
-        fun onSave(tagName: String, descriptionName: String?)
+        fun onSave(tagEntity: TagEntity)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?) = Dialog(requireActivity()).apply {
@@ -95,5 +101,10 @@ class CreateTagDialog(private val dismissListener: DismissLister) : DialogFragme
             UiUtils.getScreenWidthIntDp(requireActivity()) - 128,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mBinding = null
     }
 }

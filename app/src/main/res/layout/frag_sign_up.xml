@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="model"
             type="com.summer.passwordmanager.ui.screens.signup.viewmodels.SignUpViewModel" />
@@ -35,31 +37,31 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_x_large"
-            app:title="@{@string/name}"
             app:hint="@{@string/hint_full_name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fragSignUp_subTitle"
-            app:textInputModel="@{model.fullNameEditTextModel}" />
+            app:textInputModel="@{model.fullNameEditTextModel}"
+            app:title="@{@string/name}" />
 
-<!--
-        <include
-            android:id="@+id/et_fragSignUp_mobileNumber"
-            layout="@layout/field_new_edit_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
-            app:hint="@{@string/hint_mobile_number}"
-            app:title="@{@string/mobile_number}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_name"
-            app:textInputModel="@{model.mobileNumberEditTextModel}" />
--->
+        <!--
+                <include
+                    android:id="@+id/et_fragSignUp_mobileNumber"
+                    layout="@layout/field_new_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    app:hint="@{@string/hint_mobile_number}"
+                    app:title="@{@string/mobile_number}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_name"
+                    app:textInputModel="@{model.mobileNumberEditTextModel}" />
+        -->
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_fragSignUp_save"
-            style="@style/text_body_bold"
+            style="@style/text_header_bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_x_large"

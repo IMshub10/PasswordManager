@@ -4,13 +4,14 @@ import com.google.gson.annotations.SerializedName
 
 data class TagBean(
     @SerializedName("id")
-    var id: String,
+    var id: String = "",
+    @SerializedName("created_at_app")
+    var createdAtApp: Long = 0,
+    @SerializedName("updated_at_app")
+    var updatedAtApp: Long = 0,
+
     @SerializedName("name")
     var name: String,
     @SerializedName("description")
-    var description: String,
-    @SerializedName("created_at")
-    var createdAt: Long,
-    @SerializedName("updated_at")
-    var updatedAt: Long,
+    var description: String?,
 )

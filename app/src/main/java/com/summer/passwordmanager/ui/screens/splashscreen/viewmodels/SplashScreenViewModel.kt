@@ -1,15 +1,10 @@
 package com.summer.passwordmanager.ui.screens.splashscreen.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.summer.passwordmanager.repository.Repository
+import com.summer.passwordmanager.repository.UserRepository
 
-class SplashScreenViewModel(private val repository: Repository) : ViewModel() {
+class SplashScreenViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    suspend fun checkIfAccountExists(): Boolean {
-        return repository.getFullName() != null && repository.getMobileNumber() != null && repository.getPin() != null
-    }
-
-    suspend fun isFingerPrintEnabled(): Boolean {
-        return repository.isFingerPrintSet()
-    }
+    suspend fun checkIfAccountExists() =
+        userRepository.getFullName() != null /*&& repository.getMobileNumber() != null*/ && userRepository.getPin() != null
 }

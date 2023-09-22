@@ -20,10 +20,10 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
     private val viewModel: SignUpViewModel by viewModel()
 
     override fun onFragmentReady(instanceState: Bundle?) {
-        mBinding?.model = viewModel
+        mBinding.model = viewModel
         listeners()
         lifecycleScope.launch(Dispatchers.Default) {
-            val accountExists = viewModel.checkIfAccountExists()
+            val accountExists = viewModel.checkUserHasSavedHisName()
             withContext(Dispatchers.Main) {
                 if (accountExists) {
                     if (findNavController().currentDestination?.id == R.id.signUpFrag) {
@@ -35,7 +35,7 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
     }
 
     private fun listeners() {
-        mBinding?.run {
+        mBinding.run {
             tvFragSignUpSave.setOnClickListener {
                 if (validate()) {
                     lifecycleScope.launch(Dispatchers.Default) {
@@ -53,7 +53,7 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
 
     private fun validate(): Boolean {
         if (!viewModel.fullNameEditTextModel.validate()) {
-            mBinding?.etFragSignUpName?.tilEditTextEdit?.error = getString(R.string.invalid_input)
+            mBinding.etFragSignUpName.tilEditTextEdit.error = getString(R.string.invalid_input)
             return false
         }
         /*if (!viewModel.mobileNumberEditTextModel.validate()) {

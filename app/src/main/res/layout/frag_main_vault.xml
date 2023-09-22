@@ -6,6 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_fragVault_tags"
             android:layout_width="match_parent"
@@ -18,6 +19,15 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:itemCount="2"
             tools:listitem="@layout/item_view_tag" />
+
+        <ProgressBar
+            android:id="@+id/pg_fragVault_vaults"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_fragVault_tags" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_fragVault_vaults"

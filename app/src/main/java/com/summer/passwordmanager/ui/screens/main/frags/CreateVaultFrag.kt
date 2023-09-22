@@ -31,15 +31,22 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
 
     private var createTagDialog: CreateTagDialog? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.getString("vaultId").let {
+            viewModel.setUpVaultEntity(it)
+        }
+    }
+
     override fun onFragmentReady(instanceState: Bundle?) {
-        mBinding?.model = viewModel
+        mBinding.model = viewModel
         initRecyclerView()
         observeViewModel()
         listeners()
     }
 
     private fun listeners() {
-        mBinding?.run {
+        mBinding.run {
             tvFragCreateVaultGeneratePassword.setOnClickListener {
                 if (findNavController().currentDestination?.id == R.id.createVaultFrag) {
                     findNavController().navigate(
@@ -56,7 +63,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
             }
             clFragCreateVaultContainer.tvLayoutCancelSaveConfirmButton.setOnClickListener {
                 if (validate()) {
-                    lifecycleScope.launch(Dispatchers.Default) {
+                    lifecycleScope.launch(Dispatchers.IO) {
                         viewModel.save()
                         withContext(Dispatchers.Main) {
                             if (findNavController().currentDestination?.id == R.id.createVaultFrag) {
@@ -70,7 +77,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
     }
 
     private fun observeViewModel() {
-        viewModel.getAllTags().observe(viewLifecycleOwner) {
+        viewModel.tagsLive.observe(viewLifecycleOwner) {
             adapter?.submitList(it?.toMutableList()?.apply {
                 viewModel.selectedTagId?.let { selectedId ->
                     this.find { selected -> selected.id == selectedId }?.apply {
@@ -78,7 +85,16 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                         notifyChange()
                     }
                 }
-                this.add(this.size, TagEntity(AppUtils.KEY_ADD, "+ Add Tag", "", 0, 0))
+                this.add(
+                    this.size,
+                    TagEntity(
+                        id = AppUtils.KEY_ADD,
+                        createdAtApp = 0,
+                        updatedAtApp = 0,
+                        name = "+ Add Tag",
+                        description = null
+                    )
+                )
             }?.toList() ?: listOf())
         }
     }
@@ -122,48 +138,41 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
 
     private fun showCreateTagDialog() {
         if (createTagDialog?.isAdded != true) {
-            createTagDialog = CreateTagDialog(object : CreateTagDialog.DismissLister {
-                override fun onSave(tagName: String, descriptionName: String?) {
-                    lifecycleScope.launch(Dispatchers.Default) {
-                        viewModel.insertTagEntity(
-                            TagEntity(
-                                id = AppUtils.generateXid(),
-                                tagName,
-                                descriptionName ?: "",
-                                createdAt = AppUtils.getCurrentTimeSecs(),
-                                updatedAt = AppUtils.getCurrentTimeSecs()
-                            )
-                        )
+            createTagDialog =
+                CreateTagDialog(dismissListener = object : CreateTagDialog.DismissLister {
+                    override fun onSave(tagEntity: TagEntity) {
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            viewModel.insertTagEntity(tagEntity)
+                        }
                     }
-                }
-            })
+                })
             createTagDialog?.show(childFragmentManager, "")
         }
     }
 
     private fun validate(): Boolean {
         if (!viewModel.websiteNameEditTextModel.validate()) {
-            mBinding?.etFragCreateVaultEntityName?.tilEditTextEdit?.error =
+            mBinding.etFragCreateVaultEntityName.tilEditTextEdit.error =
                 getString(R.string.invalid_input)
             return false
         }
         if (!viewModel.websiteAddressEditTextModel.validate()) {
-            mBinding?.etFragCreateVaultWebAddress?.tilEditTextEdit?.error =
+            mBinding.etFragCreateVaultWebAddress.tilEditTextEdit.error =
                 getString(R.string.invalid_input)
             return false
         }
         if (!viewModel.userNameMobileEditTextModel.validate()) {
-            mBinding?.etFragCreateVaultUserNameMobile?.tilEditTextEdit?.error =
+            mBinding.etFragCreateVaultUserNameMobile.tilEditTextEdit.error =
                 getString(R.string.invalid_input)
             return false
         }
         if (!viewModel.passwordEditTextModel.validate()) {
-            mBinding?.etFragCreateVaultPassword?.tilEditTextEdit?.error =
+            mBinding.etFragCreateVaultPassword.tilEditTextEdit.error =
                 getString(R.string.invalid_input)
             return false
         }
         if (!viewModel.notesEditTextModel.validate()) {
-            mBinding?.etFragCreateVaultNotes?.tilEditTextEdit?.error =
+            mBinding.etFragCreateVaultNotes.tilEditTextEdit.error =
                 getString(R.string.invalid_input)
             return false
         }

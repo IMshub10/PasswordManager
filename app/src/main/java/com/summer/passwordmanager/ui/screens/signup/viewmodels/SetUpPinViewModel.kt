@@ -1,13 +1,13 @@
 package com.summer.passwordmanager.ui.screens.signup.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.summer.passwordmanager.repository.Repository
+import com.summer.passwordmanager.repository.UserRepository
 
-class SetUpPinViewModel(private val repository: Repository) : ViewModel() {
+class SetUpPinViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     suspend fun save(checked: Boolean?) {
-        repository.setPin(pin = firstPin ?: "")
-        repository.setFingerPrint(checked ?: false)
+        userRepository.setPin(pin = firstPin ?: "")
+        userRepository.setFingerPrint(checked ?: false)
     }
 
     var firstPin: String? = null

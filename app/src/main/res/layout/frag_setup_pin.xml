@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_x_large"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -109,7 +110,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_fragSetUpPin_save"
-                style="@style/text_body_bold"
+                style="@style/text_header_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_x_large"

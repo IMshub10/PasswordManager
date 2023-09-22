@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="label" format="color" />
+    <attr name="box_background" format="color" />
     <attr name="labelSecondary" format="color" />
     <attr name="labelTertiary" format="color" />
     <attr name="colorLink" format="color" />

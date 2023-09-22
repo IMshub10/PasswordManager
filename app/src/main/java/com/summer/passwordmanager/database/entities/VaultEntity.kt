@@ -1,6 +1,7 @@
 package com.summer.passwordmanager.database.entities
 
 import androidx.databinding.BaseObservable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Ignore
@@ -10,23 +11,41 @@ import com.summer.passwordmanager.utils.AppUtils
 @Entity(
     tableName = "vaults", foreignKeys = [ForeignKey(
         entity = TagEntity::class,
-        childColumns = ["tagId"],
+        childColumns = ["tag_id"],
         parentColumns = ["id"],
         onDelete = ForeignKey.SET_NULL,
     )]
 )
 data class VaultEntity(
-    @PrimaryKey(autoGenerate = false) var id: String = AppUtils.generateXid(),
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo("id")
+    var id: String = AppUtils.generateXid(),
+
+    @ColumnInfo("created_at_app")
+    var createdAtApp: Long = 0,
+    @ColumnInfo("updated_at_app")
+    var updatedAtApp: Long = 0,
+
+    @ColumnInfo("entity_name")
     var entityName: String = "",
+    @ColumnInfo("web_address")
     var webAddress: String = "",
-    var userNameMobileCardNumber: String = "",
+    @ColumnInfo("username_mobile_card_number")
+    var usernameMobileCardNumber: String = "",
+    @ColumnInfo("password")
     var password: String = "",
+    @ColumnInfo("notes")
     var notes: String = "",
+    @ColumnInfo("tag_id")
     var tagId: String? = null,
-    var createdAt: Long = 0L,
-    var updatedAt: Long = 0L,
 ) : BaseObservable() {
     @Ignore
     var tagEntity: TagEntity? = null
+
+    @Ignore
+    var passwordVisible: Boolean = false
+
+    @Ignore
+    var isHidden: Boolean = true
 
 }

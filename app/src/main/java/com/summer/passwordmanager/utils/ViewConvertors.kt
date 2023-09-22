@@ -11,6 +11,8 @@ import androidx.core.text.color
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.summer.passwordmanager.R
+import com.summer.passwordmanager.utils.extensions.gone
+import com.summer.passwordmanager.utils.extensions.visible
 
 
 object ViewConvertors {
@@ -76,6 +78,19 @@ object ViewConvertors {
     fun AppCompatTextView.setIconTextColor(isRed: Boolean) {
         if (isRed) {
             this.setTextColor(ResourcesCompat.getColor(context.resources, R.color.red_light, null))
+        } else {
+            val typedValue = TypedValue()
+            context.theme.resolveAttribute(R.attr.label, typedValue, true)
+            @ColorInt val color: Int = typedValue.data
+            this.setTextColor(color)
+        }
+    }
+
+    @BindingAdapter("setTagTextColor")
+    @JvmStatic
+    fun AppCompatTextView.setTagTextColor(isSelected: Boolean) {
+        if (isSelected) {
+            this.setTextColor(ResourcesCompat.getColor(context.resources, R.color.white, null))
         } else {
             val typedValue = TypedValue()
             context.theme.resolveAttribute(R.attr.label, typedValue, true)

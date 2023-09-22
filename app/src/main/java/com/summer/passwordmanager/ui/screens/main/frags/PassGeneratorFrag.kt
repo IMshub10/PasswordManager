@@ -1,24 +1,23 @@
 package com.summer.passwordmanager.ui.screens.main.frags
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.summer.passwordmanager.App
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainPassGeneratorBinding
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
 import com.summer.passwordmanager.utils.AppUtils
+import com.summer.passwordmanager.utils.extensions.showShortToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -31,23 +30,21 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
     private val createVaultViewModel: CreateVaultViewModel by activityViewModel()
 
     override fun onFragmentReady(instanceState: Bundle?) {
-        mBinding?.model = viewModel.passGeneratorModel
+        mBinding.model = viewModel.passGeneratorModel
         setPassText()
         listeners()
-        mBinding?.clFragPassGeneratorContainer?.clLayoutCancelSaveContainer?.isVisible =
+        mBinding.clFragPassGeneratorContainer.clLayoutCancelSaveContainer.isVisible =
             arguments?.getBoolean("fetchPass") ?: false
     }
 
     private fun listeners() {
-        mBinding?.run {
+        mBinding.run {
             ivFragPassGeneratorRefresh.setOnClickListener {
                 setPassText()
             }
             ivFragPassGeneratorCopy.setOnClickListener {
                 AppUtils.copyText(context, tvFragPassGeneratorPassHolder.text.toString())
-                Toast.makeText(
-                    requireContext(), getString(R.string.copied_to_clipboard), Toast.LENGTH_SHORT
-                ).show()
+                showShortToast(getString(R.string.copied_to_clipboard))
             }
             sbFragPassGeneratorLength.setOnSeekBarChangeListener(object :
                 SeekBar.OnSeekBarChangeListener {
@@ -105,7 +102,7 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
     }
 
     private fun setPassText() {
-        mBinding?.tvFragPassGeneratorPassHolder?.text =
+        mBinding.tvFragPassGeneratorPassHolder.text =
             SpannableString(
                 AppUtils.getRandomString(
                     viewModel.passGeneratorModel.length,
@@ -114,7 +111,9 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
                     viewModel.passGeneratorModel.hasNumbers,
                     viewModel.passGeneratorModel.hasSpecialCharacters
                 ).also {
-                    viewModel.insertPassHistory(it)
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        viewModel.insertPassHistory(viewModel.buildPassHistoryModel(it))
+                    }
                 }
             ).apply {
                 for (i in 0 until this.toString().length) {

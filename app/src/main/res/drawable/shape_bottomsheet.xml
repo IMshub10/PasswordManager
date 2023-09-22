@@ -4,8 +4,6 @@
     android:tint="?attr/colorSurface">
 
     <corners
-        android:bottomRightRadius="2dp"
-        android:bottomLeftRadius="2dp"
-        android:topLeftRadius="12dp"
-        android:topRightRadius="12dp" />
+        android:topLeftRadius="@dimen/spacing_small"
+        android:topRightRadius="@dimen/spacing_small" />
 </shape>

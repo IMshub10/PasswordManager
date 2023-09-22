@@ -1,12 +1,13 @@
 package com.summer.passwordmanager.ui.screens.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -15,8 +16,9 @@ import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseActivity
 import com.summer.passwordmanager.databinding.ActivityMainBinding
 import com.summer.passwordmanager.ui.screens.main.viewmodels.VaultViewModel
-import com.summer.passwordmanager.utils.gone
-import com.summer.passwordmanager.utils.visible
+import com.summer.passwordmanager.utils.extensions.closeApp
+import com.summer.passwordmanager.utils.extensions.gone
+import com.summer.passwordmanager.utils.extensions.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -28,7 +30,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val navController: NavController by lazy { findNavController(R.id.fcv_main_container) }
 
     private val mainViewModel: VaultViewModel by viewModel()
-    private var searchView: SearchView? = null
+
+    private var searchItem: MenuItem? = null
 
     override fun onActivityReady(savedInstanceState: Bundle?) {
         setupActionBar(mBinding.tbActSectorProfileToolbar)
@@ -48,29 +51,32 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun setUpFragmentNavigation() {
         navController.addOnDestinationChangedListener { _, destination, arguments ->
             mBinding.tbActSectorProfileToolbar.title = destination.label
-            searchView?.isVisible = destination.id == R.id.vaultFrag
+            setMenuItemsVisibility(navController.currentDestination)
             when (destination.id) {
-                R.id.createVaultFrag -> {
-                    mBinding.bmvMainNavigation.gone()
-                    mBinding.tbActSectorProfileToolbar.navigationIcon =
-                        ResourcesCompat.getDrawable(resources, R.drawable.ic_navigation_back, null)
+                R.id.vaultFrag -> {
+                    mBinding.bmvMainNavigation.visible()
+                    mBinding.tbActSectorProfileToolbar.navigationIcon = null
                 }
 
                 R.id.passGeneratorFrag -> {
                     (arguments?.getBoolean("fetchPass") ?: false).let {
                         mBinding.bmvMainNavigation.isVisible = !it
-                        mBinding.tbActSectorProfileToolbar.navigationIcon = if (it)
-                            ResourcesCompat.getDrawable(
-                                resources,
-                                R.drawable.ic_navigation_back,
-                                null
+                        mBinding.tbActSectorProfileToolbar.navigationIcon =
+                            if (it) ResourcesCompat.getDrawable(
+                                resources, R.drawable.ic_navigation_back_light, null
                             ) else null
                     }
                 }
 
-                else -> {
+                R.id.profileFrag -> {
                     mBinding.bmvMainNavigation.visible()
                     mBinding.tbActSectorProfileToolbar.navigationIcon = null
+                }
+
+                R.id.tagFrag, R.id.createVaultFrag, R.id.fileExportDetailsFrag, R.id.fileImportDetailsFrag -> {
+                    mBinding.bmvMainNavigation.gone()
+                    mBinding.tbActSectorProfileToolbar.navigationIcon =
+                        ResourcesCompat.getDrawable(resources, R.drawable.ic_navigation_back_light, null)
                 }
             }
         }
@@ -101,7 +107,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
-        searchView = menu?.findItem(R.id.item_search)?.actionView as SearchView
+        searchItem = menu?.findItem(R.id.item_search)
+
+        setMenuItemsVisibility(navController.currentDestination)
+        val searchView = menu?.findItem(R.id.item_search)?.actionView as SearchView?
         searchView?.maxWidth = Int.MAX_VALUE
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -116,25 +125,45 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         })
         searchView?.setOnSearchClickListener {
             mBinding.tbActSectorProfileToolbar.title = null
+            mBinding.bmvMainNavigation.gone()
         }
         searchView?.setOnCloseListener {
             mBinding.tbActSectorProfileToolbar.title = navController.currentDestination?.label
+            mBinding.bmvMainNavigation.visible()
             return@setOnCloseListener false
         }
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onBackPressed() {
-        if (navController.currentDestination?.id in arrayOf(
+        when (navController.currentDestination?.id) {
+            in arrayOf(
                 R.id.createVaultFrag,
-                R.id.passGeneratorFrag
-            )
-        ) {
-            navController.popBackStack()
-        } else {
-            startActivity(Intent(Intent.ACTION_MAIN).apply {
-                addCategory(Intent.CATEGORY_HOME)
-            })
+                R.id.fileImportDetailsFrag,
+                R.id.fileExportDetailsFrag,
+                R.id.tagFrag
+            ) -> {
+                navController.popBackStack()
+            }
+
+            R.id.passGeneratorFrag -> {
+                val fetchPass =
+                    navController.currentBackStackEntry?.arguments?.getBoolean("fetchPass") ?: false
+                if (fetchPass) {
+                    navController.popBackStack()
+                } else {
+                    closeApp()
+                }
+            }
+
+            else -> {
+                closeApp()
+            }
         }
     }
+
+    private fun setMenuItemsVisibility(currentDestination: NavDestination?) {
+        searchItem?.isVisible = currentDestination?.id == R.id.vaultFrag
+    }
+
 }
