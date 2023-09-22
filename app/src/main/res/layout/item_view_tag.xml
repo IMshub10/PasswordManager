@@ -24,6 +24,7 @@
             android:paddingHorizontal="@dimen/spacing_small"
             android:paddingVertical="@dimen/spacing_x_small"
             android:text="@{model.name}"
+            app:setTagTextColor="@{model.isSelected}"
             app:viewTagSelectableBackground="@{model.isSelected}"
             tools:background="@drawable/ripple_rounded_rect_primary_solid_medium_corners"
             tools:text="Social Media" />

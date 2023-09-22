@@ -31,7 +31,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val mainViewModel: VaultViewModel by viewModel()
 
-    private var tagItem: MenuItem? = null
     private var searchItem: MenuItem? = null
 
     override fun onActivityReady(savedInstanceState: Bundle?) {
@@ -66,7 +65,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                         mBinding?.bmvMainNavigation?.isVisible = !it
                         mBinding?.tbActSectorProfileToolbar?.navigationIcon =
                             if (it) ResourcesCompat.getDrawable(
-                                resources, R.drawable.ic_navigation_back, null
+                                resources, R.drawable.ic_navigation_back_light, null
                             ) else null
                     }
                 }
@@ -79,7 +78,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.tagFrag, R.id.createVaultFrag, R.id.fileExportDetailsFrag, R.id.fileImportDetailsFrag -> {
                     mBinding?.bmvMainNavigation?.gone()
                     mBinding?.tbActSectorProfileToolbar?.navigationIcon =
-                        ResourcesCompat.getDrawable(resources, R.drawable.ic_navigation_back, null)
+                        ResourcesCompat.getDrawable(resources, R.drawable.ic_navigation_back_light, null)
                 }
             }
         }
@@ -110,7 +109,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
-        tagItem = menu?.findItem(R.id.item_tag)
         searchItem = menu?.findItem(R.id.item_search)
 
         setMenuItemsVisibility(navController.currentDestination)
@@ -167,22 +165,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun setMenuItemsVisibility(currentDestination: NavDestination?) {
-        if (currentDestination?.id == R.id.vaultFrag) {
-            searchItem?.isVisible = true
-            tagItem?.isVisible = true
-        } else {
-            searchItem?.isVisible = false
-            tagItem?.isVisible = false
-        }
+        searchItem?.isVisible = currentDestination?.id == R.id.vaultFrag
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.item_tag) {
-            if (navController.currentDestination?.id == R.id.vaultFrag) {
-                navController.navigate(R.id.action_vaultFrag_to_tagFrag)
-            }
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }

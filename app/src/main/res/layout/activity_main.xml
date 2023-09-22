@@ -16,9 +16,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_navigation_back"
-            app:navigationIconTint="@color/white"
-            app:titleTextColor="@color/white" />
+            app:titleTextColor="?label" />
 
         <fragment
             android:id="@+id/fcv_main_container"

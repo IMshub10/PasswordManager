@@ -44,6 +44,9 @@
     <color name="separator_light">#1f000000</color>
     <color name="separator_dark">#1fffffff</color>
 
+    <color name="background_light">#fafafa</color>
+    <color name="background_dark">#1E1E1E</color>
+
     <color name="charcoal">#333333</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#48484a</color>

@@ -17,9 +17,6 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_bottom"
             app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_vaultFrag_to_tagFrag"
-            app:destination="@id/tagFrag" />
     </fragment>
     <fragment
         android:id="@+id/passGeneratorFrag"
@@ -43,6 +40,14 @@
         <action
             android:id="@+id/action_profileFrag_to_fileImportDetailsFrag"
             app:destination="@id/fileImportDetailsFrag" />
+        <action
+            android:id="@+id/action_profileFrag_to_tagFrag"
+            app:destination="@id/tagFrag"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_bottom"
+            app:popExitAnim="@anim/slide_out_right"/>
+
     </fragment>
     <fragment
         android:id="@+id/createVaultFrag"

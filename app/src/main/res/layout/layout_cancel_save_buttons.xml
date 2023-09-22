@@ -3,6 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="positiveText"
+            type="java.lang.String" />
+
+        <variable
+            name="negativeText"
+            type="java.lang.String" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_layoutCancelSave_container"
         android:layout_width="match_parent"

@@ -47,6 +47,7 @@
     <string name="tag_description">Tag description</string>
     <string name="search">Search</string>
     <string name="profile">Profile</string>
+    <string name="lock_app">Lock App</string>
     <string name="export_file">Export File</string>
     <string name="import_file">Import File</string>
     <string name="clear_data">Clear Data</string>

@@ -6,8 +6,11 @@ import androidx.room.Room
 import com.summer.passwordmanager.database.AppDatabase
 import com.summer.passwordmanager.database.dao.AppDao
 import com.summer.passwordmanager.database.preferences.Preference
+import com.summer.passwordmanager.repository.FileRepository
 import com.summer.passwordmanager.repository.FileRepositoryImpl
+import com.summer.passwordmanager.repository.LocalRepository
 import com.summer.passwordmanager.repository.LocalRepositoryImpl
+import com.summer.passwordmanager.repository.UserRepository
 import com.summer.passwordmanager.repository.UserRepositoryImpl
 import com.summer.passwordmanager.ui.dialogs.CreateTagViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
@@ -45,11 +48,11 @@ val databaseModule = module {
 }
 
 val repositoryModule = module {
-    fun provideFileRepository() = FileRepositoryImpl()
+    fun provideFileRepository(): FileRepository = FileRepositoryImpl()
 
-    fun provideLocalRepository(appDao: AppDao) = LocalRepositoryImpl(appDao)
+    fun provideLocalRepository(appDao: AppDao): LocalRepository = LocalRepositoryImpl(appDao)
 
-    fun provideUserRepository(sharedPreferences: SharedPreferences) =
+    fun provideUserRepository(sharedPreferences: SharedPreferences): UserRepository =
         UserRepositoryImpl(sharedPreferences)
 
     single { provideFileRepository() }
