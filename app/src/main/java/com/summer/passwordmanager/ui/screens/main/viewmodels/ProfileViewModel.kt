@@ -53,8 +53,7 @@ class ProfileViewModel(
     /**
      * Saves in Documents/{App_name}/encrypted File/file_name.txt
      */
-    suspend fun exportFile(appName: String) {
-
+    suspend fun exportFile(appName: String) =
         fileRepository.exportFile(
             fileBean = FileBean(
                 localRepository.getAllTags().toTagBeans(),
@@ -64,7 +63,6 @@ class ProfileViewModel(
             fileName = fileName.editTextContent!!,
             key = key.editTextContent!!
         )
-    }
 
     suspend fun importFile(inputStream: InputStream) =
         fileRepository.importFile(inputStream, key.editTextContent!!)

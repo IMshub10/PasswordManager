@@ -14,11 +14,6 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>() {
     override val layoutResId: Int
         get() = R.layout.activity_sign_up
 
-    override fun onActivityReady(savedInstanceState: Bundle?) {
+    override fun onActivityReady(savedInstanceState: Bundle?) {}
 
-    }
-
-    override fun onBackPressed() {
-
-    }
 }

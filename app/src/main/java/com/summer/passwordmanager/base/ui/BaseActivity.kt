@@ -17,12 +17,14 @@ abstract class BaseActivity<B : ViewDataBinding> : AppCompatActivity() {
 
     var helperDialog: HelperAlertDialog? = null
 
-    var mBinding: B? = null
+    private var binding: B? = null
+    protected val mBinding: B
+        get() = binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         onPreCreated()
         super.onCreate(savedInstanceState)
-        mBinding = DataBindingUtil.setContentView(this, layoutResId)
+        binding = DataBindingUtil.setContentView(this, layoutResId)
         onActivityReady(savedInstanceState)
     }
 
@@ -62,5 +64,10 @@ abstract class BaseActivity<B : ViewDataBinding> : AppCompatActivity() {
         if (helperDialog?.isAdded != true) {
             helperDialog?.show(supportFragmentManager, "")
         }
+    }
+
+    override fun onDestroy() {
+        binding = null
+        super.onDestroy()
     }
 }

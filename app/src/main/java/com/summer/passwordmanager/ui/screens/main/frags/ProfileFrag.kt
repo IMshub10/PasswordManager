@@ -18,12 +18,12 @@ class ProfileFrag : BaseFragment<FragMainProfileBinding>() {
     private val viewModel: ProfileViewModel by activityViewModel()
 
     override fun onFragmentReady(instanceState: Bundle?) {
-        mBinding?.userModel = viewModel.userModel
+        mBinding.userModel = viewModel.userModel
         listeners()
     }
 
     private fun listeners() {
-        mBinding?.run {
+        mBinding.run {
             layoutFragMainProfileTags.clLayoutIconTextButtonRoot.setOnClickListener {
                 if (findNavController().currentDestination?.id == R.id.profileFrag) {
                     findNavController().navigate(R.id.action_profileFrag_to_tagFrag)

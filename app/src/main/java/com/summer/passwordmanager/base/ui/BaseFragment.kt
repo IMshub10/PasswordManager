@@ -15,14 +15,16 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
     @get:LayoutRes
     protected abstract val layoutResId: Int
 
-    var mBinding: B? = null
+    private var binding: B? = null
+    protected val mBinding: B
+        get() = binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        mBinding =
+    ): View {
+        binding =
             DataBindingUtil.inflate(
                 LayoutInflater.from(requireContext()),
                 layoutResId,
@@ -30,14 +32,14 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
                 false
             )
         onFragmentReady(savedInstanceState)
-        return mBinding?.root
+        return mBinding.root
     }
 
     protected abstract fun onFragmentReady(instanceState: Bundle?)
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mBinding = null
+        binding = null
     }
 
 }

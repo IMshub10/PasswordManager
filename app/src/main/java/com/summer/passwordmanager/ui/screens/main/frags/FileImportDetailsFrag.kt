@@ -33,14 +33,14 @@ class FileImportDetailsFrag : BaseFragment<FragFileImportDetailsBinding>() {
     override fun onFragmentReady(instanceState: Bundle?) {
         viewModel.key.reset()
         viewModel.fileName.reset()
-        mBinding?.model = viewModel
-        mBinding?.importFileBtn?.setOnClickListener {
+        mBinding.model = viewModel
+        mBinding.importFileBtn.setOnClickListener {
             acc.launch(Intent.createChooser(Intent(Intent.ACTION_GET_CONTENT).apply {
                 type = "text/plain"
             }, getString(R.string.import_file)))
         }
 
-        mBinding?.importOkBtn?.setOnClickListener {
+        mBinding.importOkBtn.setOnClickListener {
             fileData?.let { uri ->
                 requireContext().contentResolver.openInputStream(uri)?.let { inputStream ->
                     lifecycleScope.launch(Dispatchers.Main) {

@@ -30,15 +30,15 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
     private val createVaultViewModel: CreateVaultViewModel by activityViewModel()
 
     override fun onFragmentReady(instanceState: Bundle?) {
-        mBinding?.model = viewModel.passGeneratorModel
+        mBinding.model = viewModel.passGeneratorModel
         setPassText()
         listeners()
-        mBinding?.clFragPassGeneratorContainer?.clLayoutCancelSaveContainer?.isVisible =
+        mBinding.clFragPassGeneratorContainer.clLayoutCancelSaveContainer.isVisible =
             arguments?.getBoolean("fetchPass") ?: false
     }
 
     private fun listeners() {
-        mBinding?.run {
+        mBinding.run {
             ivFragPassGeneratorRefresh.setOnClickListener {
                 setPassText()
             }
@@ -102,7 +102,7 @@ class PassGeneratorFrag : BaseFragment<FragMainPassGeneratorBinding>() {
     }
 
     private fun setPassText() {
-        mBinding?.tvFragPassGeneratorPassHolder?.text =
+        mBinding.tvFragPassGeneratorPassHolder.text =
             SpannableString(
                 AppUtils.getRandomString(
                     viewModel.passGeneratorModel.length,

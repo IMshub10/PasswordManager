@@ -22,17 +22,17 @@ class FileExportDetailsFrag : BaseFragment<FragFileExportDetailsBinding>() {
     override fun onFragmentReady(instanceState: Bundle?) {
         viewModel.key.reset()
         viewModel.fileName.reset()
-        mBinding?.model = viewModel
-        mBinding?.exportCopyBtn?.setOnClickListener {
+        mBinding.model = viewModel
+        mBinding.exportCopyBtn.setOnClickListener {
             AppUtils.copyText(requireContext(), viewModel.key.editTextContent ?: "")
             showShortToast(getString(R.string.copied_to_clipboard))
         }
 
-        mBinding?.exportGenerateKeyBtn?.setOnClickListener {
+        mBinding.exportGenerateKeyBtn.setOnClickListener {
             viewModel.generateKey()
         }
 
-        mBinding?.exportBtn?.setOnClickListener {
+        mBinding.exportBtn.setOnClickListener {
             if (viewModel.key.validate() && viewModel.fileName.validate()) {
                 lifecycleScope.launch(Dispatchers.Main) {
                     val fileName = viewModel.exportFile(AppUtils.getAppName(requireContext()))

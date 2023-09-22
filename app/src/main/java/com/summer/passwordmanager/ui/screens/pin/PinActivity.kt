@@ -27,9 +27,9 @@ class PinActivity : BaseActivity<ActivityPinBinding>(), BiometricResultListener 
     private val viewModel: PinViewModel by viewModel()
 
     override fun onActivityReady(savedInstanceState: Bundle?) {
-        mBinding?.model = viewModel
+        mBinding.model = viewModel
         viewModel.init()
-        mBinding?.fragPinUseLock?.attachIndicatorDots(mBinding?.fragPinIndicatorDots)
+        mBinding.fragPinUseLock.attachIndicatorDots(mBinding.fragPinIndicatorDots)
         listeners()
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -43,10 +43,10 @@ class PinActivity : BaseActivity<ActivityPinBinding>(), BiometricResultListener 
     }
 
     private fun listeners() {
-        mBinding?.tvActivityPinFingerPrint?.setOnClickListener {
+        mBinding.tvActivityPinFingerPrint.setOnClickListener {
             verifyFingerPrint(this)
         }
-        mBinding?.fragPinUseLock?.setPinLockListener(object : PinLockListener {
+        mBinding.fragPinUseLock.setPinLockListener(object : PinLockListener {
             override fun onComplete(pin: String?) {
                 if (pin == null) return
                 if (pin.length != 4) return

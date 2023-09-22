@@ -28,12 +28,12 @@ class SetUpPinFrag : BaseFragment<FragSetupPinBinding>(), BiometricResultListene
     private val viewModel: SetUpPinViewModel by viewModel()
 
     override fun onFragmentReady(instanceState: Bundle?) {
-        mBinding?.cbFragSetUpPinEnableFingerPrint?.isVisible = canAuthenticateWithBiometric()
+        mBinding.cbFragSetUpPinEnableFingerPrint.isVisible = canAuthenticateWithBiometric()
         listeners()
     }
 
     private fun listeners() {
-        mBinding?.run {
+        mBinding.run {
             pvFragSetupPinPin1.addTextChangedListener {
                 viewModel.firstPin = it?.toString()
             }
@@ -70,7 +70,7 @@ class SetUpPinFrag : BaseFragment<FragSetupPinBinding>(), BiometricResultListene
 
     private fun saveAndProceed() {
         lifecycleScope.launch(Dispatchers.Default) {
-            viewModel.save(mBinding?.cbFragSetUpPinEnableFingerPrint?.isChecked)
+            viewModel.save(mBinding.cbFragSetUpPinEnableFingerPrint.isChecked)
             withContext(Dispatchers.Main) {
                 LauncherUtils.startActivityWithClearTop(
                     requireActivity(),

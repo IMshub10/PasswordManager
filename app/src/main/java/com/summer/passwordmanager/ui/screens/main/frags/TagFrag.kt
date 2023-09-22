@@ -62,13 +62,13 @@ class TagFrag : BaseFragment<FragMainTagBinding>() {
 
     private fun observeViewModel() {
         viewModel.tagsLive.observe(viewLifecycleOwner) {
-            mBinding?.pgFragTagTags?.isVisible = it == null
+            mBinding.pgFragTagTags.isVisible = it == null
             tagListAdapter?.submitList(it ?: listOf())
         }
     }
 
     private fun initRecyclerView() {
-        mBinding?.run {
+        mBinding.run {
             (rvFragTagTags.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
             tagListAdapter = TagListAdapter(object : TagListAdapter.SelectionCallBack {
                 override fun onItemLongPress(item: TagEntity) {
@@ -95,7 +95,7 @@ class TagFrag : BaseFragment<FragMainTagBinding>() {
     }
 
     private fun listeners() {
-        mBinding?.run {
+        mBinding.run {
             fabFragMainTagAdd.setOnClickListener {
                 showCreateTagDialog(null)
             }

@@ -34,9 +34,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private var searchItem: MenuItem? = null
 
     override fun onActivityReady(savedInstanceState: Bundle?) {
-        mBinding?.tbActSectorProfileToolbar?.let {
-            setupActionBar(it)
-        }
+        setupActionBar(mBinding.tbActSectorProfileToolbar)
         setupActionBarWithNavController(
             navController, AppBarConfiguration(
                 setOf(
@@ -46,24 +44,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 )
             )
         )
-        mBinding?.bmvMainNavigation?.setupWithNavController(navController)
+        mBinding.bmvMainNavigation.setupWithNavController(navController)
         setUpFragmentNavigation()
     }
 
     private fun setUpFragmentNavigation() {
         navController.addOnDestinationChangedListener { _, destination, arguments ->
-            mBinding?.tbActSectorProfileToolbar?.title = destination.label
+            mBinding.tbActSectorProfileToolbar.title = destination.label
             setMenuItemsVisibility(navController.currentDestination)
             when (destination.id) {
                 R.id.vaultFrag -> {
-                    mBinding?.bmvMainNavigation?.visible()
-                    mBinding?.tbActSectorProfileToolbar?.navigationIcon = null
+                    mBinding.bmvMainNavigation.visible()
+                    mBinding.tbActSectorProfileToolbar.navigationIcon = null
                 }
 
                 R.id.passGeneratorFrag -> {
                     (arguments?.getBoolean("fetchPass") ?: false).let {
-                        mBinding?.bmvMainNavigation?.isVisible = !it
-                        mBinding?.tbActSectorProfileToolbar?.navigationIcon =
+                        mBinding.bmvMainNavigation.isVisible = !it
+                        mBinding.tbActSectorProfileToolbar.navigationIcon =
                             if (it) ResourcesCompat.getDrawable(
                                 resources, R.drawable.ic_navigation_back_light, null
                             ) else null
@@ -71,21 +69,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
 
                 R.id.profileFrag -> {
-                    mBinding?.bmvMainNavigation?.visible()
-                    mBinding?.tbActSectorProfileToolbar?.navigationIcon = null
+                    mBinding.bmvMainNavigation.visible()
+                    mBinding.tbActSectorProfileToolbar.navigationIcon = null
                 }
 
                 R.id.tagFrag, R.id.createVaultFrag, R.id.fileExportDetailsFrag, R.id.fileImportDetailsFrag -> {
-                    mBinding?.bmvMainNavigation?.gone()
-                    mBinding?.tbActSectorProfileToolbar?.navigationIcon =
+                    mBinding.bmvMainNavigation.gone()
+                    mBinding.tbActSectorProfileToolbar.navigationIcon =
                         ResourcesCompat.getDrawable(resources, R.drawable.ic_navigation_back_light, null)
                 }
             }
         }
-        mBinding?.tbActSectorProfileToolbar?.setNavigationOnClickListener {
+        mBinding.tbActSectorProfileToolbar.setNavigationOnClickListener {
             navController.navigateUp()
         }
-        mBinding?.bmvMainNavigation?.setOnItemSelectedListener { item ->
+        mBinding.bmvMainNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.item_vault -> {
                     navController.navigate(R.id.vaultFrag)
@@ -126,12 +124,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
         })
         searchView?.setOnSearchClickListener {
-            mBinding?.tbActSectorProfileToolbar?.title = null
-            mBinding?.bmvMainNavigation?.gone()
+            mBinding.tbActSectorProfileToolbar.title = null
+            mBinding.bmvMainNavigation.gone()
         }
         searchView?.setOnCloseListener {
-            mBinding?.tbActSectorProfileToolbar?.title = navController.currentDestination?.label
-            mBinding?.bmvMainNavigation?.visible()
+            mBinding.tbActSectorProfileToolbar.title = navController.currentDestination?.label
+            mBinding.bmvMainNavigation.visible()
             return@setOnCloseListener false
         }
         return super.onCreateOptionsMenu(menu)

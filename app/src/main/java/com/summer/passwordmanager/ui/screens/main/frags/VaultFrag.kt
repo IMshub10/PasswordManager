@@ -69,13 +69,13 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
 
     private fun observeViewModel() {
         mainViewModel.getFilteredVaultList().observe(viewLifecycleOwner) {
-            mBinding?.pgFragVaultVaults?.isVisible = it == null
+            mBinding.pgFragVaultVaults.isVisible = it == null
             it?.let {
                 vaultListAdapter?.submitList(it)
             }
         }
         mainViewModel.tagListLive.observe(viewLifecycleOwner) {
-            mBinding?.rvFragVaultTags?.isVisible = if (it == null) false else it.size > 1
+            mBinding.rvFragVaultTags.isVisible = if (it == null) false else it.size > 1
             viewTagAdapter?.submitList(
                 it ?: listOf()
             )
@@ -83,7 +83,7 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
     }
 
     private fun initRecyclerView() {
-        mBinding?.run {
+        mBinding.run {
             //tag adapter
             (rvFragVaultTags.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
             viewTagAdapter = ViewTagAdapter(object : ViewTagAdapter.SelectionCallBack {
@@ -122,7 +122,7 @@ class VaultFrag : BaseFragment<FragMainVaultBinding>() {
     }
 
     private fun listeners() {
-        mBinding?.run {
+        mBinding.run {
             fabFragMainVaultAdd.setOnClickListener {
                 if (findNavController().currentDestination?.id == R.id.vaultFrag) {
                     findNavController().navigate(R.id.action_vaultFrag_to_createVaultFrag)

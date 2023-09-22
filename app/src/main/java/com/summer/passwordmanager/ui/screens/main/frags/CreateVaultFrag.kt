@@ -39,14 +39,14 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
     }
 
     override fun onFragmentReady(instanceState: Bundle?) {
-        mBinding?.model = viewModel
+        mBinding.model = viewModel
         initRecyclerView()
         observeViewModel()
         listeners()
     }
 
     private fun listeners() {
-        mBinding?.run {
+        mBinding.run {
             tvFragCreateVaultGeneratePassword.setOnClickListener {
                 if (findNavController().currentDestination?.id == R.id.createVaultFrag) {
                     findNavController().navigate(
@@ -152,27 +152,27 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
 
     private fun validate(): Boolean {
         if (!viewModel.websiteNameEditTextModel.validate()) {
-            mBinding?.etFragCreateVaultEntityName?.tilEditTextEdit?.error =
+            mBinding.etFragCreateVaultEntityName.tilEditTextEdit.error =
                 getString(R.string.invalid_input)
             return false
         }
         if (!viewModel.websiteAddressEditTextModel.validate()) {
-            mBinding?.etFragCreateVaultWebAddress?.tilEditTextEdit?.error =
+            mBinding.etFragCreateVaultWebAddress.tilEditTextEdit.error =
                 getString(R.string.invalid_input)
             return false
         }
         if (!viewModel.userNameMobileEditTextModel.validate()) {
-            mBinding?.etFragCreateVaultUserNameMobile?.tilEditTextEdit?.error =
+            mBinding.etFragCreateVaultUserNameMobile.tilEditTextEdit.error =
                 getString(R.string.invalid_input)
             return false
         }
         if (!viewModel.passwordEditTextModel.validate()) {
-            mBinding?.etFragCreateVaultPassword?.tilEditTextEdit?.error =
+            mBinding.etFragCreateVaultPassword.tilEditTextEdit.error =
                 getString(R.string.invalid_input)
             return false
         }
         if (!viewModel.notesEditTextModel.validate()) {
-            mBinding?.etFragCreateVaultNotes?.tilEditTextEdit?.error =
+            mBinding.etFragCreateVaultNotes.tilEditTextEdit.error =
                 getString(R.string.invalid_input)
             return false
         }
