@@ -56,11 +56,6 @@ class SignUpFrag : BaseFragment<FragSignUpBinding>() {
             mBinding.etFragSignUpName.tilEditTextEdit.error = getString(R.string.invalid_input)
             return false
         }
-        /*if (!viewModel.mobileNumberEditTextModel.validate()) {
-            mBinding?.etFragSignUpMobileNumber?.tilEditTextEdit?.error =
-                getString(R.string.error_phone_number)
-            return false
-        }*/
         return true
     }
 }

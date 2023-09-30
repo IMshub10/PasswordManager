@@ -1,12 +1,13 @@
-package com.summer.passwordmanager.ui.dialogs
+package com.summer.passwordmanager.ui.dialogs.tags
 
 import androidx.lifecycle.ViewModel
 import com.summer.passwordmanager.database.entities.TagEntity
+import com.summer.passwordmanager.repository.UserRepository
 import com.summer.passwordmanager.ui.uimodels.TextEditTextFieldType
 import com.summer.passwordmanager.ui.uimodels.TextEditTextModel
 import com.summer.passwordmanager.utils.AppUtils
 
-class CreateTagViewModel : ViewModel() {
+class CreateTagViewModel() : ViewModel() {
 
     var tagEntity: TagEntity? = null
 

@@ -10,7 +10,7 @@ import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.databinding.FragMainTagBinding
 import com.summer.passwordmanager.ui.adapters.TagListAdapter
-import com.summer.passwordmanager.ui.dialogs.CreateTagDialog
+import com.summer.passwordmanager.ui.dialogs.tags.CreateTagDialog
 import com.summer.passwordmanager.ui.dialogs.HelperAlertDialog
 import com.summer.passwordmanager.ui.screens.main.viewmodels.TagViewModel
 import kotlinx.coroutines.Dispatchers

@@ -32,6 +32,10 @@ class ProfileViewModel(
         TextEditTextModel(fieldType = TextEditTextFieldType.EXPORT_KEY, isRequired = true)
 
     init {
+        loadUserProfile()
+    }
+
+    fun loadUserProfile() {
         viewModelScope.launch(Dispatchers.Default) {
             val userName = userRepository.getFullName()
             val userMobile = userRepository.getMobileNumber()

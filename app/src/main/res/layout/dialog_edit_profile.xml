@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.summer.passwordmanager.ui.dialogs.tags.CreateTagViewModel" />
+            type="com.summer.passwordmanager.ui.dialogs.profile.UserViewModel" />
 
     </data>
 
@@ -31,27 +31,27 @@
                 android:orientation="vertical">
 
                 <include
-                    android:id="@+id/et_dialogCreateTag_tagName"
+                    android:id="@+id/et_dialogEditProfile_userName"
                     layout="@layout/field_new_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_x_medium"
                     app:hint="@{@string/empty}"
-                    app:textInputModel="@{model.tagNameEditTextModel}"
-                    app:title="@{@string/tag_name}" />
+                    app:textInputModel="@{model.fullNameEditTextModel}"
+                    app:title="@{@string/name}" />
 
                 <include
-                    android:id="@+id/et_dialogCreateTag_tagDescription"
+                    android:id="@+id/et_dialogEditProfile_mobileNumber"
                     layout="@layout/field_new_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_x_medium"
                     app:hint="@{@string/empty}"
-                    app:textInputModel="@{model.tagDescriptionEditTextModel}"
-                    app:title="@{@string/tag_description}" />
+                    app:textInputModel="@{model.mobileNumberEditTextModel}"
+                    app:title="@{@string/mobile_number}" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_dialogCreateTag_container"
+                    android:id="@+id/cl_dialogEditProfile_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_x_medium"
@@ -62,7 +62,7 @@
                     app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_dialogCreateTag_cancelButton"
+                        android:id="@+id/tv_dialogEditProfile_cancelButton"
                         style="@style/text_body"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -73,14 +73,14 @@
                         android:text="@string/cancel"
                         android:textAllCaps="false"
                         android:textColor="?colorPrimary"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_dialogCreateTag_confirmButton"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_dialogCreateTag_confirmButton"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_dialogEditProfile_confirmButton"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_dialogEditProfile_confirmButton"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Cancel" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_dialogCreateTag_confirmButton"
+                        android:id="@+id/tv_dialogEditProfile_confirmButton"
                         style="@style/text_body"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/tv_dialogCreateTag_cancelButton"
+                        app:layout_constraintStart_toEndOf="@+id/tv_dialogEditProfile_cancelButton"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="OK" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

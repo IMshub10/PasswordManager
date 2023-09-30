@@ -12,7 +12,8 @@ import com.summer.passwordmanager.repository.LocalRepository
 import com.summer.passwordmanager.repository.LocalRepositoryImpl
 import com.summer.passwordmanager.repository.UserRepository
 import com.summer.passwordmanager.repository.UserRepositoryImpl
-import com.summer.passwordmanager.ui.dialogs.CreateTagViewModel
+import com.summer.passwordmanager.ui.dialogs.profile.UserViewModel
+import com.summer.passwordmanager.ui.dialogs.tags.CreateTagViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.PassGeneratorViewModel
 import com.summer.passwordmanager.ui.screens.main.viewmodels.ProfileViewModel
@@ -90,5 +91,8 @@ val viewModelModule = module {
     }
     viewModel {
         CreateTagViewModel()
+    }
+    viewModel {
+        UserViewModel(userRepository = get())
     }
 }

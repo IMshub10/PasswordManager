@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.databinding.FragMainProfileBinding
+import com.summer.passwordmanager.ui.dialogs.profile.EditUserDialog
 import com.summer.passwordmanager.ui.screens.main.viewmodels.ProfileViewModel
 import com.summer.passwordmanager.ui.screens.pin.PinActivity
 import com.summer.passwordmanager.utils.LauncherUtils
@@ -17,9 +18,21 @@ class ProfileFrag : BaseFragment<FragMainProfileBinding>() {
 
     private val viewModel: ProfileViewModel by activityViewModel()
 
+    private var editUserDialog: EditUserDialog? = null
+
     override fun onFragmentReady(instanceState: Bundle?) {
         mBinding.userModel = viewModel.userModel
         listeners()
+    }
+
+    private fun showEditProfileDialog() {
+        if (editUserDialog?.isAdded != true) {
+            editUserDialog =
+                EditUserDialog(object : EditUserDialog.DismissListener {
+                    override fun onComplete() = viewModel.loadUserProfile()
+                })
+            editUserDialog?.show(childFragmentManager, "")
+        }
     }
 
     private fun listeners() {
@@ -43,6 +56,9 @@ class ProfileFrag : BaseFragment<FragMainProfileBinding>() {
                     requireActivity(),
                     PinActivity::class.java
                 )
+            }
+            tvFragMainProfileMobileEdit.setOnClickListener {
+                showEditProfileDialog()
             }
         }
     }
