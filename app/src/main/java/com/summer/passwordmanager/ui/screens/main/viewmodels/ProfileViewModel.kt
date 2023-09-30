@@ -57,25 +57,35 @@ class ProfileViewModel(
     /**
      * Saves in Documents/{App_name}/encrypted File/file_name.txt
      */
-    suspend fun exportFile(appName: String) =
-        fileRepository.exportFile(
-            fileBean = FileBean(
-                localRepository.getAllTags().toTagBeans(),
-                vaultBeans = localRepository.getAllVaults().toVaultBeans()
-            ),
-            appName = appName,
-            fileName = fileName.editTextContent!!,
-            key = key.editTextContent!!
-        )
+    suspend fun exportFile(appName: String): String? {
+        var result: String?
+        withContext(Dispatchers.IO) {
+            result = fileRepository.exportFile(
+                fileBean = FileBean(
+                    localRepository.getAllTags().toTagBeans(),
+                    vaultBeans = localRepository.getAllVaults().toVaultBeans()
+                ),
+                appName = appName,
+                fileName = fileName.editTextContent!!,
+                key = key.editTextContent!!
+            )
+        }
+        return result
+    }
 
-    suspend fun importFile(inputStream: InputStream) =
-        fileRepository.importFile(inputStream, key.editTextContent!!)
-            .also { fileBean ->
-                fileBean?.tagBeans?.forEach {
-                    localRepository.insertReplaceTagEntity(it.toTagEntity())
-                }
-                fileBean?.vaultBeans?.forEach {
-                    localRepository.insertIgnoreVaultEntity(it.toVaultEntity())
-                }
-            } != null
+    suspend fun importFile(inputStream: InputStream): Boolean {
+        var result: Boolean
+        withContext(Dispatchers.IO) {
+            result = fileRepository.importFile(inputStream, key.editTextContent!!)
+                .also { fileBean ->
+                    fileBean?.tagBeans?.forEach {
+                        localRepository.insertReplaceTagEntity(it.toTagEntity())
+                    }
+                    fileBean?.vaultBeans?.forEach {
+                        localRepository.insertIgnoreVaultEntity(it.toVaultEntity())
+                    }
+                } != null
+        }
+        return result
+    }
 }

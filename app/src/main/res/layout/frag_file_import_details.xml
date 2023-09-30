@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_x_medium"
             android:text="@string/import_file"
+            android:textColor="?label"
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
@@ -41,6 +42,7 @@
             android:layout_margin="@dimen/spacing_tiny"
             android:layout_weight="0.2"
             android:text="@string/txt_ok"
+            android:textColor="?label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/importFileKeyTv" />

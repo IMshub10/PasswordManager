@@ -61,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_x_small"
                 android:layout_weight="0.5"
-                android:text="@string/generate_key" />
+                android:text="@string/generate_key"
+                android:textColor="?label" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/exportBtn"
@@ -69,7 +70,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_x_small"
                 android:layout_weight="0.5"
-                android:text="@string/export_file" />
+                android:text="@string/export_file"
+                android:textColor="?label" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
