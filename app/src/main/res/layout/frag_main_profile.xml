@@ -48,22 +48,20 @@
                 app:layout_constraintTop_toTopOf="@+id/iv_fragMainProfile_icon"
                 tools:text="Shubham Meher" />
 
-            <!--
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_fragMainProfile_mobile"
-                        style="@style/text_body"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_x_small"
-                        android:ellipsize="end"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:text="@{userModel.mobile}"
-                        app:layout_constraintEnd_toEndOf="@+id/tv_fragMainProfile_name"
-                        app:layout_constraintStart_toStartOf="@+id/tv_fragMainProfile_name"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_fragMainProfile_name"
-                        tools:text="+91 9876543210" />
-            -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_fragMainProfile_mobile"
+                style="@style/text_body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_x_small"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
+                android:text="@{userModel.mobile}"
+                app:layout_constraintEnd_toEndOf="@+id/tv_fragMainProfile_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_fragMainProfile_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fragMainProfile_name"
+                tools:text="+91 9876543210" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tv_fragMainProfile_mobile_edit"
@@ -74,7 +72,6 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="@dimen/spacing_x_small"
-                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_fragMainProfile_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/iv_fragMainProfile_icon"
@@ -135,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_x_medium"
                 android:layout_marginVertical="@dimen/spacing_medium"
+                android:visibility="gone"
                 app:isRed="@{true}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_fragMainProfile_exportFile"

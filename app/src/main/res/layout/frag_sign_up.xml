@@ -19,7 +19,7 @@
             style="@style/text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="140dp"
             android:text="@string/create_account"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,20 +44,18 @@
             app:textInputModel="@{model.fullNameEditTextModel}"
             app:title="@{@string/name}" />
 
-        <!--
-                <include
-                    android:id="@+id/et_fragSignUp_mobileNumber"
-                    layout="@layout/field_new_edit_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_small"
-                    app:hint="@{@string/hint_mobile_number}"
-                    app:title="@{@string/mobile_number}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_name"
-                    app:textInputModel="@{model.mobileNumberEditTextModel}" />
-        -->
+        <include
+            android:id="@+id/et_fragSignUp_mobileNumber"
+            layout="@layout/field_new_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            app:hint="@{@string/hint_mobile_number}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_name"
+            app:textInputModel="@{model.mobileNumberEditTextModel}"
+            app:title="@{@string/mobile_number}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_fragSignUp_save"
@@ -72,6 +70,6 @@
             android:padding="@dimen/spacing_small"
             android:text="@string/next"
             android:textColor="@color/white_hole"
-            app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_name" />
+            app:layout_constraintTop_toBottomOf="@+id/et_fragSignUp_mobileNumber" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
