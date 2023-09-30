@@ -151,7 +151,7 @@ data class TextEditTextModel(
                     )
                 }
             }
-            this.setText(model.editTextContent ?: "")
+            this.setText(model.editTextContent.orEmpty())
             //listeners
             this.addTextChangedListener {
                 model.editTextContent = it?.trim()?.toString()

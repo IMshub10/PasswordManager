@@ -20,17 +20,17 @@ class CreateTagViewModel() : ViewModel() {
     }
 
     fun setUpInputModels() {
-        tagNameEditTextModel.editTextContent = tagEntity?.name ?: ""
-        tagDescriptionEditTextModel.editTextContent = tagEntity?.description ?: ""
+        tagNameEditTextModel.editTextContent = tagEntity?.name.orEmpty()
+        tagDescriptionEditTextModel.editTextContent = tagEntity?.description.orEmpty()
     }
 
     fun toSaveTagEntity() = tagEntity?.apply {
-        name = tagNameEditTextModel.editTextContent ?: ""
+        name = tagNameEditTextModel.editTextContent.orEmpty()
         description = tagDescriptionEditTextModel.editTextContent
         updatedAtApp = AppUtils.getCurrentTimeSecs()
     }
         ?: TagEntity(
-            name = tagNameEditTextModel.editTextContent ?: "",
+            name = tagNameEditTextModel.editTextContent.orEmpty(),
             description = tagDescriptionEditTextModel.editTextContent
         ).apply {
             createdAtApp = AppUtils.getCurrentTimeSecs()

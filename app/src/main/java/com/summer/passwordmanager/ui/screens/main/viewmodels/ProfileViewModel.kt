@@ -41,8 +41,8 @@ class ProfileViewModel(
             val userMobile = userRepository.getMobileNumber()
             withContext(Dispatchers.Main) {
                 userModel.apply {
-                    name = userName ?: ""
-                    mobile = userMobile ?: ""
+                    name = userName.orEmpty()
+                    mobile = userMobile.orEmpty()
                     notifyChange()
                 }
             }

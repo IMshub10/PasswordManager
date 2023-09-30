@@ -37,6 +37,6 @@ fun VaultEntity.filterByTagSearchValue(tagId: String?, searchValue: String): Boo
     return if (tagId == null) {
         contains(searchValue)
     } else {
-        contains(searchValue) && (tagEntity?.id ?: "") == tagId
+        contains(searchValue) && (tagEntity?.id.orEmpty()) == tagId
     }
 }

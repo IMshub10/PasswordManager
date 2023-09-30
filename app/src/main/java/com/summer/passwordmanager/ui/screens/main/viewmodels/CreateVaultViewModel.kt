@@ -41,11 +41,11 @@ class CreateVaultViewModel(private val localRepository: LocalRepository) : ViewM
 
     private fun resetUiModels() {
         selectedTagId = vaultEntity?.tagId
-        websiteNameEditTextModel.setModel(vaultEntity?.entityName ?: "")
-        websiteAddressEditTextModel.setModel(vaultEntity?.webAddress ?: "")
-        userNameMobileEditTextModel.setModel(vaultEntity?.usernameMobileCardNumber ?: "")
-        passwordEditTextModel.setModel(vaultEntity?.password ?: "")
-        notesEditTextModel.setModel(vaultEntity?.notes ?: "")
+        websiteNameEditTextModel.setModel(vaultEntity?.entityName.orEmpty())
+        websiteAddressEditTextModel.setModel(vaultEntity?.webAddress.orEmpty())
+        userNameMobileEditTextModel.setModel(vaultEntity?.usernameMobileCardNumber.orEmpty())
+        passwordEditTextModel.setModel(vaultEntity?.password.orEmpty())
+        notesEditTextModel.setModel(vaultEntity?.notes.orEmpty())
     }
 
     fun setUpVaultEntity(vaultId: String?) {
@@ -59,24 +59,24 @@ class CreateVaultViewModel(private val localRepository: LocalRepository) : ViewM
 
     suspend fun save() {
         vaultEntity?.apply {
-            entityName = websiteNameEditTextModel.editTextContent ?: ""
-            usernameMobileCardNumber = userNameMobileEditTextModel.editTextContent ?: ""
-            password = passwordEditTextModel.editTextContent ?: ""
-            notes = notesEditTextModel.editTextContent ?: ""
-            webAddress = websiteAddressEditTextModel.editTextContent ?: ""
+            entityName = websiteNameEditTextModel.editTextContent.orEmpty()
+            usernameMobileCardNumber = userNameMobileEditTextModel.editTextContent.orEmpty()
+            password = passwordEditTextModel.editTextContent.orEmpty()
+            notes = notesEditTextModel.editTextContent.orEmpty()
+            webAddress = websiteAddressEditTextModel.editTextContent.orEmpty()
             tagId = selectedTagId
             updatedAtApp = AppUtils.getCurrentTimeSecs()
         }
         localRepository.insertReplaceVaultEntity(
             vaultEntity ?: VaultEntity(
                 id = AppUtils.generateXid(),
-                entityName = websiteNameEditTextModel.editTextContent ?: "",
-                usernameMobileCardNumber = userNameMobileEditTextModel.editTextContent ?: "",
-                password = passwordEditTextModel.editTextContent ?: "",
-                notes = notesEditTextModel.editTextContent ?: "",
+                entityName = websiteNameEditTextModel.editTextContent.orEmpty(),
+                usernameMobileCardNumber = userNameMobileEditTextModel.editTextContent.orEmpty(),
+                password = passwordEditTextModel.editTextContent.orEmpty(),
+                notes = notesEditTextModel.editTextContent.orEmpty(),
                 createdAtApp = AppUtils.getCurrentTimeSecs(),
                 updatedAtApp = AppUtils.getCurrentTimeSecs(),
-                webAddress = websiteAddressEditTextModel.editTextContent ?: "",
+                webAddress = websiteAddressEditTextModel.editTextContent.orEmpty(),
                 tagId = selectedTagId
             )
         )

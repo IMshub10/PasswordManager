@@ -61,20 +61,20 @@ class VaultViewModel(private val localRepository: LocalRepository) : ViewModel()
             addSource(vaultMap) {
                 value = if (it == null) null
                 else {
-                    getVaultList(it, searchQuery.value ?: "", selectedTag.value)
+                    getVaultList(it, searchQuery.value.orEmpty(), selectedTag.value)
                 }
             }
             addSource(searchQuery) {
                 val vaultMapValue = vaultMap.value
                 value = if (vaultMapValue == null) null else {
-                    getVaultList(vaultMapValue, it ?: "", selectedTag.value)
+                    getVaultList(vaultMapValue, it.orEmpty(), selectedTag.value)
                 }
             }
             addSource(selectedTag) {
                 val vaultMapValue = vaultMap.value
                 value = if (vaultMapValue == null) null
                 else {
-                    getVaultList(vaultMapValue, searchQuery.value ?: "", it)
+                    getVaultList(vaultMapValue, searchQuery.value.orEmpty(), it)
                 }
             }
         }
