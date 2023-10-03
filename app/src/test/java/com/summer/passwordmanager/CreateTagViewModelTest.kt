@@ -1,7 +1,7 @@
 package com.summer.passwordmanager
 
 import com.summer.passwordmanager.database.entities.TagEntity
-import com.summer.passwordmanager.ui.dialogs.CreateTagViewModel
+import com.summer.passwordmanager.ui.dialogs.tags.CreateTagViewModel
 import com.summer.passwordmanager.utils.AppUtils
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

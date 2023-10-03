@@ -1,13 +1,10 @@
 package com.summer.passwordmanager.repository
 
-import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
 import com.summer.passwordmanager.database.dao.AppDao
 import com.summer.passwordmanager.database.entities.PassHistoryEntity
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
-import com.summer.passwordmanager.utils.AppUtils
 
 class LocalRepositoryImpl(private val dao: AppDao) : LocalRepository {
     override suspend fun insertIgnoreVaultEntity(vaultEntity: VaultEntity) =
@@ -23,7 +20,7 @@ class LocalRepositoryImpl(private val dao: AppDao) : LocalRepository {
     override fun getAllTagsLive(): LiveData<List<TagEntity>?> =
         dao.getAllTagsLive()
 
-    override fun getAllTags(): List<TagEntity> =
+    override suspend fun getAllTags(): List<TagEntity> =
         dao.getAllTags()
 
     override fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>> =

@@ -12,7 +12,7 @@ interface LocalRepository {
     suspend fun insertPastHistory(passHistoryEntity: PassHistoryEntity)
     suspend fun insertReplaceTagEntity(tagEntity: TagEntity)
     fun getAllTagsLive(): LiveData<List<TagEntity>?>
-    fun getAllTags(): List<TagEntity>
+    suspend fun getAllTags(): List<TagEntity>
     fun getAllVaultsWithTheirTag(): LiveData<Map<VaultEntity, TagEntity?>>
     suspend fun getAllVaults(): List<VaultEntity>
     suspend fun getVaultById(vaultId: String): VaultEntity?

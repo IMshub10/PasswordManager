@@ -6,7 +6,7 @@ import com.summer.passwordmanager.repository.UserRepository
 class SetUpPinViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     suspend fun save(checked: Boolean?) {
-        userRepository.setPin(pin = firstPin ?: "")
+        userRepository.setPin(pin = firstPin.orEmpty())
         userRepository.setFingerPrint(checked ?: false)
     }
 

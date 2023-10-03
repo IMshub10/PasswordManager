@@ -24,7 +24,7 @@ class FileExportDetailsFrag : BaseFragment<FragFileExportDetailsBinding>() {
         viewModel.fileName.reset()
         mBinding.model = viewModel
         mBinding.exportCopyBtn.setOnClickListener {
-            AppUtils.copyText(requireContext(), viewModel.key.editTextContent ?: "")
+            AppUtils.copyText(requireContext(), viewModel.key.editTextContent.orEmpty())
             showShortToast(getString(R.string.copied_to_clipboard))
         }
 

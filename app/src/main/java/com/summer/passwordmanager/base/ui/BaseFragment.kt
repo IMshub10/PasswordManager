@@ -26,7 +26,7 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
     ): View {
         binding =
             DataBindingUtil.inflate(
-                LayoutInflater.from(requireContext()),
+                layoutInflater,
                 layoutResId,
                 container,
                 false

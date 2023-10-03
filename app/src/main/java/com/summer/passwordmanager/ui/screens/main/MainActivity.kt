@@ -114,12 +114,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         searchView?.maxWidth = Int.MAX_VALUE
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                mainViewModel.searchQuery.value = query ?: ""
+                mainViewModel.searchQuery.value = query.orEmpty()
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                mainViewModel.searchQuery.value = newText ?: ""
+                mainViewModel.searchQuery.value = newText.orEmpty()
                 return false
             }
         })

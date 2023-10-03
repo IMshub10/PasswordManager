@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_light</item>
         <item name="colorPrimaryVariant">@color/grey_darkest</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/grey_darkest</item>
 
         <item name="colorSurface">@color/white_hole</item>
         <item name="colorOnSurface">@color/grey_lightest</item>
