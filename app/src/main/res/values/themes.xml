@@ -148,6 +148,7 @@
         <item name="android:lineHeight">22.5sp</item>
         <item name="android:letterSpacing">0.016</item>
         <item name="android:textColor">?attr/labelSecondary</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
     </style>
 
     <style name="text_caption" parent="TextAppearance.AppCompat">
@@ -155,6 +156,7 @@
         <item name="android:lineHeight">18sp</item>
         <item name="android:letterSpacing">0.01</item>
         <item name="android:textColor">?attr/label</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
     </style>
 
     <style name="text_caption_secondary" parent="TextAppearance.AppCompat">
@@ -162,6 +164,7 @@
         <item name="android:lineHeight">18sp</item>
         <item name="android:letterSpacing">0.01</item>
         <item name="android:textColor">?attr/labelSecondary</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
     </style>
 
     <style name="text_link" parent="TextAppearance.AppCompat">
@@ -169,6 +172,7 @@
         <item name="android:lineHeight">22.5sp</item>
         <item name="android:letterSpacing">0.016</item>
         <item name="android:textColor">?attr/colorLink</item>
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
     </style>
 
     <style name="text_body_error" parent="TextAppearance.AppCompat">
