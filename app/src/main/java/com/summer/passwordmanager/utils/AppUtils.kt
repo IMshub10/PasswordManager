@@ -11,15 +11,6 @@ import java.util.Random
 import kotlin.streams.asSequence
 
 object AppUtils {
-    //region Values
-    const val KEY_FULL_NAME = "full_name"
-    const val KEY_MOBILE_NUMBER = "mobile_number"
-    const val KEY_PIN = "pin"
-    const val KEY_FINGERPRINT_ENABLED = "fingerprint_enabled"
-    const val KEY_ADD = "add"
-    const val KEY_ALL = "all"
-    //endregion
-
     //region Functions
     fun generateXid() = Xid.get().toHexString()!!
 

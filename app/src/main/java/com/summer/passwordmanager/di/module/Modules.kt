@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.SharedPreferences
 import androidx.room.Room
 import com.summer.passwordmanager.database.AppDatabase
+import com.summer.passwordmanager.database.DBEncryptor
 import com.summer.passwordmanager.database.dao.AppDao
 import com.summer.passwordmanager.database.preferences.Preference
 import com.summer.passwordmanager.repository.FileRepository
@@ -28,11 +29,11 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val databaseModule = module {
-    fun provideDatabase(application: Application): AppDatabase {
-        return Room.databaseBuilder(application, AppDatabase::class.java, "pass_generator_db")
-            //.fallbackToDestructiveMigration()
-            .createFromAsset("db/init.db")
-            .build()
+    fun provideDatabase(
+        application: Application,
+        sharedPreferences: SharedPreferences
+    ): AppDatabase {
+        return AppDatabase(context = application, factory = DBEncryptor(sharedPreferences))
     }
 
     fun provideSharedPreference(application: Application): SharedPreferences {
@@ -43,9 +44,9 @@ val databaseModule = module {
         return database.appDao()
     }
 
-    single { provideDatabase(androidApplication()) }
     single { provideDao(get()) }
     single { provideSharedPreference(androidApplication()) }
+    single { provideDatabase(androidApplication(), provideSharedPreference(androidApplication())) }
 }
 
 val repositoryModule = module {

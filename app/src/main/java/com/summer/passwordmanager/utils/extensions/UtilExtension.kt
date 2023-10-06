@@ -7,6 +7,8 @@ import com.summer.passwordmanager.database.entities.VaultEntity
 inline fun <reified T> Gson.fromJson(json: String) =
     this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
+inline fun <reified T : Any> T.json(): String = Gson().toJson(this, T::class.java)
+
 fun List<Int>?.getIntArray(): String? {
     if (this == null) return null
     return if (this.isEmpty()) {

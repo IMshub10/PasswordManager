@@ -33,11 +33,24 @@ class Preference {
             return EncryptedSharedPreferences.create(
                 applicationContext,
                 APP_PREFERENCE_NAME,
-                setupMasterKey(applicationContext), // masterKey created above
+                setupMasterKey(applicationContext),
                 EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                 EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
             );
         }
+
+        //region Values
+        const val KEY_FULL_NAME = "full_name"
+        const val KEY_MOBILE_NUMBER = "mobile_number"
+        const val KEY_PIN = "pin"
+        const val KEY_FINGERPRINT_ENABLED = "fingerprint_enabled"
+        const val KEY_ADD = "add"
+        const val KEY_ALL = "all"
+
+        //DB
+        const val KEY_DB_PASSCODE = "db_key"
+        const val KEY_DB_WRAPPER_DATA = "db_wrapper_data"
+        //endregion
     }
 
 }

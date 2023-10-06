@@ -27,19 +27,11 @@ class SplashScreenActivity
     override fun onActivityReady(savedInstanceState: Bundle?) {
         lifecycleScope.launch {
             val checkAccExists = viewModel.checkIfAccountExists()
-            //val isFingerPrintEnabled = viewModel.isFingerPrintEnabled()
             withContext(Dispatchers.Main) {
-                if (checkAccExists) {
-                    LauncherUtils.startActivityWithClearTop(
-                        this@SplashScreenActivity,
-                        PinActivity::class.java
-                    )
-                } else {
-                    LauncherUtils.startActivityWithClearTop(
-                        this@SplashScreenActivity,
-                        SignUpActivity::class.java
-                    )
-                }
+                LauncherUtils.startActivityWithClearTop(
+                    this@SplashScreenActivity,
+                    if (checkAccExists) PinActivity::class.java else SignUpActivity::class.java
+                )
             }
         }
     }
