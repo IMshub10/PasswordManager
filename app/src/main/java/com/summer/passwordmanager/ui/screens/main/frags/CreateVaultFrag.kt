@@ -10,11 +10,11 @@ import com.google.android.flexbox.JustifyContent
 import com.summer.passwordmanager.R
 import com.summer.passwordmanager.base.ui.BaseFragment
 import com.summer.passwordmanager.database.entities.TagEntity
+import com.summer.passwordmanager.database.preferences.Preference.Companion.KEY_ADD
 import com.summer.passwordmanager.databinding.FragCreateVaultBinding
 import com.summer.passwordmanager.ui.adapters.SelectTagAdapter
 import com.summer.passwordmanager.ui.dialogs.tags.CreateTagDialog
 import com.summer.passwordmanager.ui.screens.main.viewmodels.CreateVaultViewModel
-import com.summer.passwordmanager.utils.AppUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -88,7 +88,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                 this.add(
                     this.size,
                     TagEntity(
-                        id = AppUtils.KEY_ADD,
+                        id = KEY_ADD,
                         createdAtApp = 0,
                         updatedAtApp = 0,
                         name = "+ Add Tag",
@@ -115,7 +115,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
                             item.isSelected = false
                             item.notifyChange()
                         } else {
-                            if (item.id == AppUtils.KEY_ADD) {
+                            if (item.id == KEY_ADD) {
                                 viewModel.selectedTagId = null
                                 adapter?.currentList?.forEach {
                                     it.isSelected = false

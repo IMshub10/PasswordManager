@@ -8,8 +8,8 @@ import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.VaultEntity
+import com.summer.passwordmanager.database.preferences.Preference.Companion.KEY_ALL
 import com.summer.passwordmanager.repository.LocalRepository
-import com.summer.passwordmanager.utils.AppUtils
 import com.summer.passwordmanager.utils.extensions.filterByTagSearchValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +23,7 @@ class VaultViewModel(private val localRepository: LocalRepository) : ViewModel()
     val tagListLive = localRepository.getAllTagsLive().map {
         val list = it?.toMutableList()
         list?.add(0, TagEntity(
-            id = AppUtils.KEY_ALL, createdAtApp = 0,
+            id = KEY_ALL, createdAtApp = 0,
             updatedAtApp = 0, name = "All", description = null
         ).apply {
             isSelected = true
@@ -35,7 +35,7 @@ class VaultViewModel(private val localRepository: LocalRepository) : ViewModel()
         localRepository.getAllVaultsWithTheirTag()
 
     fun resetSelectedTag(tagEntity: TagEntity) {
-        selectedTag.value = if (tagEntity.id == AppUtils.KEY_ALL) null else tagEntity
+        selectedTag.value = if (tagEntity.id == KEY_ALL) null else tagEntity
         if (tagListLive.value == null) return
         tagListLive.value?.forEach {
             it.isSelected = it.id == tagEntity.id
