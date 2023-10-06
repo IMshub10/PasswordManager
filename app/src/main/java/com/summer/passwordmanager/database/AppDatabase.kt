@@ -1,10 +1,12 @@
 package com.summer.passwordmanager.database
 
 import android.content.Context
+import android.os.Build
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.summer.passwordmanager.BuildConfig
 import com.summer.passwordmanager.database.dao.AppDao
 import com.summer.passwordmanager.database.entities.TagEntity
 import com.summer.passwordmanager.database.entities.PassHistoryEntity
@@ -40,19 +42,30 @@ abstract class AppDatabase : RoomDatabase() {
             }
 
         private fun buildDatabase(context: Context, factory: SupportFactory) =
-            Room.databaseBuilder(
-                context.applicationContext, AppDatabase::class.java, DB_NAME
-            )
-                .openHelperFactory(factory)
-                .addCallback(object : Callback() {
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        super.onCreate(db)
-                        initTags()
-                    }
-                })
-                .build()
+            if (BuildConfig.IS_DEBUG)
+                Room.databaseBuilder(
+                    context.applicationContext, AppDatabase::class.java, DB_NAME
+                ).addCallback(object : Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            super.onCreate(db)
+                            initTags()
+                        }
+                    })
+                    .build()
+            else
+                Room.databaseBuilder(
+                    context.applicationContext, AppDatabase::class.java, DB_NAME
+                )
+                    .openHelperFactory(factory)
+                    .addCallback(object : Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            super.onCreate(db)
+                            initTags()
+                        }
+                    })
+                    .build()
 
-        private fun initTags(){
+        private fun initTags() {
             CoroutineScope(Dispatchers.IO).launch {
                 instance?.let {
                     it.appDao().insertTagIgnore(
