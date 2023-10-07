@@ -32,7 +32,6 @@ class FileImportDetailsFrag : BaseFragment<FragFileImportDetailsBinding>() {
 
     override fun onFragmentReady(instanceState: Bundle?) {
         viewModel.key.reset()
-        viewModel.fileName.reset()
         mBinding.model = viewModel
         mBinding.importFileBtn.setOnClickListener {
             acc.launch(Intent.createChooser(Intent(Intent.ACTION_GET_CONTENT).apply {
