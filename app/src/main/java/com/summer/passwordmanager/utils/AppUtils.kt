@@ -7,7 +7,9 @@ import com.github.shamil.Xid
 import com.google.gson.Gson
 import com.summer.passwordmanager.beans.FileBean
 import com.summer.passwordmanager.utils.extensions.fromJson
+import java.util.Calendar
 import java.util.Random
+import java.util.TimeZone
 import kotlin.streams.asSequence
 
 object AppUtils {
@@ -15,7 +17,7 @@ object AppUtils {
     fun generateXid() = Xid.get().toHexString()!!
 
     fun getCurrentTimeSecs() =
-        System.currentTimeMillis() / 1000
+        Calendar.getInstance(TimeZone.getTimeZone("GMT")).timeInMillis / 1000
 
     /**
      * Generate Random String
