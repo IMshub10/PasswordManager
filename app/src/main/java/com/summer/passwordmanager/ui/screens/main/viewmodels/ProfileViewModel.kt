@@ -1,5 +1,6 @@
 package com.summer.passwordmanager.ui.screens.main.viewmodels
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.summer.passwordmanager.beans.FileBean
@@ -17,7 +18,6 @@ import com.summer.passwordmanager.utils.AppUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
 
@@ -28,6 +28,9 @@ class ProfileViewModel(
 ) : ViewModel() {
 
     val userModel = UserModel()
+
+    val fileName = ObservableField("")
+
     val key =
         TextEditTextModel(fieldType = TextEditTextFieldType.EXPORT_KEY, isRequired = true)
 
