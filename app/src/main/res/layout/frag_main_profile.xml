@@ -126,6 +126,18 @@
                 app:text="@{@string/lock_app}" />
 
             <include
+                android:id="@+id/layout_fragMainProfile_dataPrivacy"
+                layout="@layout/layout_icon_text_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_x_medium"
+                android:layout_marginTop="@dimen/spacing_medium"
+                app:isRed="@{false}"
+                app:layout_constraintTop_toBottomOf="@+id/layout_fragMainProfile_lockApp"
+                app:startIcon="@{@drawable/ic_privacy}"
+                app:text="@{@string/data_privacy}" />
+
+            <include
                 android:id="@+id/layout_fragMainProfile_clearData"
                 layout="@layout/layout_icon_text_button"
                 android:layout_width="match_parent"

@@ -2,20 +2,27 @@ package com.summer.passwordmanager.utils
 
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.ContentResolver
 import android.content.Context
+import android.database.Cursor
+import android.net.Uri
+import android.provider.OpenableColumns
 import com.github.shamil.Xid
 import com.google.gson.Gson
 import com.summer.passwordmanager.beans.FileBean
 import com.summer.passwordmanager.utils.extensions.fromJson
+import java.util.Calendar
 import java.util.Random
+import java.util.TimeZone
 import kotlin.streams.asSequence
+
 
 object AppUtils {
     //region Functions
     fun generateXid() = Xid.get().toHexString()!!
 
     fun getCurrentTimeSecs() =
-        System.currentTimeMillis() / 1000
+        Calendar.getInstance(TimeZone.getTimeZone("GMT")).timeInMillis / 1000
 
     /**
      * Generate Random String
@@ -75,5 +82,15 @@ object AppUtils {
         } else {
             context.getString(stringId)
         }
+    }
+
+    fun getFileName(resolver: ContentResolver, uri: Uri): String? {
+        val returnCursor: Cursor? = resolver.query(uri, null, null, null, null)
+        val nameIndex: Int =
+            returnCursor?.getColumnIndex(OpenableColumns.DISPLAY_NAME) ?: return null
+        returnCursor.moveToFirst()
+        val name: String? = returnCursor.getString(nameIndex)
+        returnCursor.close()
+        return name
     }
 }

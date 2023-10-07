@@ -47,6 +47,7 @@
     <string name="tag_description">Tag description</string>
     <string name="search">Search</string>
     <string name="profile">Profile</string>
+    <string name="data_privacy">Data Privacy</string>
     <string name="lock_app">Lock App</string>
     <string name="export_file">Export File</string>
     <string name="import_file">Import File</string>
@@ -69,4 +70,9 @@
     <string name="dummy_pass">********</string>
     <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete? Once deleted data cannot be restored.</string>
     <string name="n_a">N/A</string>
+    <string name="file_export_disclaimer">The file key is essential for accessing encrypted data in the file. Keep it secure; without the key, the data cannot be accessed.</string>
+    <string name="unable_to_export_file">Unable to export file.</string>
+    <string name="file_exported_successfully">File exported successfully.</string>
+    <string name="unable_to_import_this_file">Unable to import this file.</string>
+    <string name="choose_file">Choose File</string>
 </resources>

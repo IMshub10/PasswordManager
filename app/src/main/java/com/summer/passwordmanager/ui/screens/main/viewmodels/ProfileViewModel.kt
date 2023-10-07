@@ -1,5 +1,6 @@
 package com.summer.passwordmanager.ui.screens.main.viewmodels
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.summer.passwordmanager.beans.FileBean
@@ -18,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.InputStream
+import java.io.OutputStream
 
 class ProfileViewModel(
     private val userRepository: UserRepository,
@@ -26,8 +28,9 @@ class ProfileViewModel(
 ) : ViewModel() {
 
     val userModel = UserModel()
-    val fileName =
-        TextEditTextModel(fieldType = TextEditTextFieldType.EXPORT_FILE_NAME, isRequired = true)
+
+    val fileName = ObservableField("")
+
     val key =
         TextEditTextModel(fieldType = TextEditTextFieldType.EXPORT_KEY, isRequired = true)
 
@@ -57,20 +60,18 @@ class ProfileViewModel(
     /**
      * Saves in Documents/{App_name}/encrypted File/file_name.txt
      */
-    suspend fun exportFile(appName: String): String? {
-        var result: String?
+    suspend fun exportFile(appName: String, fileOutputStream: OutputStream) {
         withContext(Dispatchers.IO) {
-            result = fileRepository.exportFile(
+            fileRepository.exportFile(
                 fileBean = FileBean(
                     localRepository.getAllTags().toTagBeans(),
                     vaultBeans = localRepository.getAllVaults().toVaultBeans()
                 ),
                 appName = appName,
-                fileName = fileName.editTextContent!!,
-                key = key.editTextContent!!
+                key = key.editTextContent!!,
+                fileOutputStream = fileOutputStream
             )
         }
-        return result
     }
 
     suspend fun importFile(inputStream: InputStream): Boolean {

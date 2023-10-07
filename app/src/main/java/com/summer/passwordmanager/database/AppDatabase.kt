@@ -46,11 +46,11 @@ abstract class AppDatabase : RoomDatabase() {
                 Room.databaseBuilder(
                     context.applicationContext, AppDatabase::class.java, DB_NAME
                 ).addCallback(object : Callback() {
-                        override fun onCreate(db: SupportSQLiteDatabase) {
-                            super.onCreate(db)
-                            initTags()
-                        }
-                    })
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        initTags()
+                    }
+                })
                     .build()
             else
                 Room.databaseBuilder(
@@ -68,25 +68,25 @@ abstract class AppDatabase : RoomDatabase() {
         private fun initTags() {
             CoroutineScope(Dispatchers.IO).launch {
                 instance?.let {
-                    it.appDao().insertTagIgnore(
+                    it.appDao().insertTagReplace(
                         TagEntity(
-                            id = AppUtils.generateXid(),
+                            id = "chkjhou32ogk7ri5kpc0",
                             name = "Social Media",
-                            createdAtApp = AppUtils.getCurrentTimeSecs(),
+                            createdAtApp = 1684652575,
                             updatedAtApp = AppUtils.getCurrentTimeSecs()
                         )
                     )
-                    it.appDao().insertTagIgnore(
+                    it.appDao().insertTagReplace(
                         TagEntity(
-                            id = AppUtils.generateXid(),
+                            id = "chkjin632ogk7ri5kpdg",
                             name = "Banking",
                             createdAtApp = AppUtils.getCurrentTimeSecs(),
                             updatedAtApp = AppUtils.getCurrentTimeSecs()
                         )
                     )
-                    it.appDao().insertTagIgnore(
+                    it.appDao().insertTagReplace(
                         TagEntity(
-                            id = AppUtils.generateXid(),
+                            id = "chkjiau32ogk7ri5kpcg",
                             name = "Credit/Debit Card",
                             createdAtApp = AppUtils.getCurrentTimeSecs(),
                             updatedAtApp = AppUtils.getCurrentTimeSecs()

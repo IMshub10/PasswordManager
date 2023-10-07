@@ -14,7 +14,7 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/blue_grey_dark</item>
         <item name="colorSecondaryVariant">@color/blue_grey_light</item>
-        <item name="colorOnSecondary">@color/white_hole</item>
+        <item name="colorOnSecondary">@color/background_light</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
@@ -29,7 +29,8 @@
         <item name="labelSecondary">@color/translucent_0.6</item>
         <item name="labelTertiary">@color/translucent_0.3</item>
         <item name="colorGreen">@color/green_light</item>
-        <item name="box_background">@color/background_light</item>
+        <item name="boxBackground">@color/background_light</item>
+        <item name="tagBackground">@color/grey_lightest</item>
 
         <item name="colorSeparator">@color/separator_light</item>
         <item name="iconColorPrimary">?attr/colorLink</item>
@@ -221,7 +222,7 @@
         <item name="boxStrokeWidth">1dp</item>
         <item name="boxStrokeWidthFocused">1dp</item>
         <item name="boxStrokeErrorColor">@color/red_light</item>
-        <item name="boxBackgroundColor">?box_background</item>
+        <item name="boxBackgroundColor">?boxBackground</item>
         <item name="boxStrokeColor">?attr/colorOnPrimary</item>
         <item name="errorTextColor">@color/error</item>
         <item name="hintTextColor">?label</item>

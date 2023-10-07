@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="model"
@@ -12,40 +15,52 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/spacing_medium">
+        android:paddingTop="@dimen/spacing_small">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/importFileBtn"
+            android:id="@+id/btn_fragFileImport_chooseFile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_x_medium"
-            android:text="@string/import_file"
-            android:textColor="?label"
+            android:text="@string/choose_file"
+            android:textColor="@color/white"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fragFileImport_fileName"
+            style="@style/text_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_x_medium"
+            android:text="@{model.fileName}"
+            android:textStyle="italic"
+            android:visibility="@{model.fileName.isEmpty() ? View.GONE : View.VISIBLE }"
+            app:layout_constraintTop_toBottomOf="@id/btn_fragFileImport_chooseFile"
+            tools:text="HelloWorld.txt" />
+
         <include
-            android:id="@+id/importFileKeyTv"
+            android:id="@+id/et_fragFileImport_fileKey"
             layout="@layout/field_new_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_x_medium"
             app:hint="@{@string/file_key}"
-            app:layout_constraintTop_toBottomOf="@id/importFileBtn"
+            app:layout_constraintTop_toBottomOf="@id/tv_fragFileImport_fileName"
             app:textInputModel="@{model.key}"
             app:title="@{@string/file_key}" />
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/importOkBtn"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_fragFileImport_import"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_tiny"
+            android:layout_margin="@dimen/spacing_x_medium"
             android:layout_weight="0.2"
-            android:text="@string/txt_ok"
-            android:textColor="?label"
+            android:text="@string/import_file"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/importFileKeyTv" />
+            app:layout_constraintTop_toBottomOf="@id/et_fragFileImport_fileKey" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,7 @@
 package com.summer.passwordmanager.ui.screens.main.frags
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import com.summer.passwordmanager.R
@@ -10,6 +12,7 @@ import com.summer.passwordmanager.ui.screens.main.viewmodels.ProfileViewModel
 import com.summer.passwordmanager.ui.screens.pin.PinActivity
 import com.summer.passwordmanager.utils.LauncherUtils
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+
 
 class ProfileFrag : BaseFragment<FragMainProfileBinding>() {
 
@@ -56,6 +59,9 @@ class ProfileFrag : BaseFragment<FragMainProfileBinding>() {
                     requireActivity(),
                     PinActivity::class.java
                 )
+            }
+            layoutFragMainProfileDataPrivacy.clLayoutIconTextButtonRoot.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/IMshub10/PasswordManager/wiki")))
             }
             tvFragMainProfileMobileEdit.setOnClickListener {
                 showEditProfileDialog()

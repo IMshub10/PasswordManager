@@ -1,6 +1,5 @@
 package com.summer.passwordmanager.repository
 
-import android.os.Environment
 import android.util.Log
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.summer.passwordmanager.beans.FileBean
@@ -12,10 +11,9 @@ import com.summer.passwordmanager.utils.EncryptionUtils.toCharArray
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.BufferedReader
-import java.io.File
-import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.io.OutputStream
 import java.util.Base64
 
 class FileRepositoryImpl : FileRepository {
@@ -23,10 +21,9 @@ class FileRepositoryImpl : FileRepository {
     override suspend fun exportFile(
         fileBean: FileBean,
         appName: String,
-        fileName: String,
-        key: String
-    ): String? {
-        var savedFileAbsolutePath: String? = null
+        key: String,
+        fileOutputStream: OutputStream
+    ) {
         withContext(Dispatchers.IO) {
             try {
                 val fileBeanJson = fileBean.toJSON()
@@ -41,36 +38,28 @@ class FileRepositoryImpl : FileRepository {
                 val encryptedString = aesEncryption.encrypt(fileBeanJson)
                 Log.d("TestingJson", "Encrypted $encryptedString")
 
-                val path =
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).path + File.separator + appName
-                File(path).mkdirs()
-                val file = File(path, "${fileName}.txt")
-                Log.d("path", path)
-                if (file.exists()) file.delete()
-
-                val fileStream = FileOutputStream(file)
-                fileStream.bufferedWriter().use {
+                fileOutputStream.bufferedWriter().use {
                     it.write(ivGen.toCharArray())
                     it.write("\n")
                     it.write(encryptedString)
                 }
-                savedFileAbsolutePath = file.absolutePath
-                fileStream.flush()
-                fileStream.close()
 
             } catch (e: Exception) {
                 FirebaseCrashlytics.getInstance().recordException(e)
                 e.printStackTrace()
+            } finally {
+                fileOutputStream.flush()
+                fileOutputStream.close()
             }
         }
-        return savedFileAbsolutePath
     }
 
     override suspend fun importFile(inputStream: InputStream, key: String): FileBean? {
         var fileBean: FileBean? = null
+        var fileStream: BufferedReader? = null
         try {
+            fileStream = BufferedReader(InputStreamReader(inputStream))
             withContext(Dispatchers.IO) {
-                val fileStream = BufferedReader(InputStreamReader(inputStream))
                 val iiv = fileStream.readLine()
                 Log.d("iv", String(iiv.toByteArray()))
                 val decryptedString = AESEncryption(
@@ -83,11 +72,12 @@ class FileRepositoryImpl : FileRepository {
                     }.toString()
                 )
                 Log.d("TestingJson", "Decrypted $decryptedString")
-                fileStream.close()
                 fileBean = decryptedString.toFileBean()
             }
         } catch (e: Exception) {
             FirebaseCrashlytics.getInstance().recordException(e)
+        } finally {
+            fileStream?.close()
         }
         return fileBean
     }

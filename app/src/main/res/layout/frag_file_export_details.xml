@@ -13,26 +13,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/exportFileNameTv"
-            layout="@layout/field_new_edit_text"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fragFileExport_header"
+            style="@style/text_body_bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_x_medium"
-            app:hint="@{@string/file_name}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:textInputModel="@{model.fileName}"
-            app:title="@{@string/file_name}" />
+            android:text="@string/file_export_disclaimer"
+            android:textStyle="italic"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/exportFileKeyTv"
+            android:id="@+id/et_fragFileExport_key"
             layout="@layout/field_new_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_x_medium"
             app:hasIconEnd="@{true}"
             app:hint="@{@string/file_key}"
-            app:layout_constraintTop_toBottomOf="@id/exportFileNameTv"
+            app:layout_constraintTop_toBottomOf="@id/tv_fragFileExport_header"
             app:textInputModel="@{model.key}"
             app:title="@{@string/file_key}" />
 
@@ -45,15 +44,15 @@
             android:drawableTint="@color/blue_dark"
             android:padding="@dimen/spacing_small"
             android:src="@drawable/ic_copy"
-            app:layout_constraintBottom_toBottomOf="@id/exportFileKeyTv"
-            app:layout_constraintEnd_toEndOf="@id/exportFileKeyTv" />
+            app:layout_constraintBottom_toBottomOf="@id/et_fragFileExport_key"
+            app:layout_constraintEnd_toEndOf="@id/et_fragFileExport_key" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_small"
             android:weightSum="1"
-            app:layout_constraintTop_toBottomOf="@id/exportFileKeyTv">
+            app:layout_constraintTop_toBottomOf="@id/et_fragFileExport_key">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/exportGenerateKeyBtn"
@@ -62,7 +61,7 @@
                 android:layout_margin="@dimen/spacing_x_small"
                 android:layout_weight="0.5"
                 android:text="@string/generate_key"
-                android:textColor="?label" />
+                android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/exportBtn"
@@ -71,7 +70,7 @@
                 android:layout_margin="@dimen/spacing_x_small"
                 android:layout_weight="0.5"
                 android:text="@string/export_file"
-                android:textColor="?label" />
+                android:textColor="@color/white" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
