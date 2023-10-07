@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/spacing_medium">
+        android:paddingTop="@dimen/spacing_small">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/importFileBtn"

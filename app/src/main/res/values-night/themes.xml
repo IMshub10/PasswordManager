@@ -33,7 +33,8 @@
         <item name="labelSecondary">@color/opaque_0.6</item>
         <item name="labelTertiary">@color/opaque_0.3</item>
         <item name="colorGreen">@color/green_dark</item>
-        <item name="box_background">@color/background_dark</item>
+        <item name="boxBackground">@color/background_dark</item>
+        <item name="tagBackground">@color/grey_dark</item>
 
         <item name="colorSeparator">@color/separator_dark</item>
         <item name="iconColorPrimary">?attr/colorLink</item>
