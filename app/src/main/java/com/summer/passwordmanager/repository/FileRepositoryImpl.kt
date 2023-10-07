@@ -56,9 +56,10 @@ class FileRepositoryImpl : FileRepository {
 
     override suspend fun importFile(inputStream: InputStream, key: String): FileBean? {
         var fileBean: FileBean? = null
+        var fileStream: BufferedReader? = null
         try {
+            fileStream = BufferedReader(InputStreamReader(inputStream))
             withContext(Dispatchers.IO) {
-                val fileStream = BufferedReader(InputStreamReader(inputStream))
                 val iiv = fileStream.readLine()
                 Log.d("iv", String(iiv.toByteArray()))
                 val decryptedString = AESEncryption(
@@ -71,11 +72,12 @@ class FileRepositoryImpl : FileRepository {
                     }.toString()
                 )
                 Log.d("TestingJson", "Decrypted $decryptedString")
-                fileStream.close()
                 fileBean = decryptedString.toFileBean()
             }
         } catch (e: Exception) {
             FirebaseCrashlytics.getInstance().recordException(e)
+        } finally {
+            fileStream?.close()
         }
         return fileBean
     }

@@ -20,13 +20,15 @@ class FileImportDetailsFrag : BaseFragment<FragFileImportDetailsBinding>() {
 
     private val viewModel: ProfileViewModel by activityViewModel()
     private var fileData: Uri? = null
-    private val acc = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+
+    private val readFileLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
             it.data?.data?.apply {
                 fileData = this
             }
         }
     }
+
     override val layoutResId: Int
         get() = R.layout.frag_file_import_details
 
@@ -34,7 +36,7 @@ class FileImportDetailsFrag : BaseFragment<FragFileImportDetailsBinding>() {
         viewModel.key.reset()
         mBinding.model = viewModel
         mBinding.importFileBtn.setOnClickListener {
-            acc.launch(Intent.createChooser(Intent(Intent.ACTION_GET_CONTENT).apply {
+            readFileLauncher.launch(Intent.createChooser(Intent(Intent.ACTION_GET_CONTENT).apply {
                 type = "text/plain"
             }, getString(R.string.import_file)))
         }
@@ -44,11 +46,10 @@ class FileImportDetailsFrag : BaseFragment<FragFileImportDetailsBinding>() {
                 requireContext().contentResolver.openInputStream(uri)?.let { inputStream ->
                     lifecycleScope.launch(Dispatchers.Main) {
                         val result = viewModel.importFile(inputStream)
-                        if (result) {
+                        if (result)
                             findNavController().navigateUp()
-                        }else{
-                            showShortToast("Unable to import this file.")
-                        }
+                        else
+                            showShortToast(getString(R.string.unable_to_import_this_file))
                     }
                 }
             }

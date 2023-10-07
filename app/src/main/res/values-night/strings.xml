@@ -5,4 +5,5 @@
     <string name="re_enter_pin">Re-enter Pin</string>
     <string name="enable_fingerprint">Enable FingerPrint</string>
     <string name="profile">Profile</string>
+    <string name="choose_file">Choose File</string>
 </resources>

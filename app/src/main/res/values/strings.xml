@@ -72,4 +72,6 @@
     <string name="file_export_disclaimer">The file key is essential for accessing encrypted data in the file. Keep it secure; without the key, the data cannot be accessed.</string>
     <string name="unable_to_export_file">Unable to export file.</string>
     <string name="file_exported_successfully">File exported successfully.</string>
+    <string name="unable_to_import_this_file">Unable to import this file.</string>
+    <string name="choose_file">Choose File</string>
 </resources>
