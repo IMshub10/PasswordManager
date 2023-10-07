@@ -69,4 +69,7 @@
     <string name="dummy_pass">********</string>
     <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete? Once deleted data cannot be restored.</string>
     <string name="n_a">N/A</string>
+    <string name="file_export_disclaimer">The file key is essential for accessing encrypted data in the file. Keep it secure; without the key, the data cannot be accessed.</string>
+    <string name="unable_to_export_file">Unable to export file.</string>
+    <string name="file_exported_successfully">File exported successfully.</string>
 </resources>
