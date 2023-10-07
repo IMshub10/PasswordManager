@@ -1,5 +1,7 @@
 package com.summer.passwordmanager.utils.extensions
 
+import android.database.Observable
+import androidx.databinding.ObservableField
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.summer.passwordmanager.database.entities.VaultEntity
@@ -8,6 +10,11 @@ inline fun <reified T> Gson.fromJson(json: String) =
     this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
 inline fun <reified T : Any> T.json(): String = Gson().toJson(this, T::class.java)
+
+fun <T> ObservableField<T>.setValue(value: T) {
+    set(value)
+    notifyChange()
+}
 
 fun List<Int>?.getIntArray(): String? {
     if (this == null) return null
