@@ -17,6 +17,7 @@ import com.summer.passwordmanager.R
 import com.summer.passwordmanager.databinding.DialogAlertSpanableBinding
 import com.summer.passwordmanager.utils.UiUtils
 import com.summer.passwordmanager.utils.extensions.gone
+import com.summer.passwordmanager.utils.extensions.setValue
 import com.summer.passwordmanager.utils.extensions.visible
 
 class HelperAlertDialog(
@@ -50,12 +51,10 @@ class HelperAlertDialog(
         dialog?.window?.attributes?.windowAnimations = R.style.SpannableDialogAnimation
         mBinding = DialogAlertSpanableBinding.inflate(layoutInflater)
         if (uiModels.confirmText.get().isNullOrEmpty()) {
-            uiModels.confirmText.set(getString(R.string.txt_ok))
-            uiModels.confirmText.notifyChange()
+            uiModels.confirmText.setValue(getString(R.string.txt_ok))
         }
         if (uiModels.cancelText.get().isNullOrEmpty()) {
-            uiModels.cancelText.set(getString(R.string.cancel))
-            uiModels.cancelText.notifyChange()
+            uiModels.cancelText.setValue(getString(R.string.cancel))
         }
         mBinding?.run {
             model = uiModels
@@ -116,10 +115,8 @@ class HelperAlertDialog(
 
     fun changeAlertType(dialogType: DialogType) {
         spannableDialogType = dialogType
-        uiModels.titleText.set("")
-        uiModels.titleText.notifyChange()
-        uiModels.contentText.set(SpannableString(""))
-        uiModels.contentText.notifyChange()
+        uiModels.titleText.setValue("")
+        uiModels.contentText.setValue(SpannableString(""))
         initUI()
     }
 
@@ -147,20 +144,17 @@ class HelperAlertDialog(
     }
 
     fun setTitleText(contentString: String) {
-        uiModels.titleText.set(
+        uiModels.titleText.setValue(
             contentString
         )
-        uiModels.titleText.notifyChange()
     }
 
     fun setConfirmText(buttonText: String) {
-        uiModels.confirmText.set(buttonText)
-        uiModels.confirmText.notifyChange()
+        uiModels.confirmText.setValue(buttonText)
     }
 
     fun setCancelText(cancelText: String) {
-        uiModels.cancelText.set(cancelText)
-        uiModels.cancelText.notifyChange()
+        uiModels.cancelText.setValue(cancelText)
     }
 
     fun setConfirmClickListener(clickListener: View.OnClickListener) {
