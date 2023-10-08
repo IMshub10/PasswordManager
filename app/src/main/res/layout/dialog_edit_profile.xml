@@ -40,7 +40,6 @@
                     app:textInputModel="@{model.fullNameEditTextModel}"
                     app:title="@{@string/name}" />
 
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_dialogEditProfile_container"
                     android:layout_width="match_parent"
