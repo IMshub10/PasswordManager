@@ -13,18 +13,12 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     val fullNameEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.FULL_NAME, isRequired = true)
 
-    val mobileNumberEditTextModel =
-        TextEditTextModel(fieldType = TextEditTextFieldType.MOBILE_NUMBER, isRequired = false)
-
     init {
         viewModelScope.launch(Dispatchers.IO) {
             val fullName = userRepository.getFullName()
-            val mobileNumber = userRepository.getMobileNumber()
             withContext(Dispatchers.Main) {
                 fullNameEditTextModel.editTextContent = fullName
-                mobileNumberEditTextModel.editTextContent = mobileNumber
                 fullNameEditTextModel.notifyChange()
-                mobileNumberEditTextModel.notifyChange()
             }
         }
     }
@@ -32,7 +26,6 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     suspend fun saveUserNameMobile() {
         userRepository.save(
             fullName = fullNameEditTextModel.editTextContent,
-            mobileNumber = mobileNumberEditTextModel.editTextContent
         )
     }
 }

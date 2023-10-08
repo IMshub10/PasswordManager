@@ -9,13 +9,12 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
     val fullNameEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.FULL_NAME, isRequired = true)
 
-    val mobileNumberEditTextModel =
+    /*val mobileNumberEditTextModel =
         TextEditTextModel(fieldType = TextEditTextFieldType.MOBILE_NUMBER, isRequired = false)
-
+*/
     suspend fun save() {
         userRepository.save(
             fullName = fullNameEditTextModel.editTextContent,
-            mobileNumber = mobileNumberEditTextModel.editTextContent
         )
     }
 

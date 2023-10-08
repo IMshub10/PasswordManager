@@ -41,11 +41,11 @@ class ProfileViewModel(
     fun loadUserProfile() {
         viewModelScope.launch(Dispatchers.Default) {
             val userName = userRepository.getFullName()
-            val userMobile = userRepository.getMobileNumber()
+            //val userMobile = userRepository.getMobileNumber()
             withContext(Dispatchers.Main) {
                 userModel.apply {
                     name = userName.orEmpty()
-                    mobile = userMobile.orEmpty()
+                    //mobile = userMobile.orEmpty()
                     notifyChange()
                 }
             }
