@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/spacing_x_small"
             android:background="@drawable/box_shape_edit_text_left_curved"
             android:gravity="center"
-            android:hint="+91"
+            android:hint="@string/_91"
             android:maxLength="4"
             android:maxLines="1"
             android:paddingHorizontal="@dimen/spacing_x_small"
