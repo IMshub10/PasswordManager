@@ -6,6 +6,16 @@
 -dontwarn com.github.luben.**
 -dontwarn com.mongodb.crypt.**
 -dontwarn io.netty.**
+-dontwarn com.google.api.client.http.GenericUrl
+-dontwarn com.google.api.client.http.HttpHeaders
+-dontwarn com.google.api.client.http.HttpRequest
+-dontwarn com.google.api.client.http.HttpRequestFactory
+-dontwarn com.google.api.client.http.HttpResponse
+-dontwarn com.google.api.client.http.HttpTransport
+-dontwarn com.google.api.client.http.javanet.NetHttpTransport$Builder
+-dontwarn com.google.api.client.http.javanet.NetHttpTransport
+-dontwarn org.joda.convert.FromString
+-dontwarn org.joda.convert.ToString
 
 -dontwarn okhttp3.**
 -dontwarn com.google.errorprone.annotations.Immutable
