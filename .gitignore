@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 local.propertiesgradle.properties
+signin.properties
