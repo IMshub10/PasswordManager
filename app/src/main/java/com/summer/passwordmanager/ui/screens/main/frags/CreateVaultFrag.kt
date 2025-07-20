@@ -100,7 +100,7 @@ class CreateVaultFrag : BaseFragment<FragCreateVaultBinding>() {
     }
 
     private fun initRecyclerView() {
-        mBinding?.run {
+        mBinding.run {
             (rvFragCreateVaultTags.itemAnimator as SimpleItemAnimator).supportsChangeAnimations =
                 false
             rvFragCreateVaultTags.layoutManager = FlexboxLayoutManager(requireContext()).apply {

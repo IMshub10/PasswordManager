@@ -51,14 +51,14 @@
                 android:text="@string/login_with_fingerprint"
                 android:visibility="@{model.isFingerPrintEnable ? View.VISIBLE : View.INVISIBLE}" />
 
-            <com.andrognito.pinlockview.IndicatorDots
+            <com.hbisoft.pinlockr.IndicatorDots
                 android:id="@+id/frag_pin_indicatorDots"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="32dp"
                 android:gravity="center" />
 
-            <com.andrognito.pinlockview.PinLockView
+            <com.hbisoft.pinlockr.PinlockrView
                 android:id="@+id/frag_pin_useLock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

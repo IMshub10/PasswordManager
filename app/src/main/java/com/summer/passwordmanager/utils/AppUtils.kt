@@ -18,6 +18,8 @@ import kotlin.streams.asSequence
 
 
 object AppUtils {
+    const val PIN_LENGTH = 4
+
     //region Functions
     fun generateXid() = Xid.get().toHexString()!!
 
